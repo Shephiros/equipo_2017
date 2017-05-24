@@ -60,6 +60,21 @@
                 </div>
 
                 <br/><br/><br/>
+
+                <div class="form-row">
+                    <div class="col-lg-3">
+                    </div>
+                    <div class="col-lg-1">
+                        <s:label value="Teléfono:"></s:label>
+                    </div>
+                    <div class="col-lg-5">
+                        <s:textfield name="nuevoDeptoInstitucion.deptoInstitucionTelefono" cssClass="form-control" cssStyle="width: 30%"></s:textfield>
+                    </div>
+                    <div class="col-lg-3">
+                    </div>
+                </div>
+
+                <br/><br/><br/>
                 
                 <div class="form-row">
                     <div class="col-lg-3">
