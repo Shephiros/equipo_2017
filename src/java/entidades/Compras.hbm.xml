@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-may-2017 12:01:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.Compras" table="COMPRAS" schema="EQUIPO" optimistic-lock="version">
+        <id name="compraId" type="big_decimal">
+            <column name="COMPRA_ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="instituciones" class="entidades.Instituciones" fetch="select">
+            <column name="INSTITUCION_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="proveedores" class="entidades.Proveedores" fetch="select">
+            <column name="PROVEEDOR_ID" precision="22" scale="0" />
+        </many-to-one>
+        <property name="compraFactura" type="string">
+            <column name="COMPRA_FACTURA" length="10" not-null="true" />
+        </property>
+        <property name="compraFecha" type="date">
+            <column name="COMPRA_FECHA" length="7" not-null="true" />
+        </property>
+        <property name="compraVendedor" type="string">
+            <column name="COMPRA_VENDEDOR" length="75" />
+        </property>
+        <property name="compraSolicitudCodigo" type="big_decimal">
+            <column name="COMPRA_SOLICITUD_CODIGO" precision="22" scale="0" />
+        </property>
+        <property name="compraResponsable" type="string">
+            <column name="COMPRA_RESPONSABLE" length="75" />
+        </property>
+        <set name="contratoses" table="CONTRATOS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="COMPRA_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.Contratos" />
+        </set>
+        <set name="detalleComprases" table="DETALLE_COMPRAS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="COMPRA_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.DetalleCompras" />
+        </set>
+    </class>
+</hibernate-mapping>

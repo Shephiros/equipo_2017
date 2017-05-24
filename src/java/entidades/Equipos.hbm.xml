@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-may-2017 12:01:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.Equipos" table="EQUIPOS" schema="EQUIPO" optimistic-lock="version">
+        <id name="equipoId" type="big_decimal">
+            <column name="EQUIPO_ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="detalleCompras" class="entidades.DetalleCompras" fetch="select">
+            <column name="DET_COMPRA_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="equipoNombre" type="string">
+            <column name="EQUIPO_NOMBRE" length="50" not-null="true" />
+        </property>
+        <property name="equipoMarca" type="string">
+            <column name="EQUIPO_MARCA" length="50" not-null="true" />
+        </property>
+        <property name="equipoModelo" type="string">
+            <column name="EQUIPO_MODELO" length="50" />
+        </property>
+        <property name="equipoFechaCompra" type="date">
+            <column name="EQUIPO_FECHA_COMPRA" length="7" not-null="true" />
+        </property>
+        <property name="equipoAnioFabricacion" type="big_decimal">
+            <column name="EQUIPO_ANIO_FABRICACION" precision="22" scale="0" />
+        </property>
+        <property name="equipoBtu" type="java.lang.Double">
+            <column name="EQUIPO_BTU" precision="8" scale="0" />
+        </property>
+        <property name="equipoPotencia" type="java.lang.Double">
+            <column name="EQUIPO_POTENCIA" precision="8" scale="0" />
+        </property>
+        <property name="equipoMantenimiento" type="date">
+            <column name="EQUIPO_MANTENIMIENTO" length="7" />
+        </property>
+        <property name="equipoEstado" type="big_decimal">
+            <column name="EQUIPO_ESTADO" precision="22" scale="0" not-null="true" />
+        </property>
+        <set name="detalleInstalacions" table="DETALLE_INSTALACION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="EQUIPO_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.DetalleInstalacion" />
+        </set>
+        <set name="detalleMantenimientos" table="DETALLE_MANTENIMIENTO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="EQUIPO_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.DetalleMantenimiento" />
+        </set>
+        <set name="documentoses" table="DOCUMENTOS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="EQUIPO_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.Documentos" />
+        </set>
+        <set name="alertases" table="ALERTAS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="EQUIPO_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.Alertas" />
+        </set>
+    </class>
+</hibernate-mapping>

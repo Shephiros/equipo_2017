@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-may-2017 12:01:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.Documentos" table="DOCUMENTOS" schema="EQUIPO" optimistic-lock="version">
+        <id name="docuId" type="big_decimal">
+            <column name="DOCU_ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="equipos" class="entidades.Equipos" fetch="select">
+            <column name="EQUIPO_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="docuNombre" type="string">
+            <column name="DOCU_NOMBRE" length="50" not-null="true" />
+        </property>
+        <property name="docuUrl" type="string">
+            <column name="DOCU_URL" length="200" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

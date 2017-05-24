@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-may-2017 12:01:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.Usuarios" table="USUARIOS" schema="EQUIPO" optimistic-lock="version">
+        <id name="usuarioUsuario" type="string">
+            <column name="USUARIO_USUARIO" length="30" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="instituciones" class="entidades.Instituciones" fetch="select">
+            <column name="INSTITUCION_ID" precision="22" scale="0" />
+        </many-to-one>
+        <many-to-one name="proveedores" class="entidades.Proveedores" fetch="select">
+            <column name="PROVEEDOR_ID" precision="22" scale="0" />
+        </many-to-one>
+        <many-to-one name="roles" class="entidades.Roles" fetch="select">
+            <column name="ROL_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="usuarioNombre" type="string">
+            <column name="USUARIO_NOMBRE" length="75" not-null="true" />
+        </property>
+        <property name="usuarioCorreo" type="string">
+            <column name="USUARIO_CORREO" length="50" not-null="true" />
+        </property>
+        <property name="usuarioTelefono" type="string">
+            <column name="USUARIO_TELEFONO" length="10" />
+        </property>
+        <property name="usuarioContrasenia" type="string">
+            <column name="USUARIO_CONTRASENIA" length="30" not-null="true" />
+        </property>
+        <property name="usuarioEstado" type="big_decimal">
+            <column name="USUARIO_ESTADO" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="usuarioBloqueado" type="big_decimal">
+            <column name="USUARIO_BLOQUEADO" precision="22" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

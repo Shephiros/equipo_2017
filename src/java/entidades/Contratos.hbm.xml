@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-may-2017 12:01:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.Contratos" table="CONTRATOS" schema="EQUIPO" optimistic-lock="version">
+        <id name="contratoId" type="big_decimal">
+            <column name="CONTRATO_ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="compras" class="entidades.Compras" fetch="select">
+            <column name="COMPRA_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="contratoFecha" type="date">
+            <column name="CONTRATO_FECHA" length="7" not-null="true" />
+        </property>
+        <property name="contratoRespUaci" type="string">
+            <column name="CONTRATO_RESP_UACI" length="75" not-null="true" />
+        </property>
+        <property name="contratoRespProveedor" type="string">
+            <column name="CONTRATO_RESP_PROVEEDOR" length="75" not-null="true" />
+        </property>
+        <property name="contratoRespDepto" type="string">
+            <column name="CONTRATO_RESP_DEPTO" length="75" not-null="true" />
+        </property>
+        <property name="contratoObservacion" type="string">
+            <column name="CONTRATO_OBSERVACION" length="500" />
+        </property>
+        <set name="mantenimientoses" table="MANTENIMIENTOS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CONTRATO_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.Mantenimientos" />
+        </set>
+        <set name="instalacioneses" table="INSTALACIONES" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CONTRATO_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.Instalaciones" />
+        </set>
+        <set name="garantiases" table="GARANTIAS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CONTRATO_ID" precision="22" scale="0" />
+            </key>
+            <one-to-many class="entidades.Garantias" />
+        </set>
+    </class>
+</hibernate-mapping>

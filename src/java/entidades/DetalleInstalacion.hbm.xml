@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-may-2017 12:01:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.DetalleInstalacion" table="DETALLE_INSTALACION" schema="EQUIPO" optimistic-lock="version">
+        <id name="detInstalacionId" type="big_decimal">
+            <column name="DET_INSTALACION_ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="equipos" class="entidades.Equipos" fetch="select">
+            <column name="EQUIPO_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="instalaciones" class="entidades.Instalaciones" fetch="select">
+            <column name="INSTALACION_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="detInstalacionEstadoInicial" type="string">
+            <column name="DET_INSTALACION_ESTADO_INICIAL" length="200" not-null="true" />
+        </property>
+        <property name="detInstalacionEstadoFinal" type="string">
+            <column name="DET_INSTALACION_ESTADO_FINAL" length="200" not-null="true" />
+        </property>
+        <property name="detInstalacionDescripcion" type="string">
+            <column name="DET_INSTALACION_DESCRIPCION" length="200" />
+        </property>
+        <property name="detInstalacionAutorizadoPor" type="string">
+            <column name="DET_INSTALACION_AUTORIZADO_POR" length="75" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

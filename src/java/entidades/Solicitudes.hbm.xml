@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-may-2017 12:01:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.Solicitudes" table="SOLICITUDES" schema="EQUIPO" optimistic-lock="version">
+        <id name="solicitudId" type="big_decimal">
+            <column name="SOLICITUD_ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="departamentosInstitucion" class="entidades.DepartamentosInstitucion" fetch="select">
+            <column name="DEPTO_INSTITUCION_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tipoSolicitudes" class="entidades.TipoSolicitudes" fetch="select">
+            <column name="TIPO_SOLICITUD_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="solicitudCodigo" type="big_decimal">
+            <column name="SOLICITUD_CODIGO" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="solicitudReponsable" type="string">
+            <column name="SOLICITUD_REPONSABLE" length="75" not-null="true" />
+        </property>
+        <property name="solicitudFecha" type="date">
+            <column name="SOLICITUD_FECHA" length="7" not-null="true" />
+        </property>
+        <property name="solicitudEstado" type="big_decimal">
+            <column name="SOLICITUD_ESTADO" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="solicitudObservacion" type="string">
+            <column name="SOLICITUD_OBSERVACION" length="500" not-null="true" />
+        </property>
+        <set name="aprobadoses" table="APROBADOS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="SOLICITUD_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.Aprobados" />
+        </set>
+        <set name="licitacioneses" table="LICITACIONES" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="SOLICITUD_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.Licitaciones" />
+        </set>
+        <set name="detalleSolicituds" table="DETALLE_SOLICITUD" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="SOLICITUD_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.DetalleSolicitud" />
+        </set>
+    </class>
+</hibernate-mapping>

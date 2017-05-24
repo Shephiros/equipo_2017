@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-may-2017 12:01:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.ProductosProveedor" table="PRODUCTOS_PROVEEDOR" schema="EQUIPO" optimistic-lock="version">
+        <id name="prodProveedorId" type="big_decimal">
+            <column name="PROD_PROVEEDOR_ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="proveedores" class="entidades.Proveedores" fetch="select">
+            <column name="PROVEEDOR_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="prodProveedorNombre" type="string">
+            <column name="PROD_PROVEEDOR_NOMBRE" length="100" not-null="true" />
+        </property>
+        <property name="prodProveedorMarca" type="string">
+            <column name="PROD_PROVEEDOR_MARCA" length="30" not-null="true" />
+        </property>
+        <property name="prodProveedorModelo" type="string">
+            <column name="PROD_PROVEEDOR_MODELO" length="30" not-null="true" />
+        </property>
+        <property name="prodProveedorAnio" type="big_decimal">
+            <column name="PROD_PROVEEDOR_ANIO" precision="22" scale="0" />
+        </property>
+        <property name="prodProveedorBtu" type="java.lang.Double">
+            <column name="PROD_PROVEEDOR_BTU" precision="8" scale="0" />
+        </property>
+        <property name="prodProveedorPotencia" type="java.lang.Double">
+            <column name="PROD_PROVEEDOR_POTENCIA" precision="8" scale="0" />
+        </property>
+        <property name="prodProveedorColor" type="string">
+            <column name="PROD_PROVEEDOR_COLOR" length="20" />
+        </property>
+        <property name="prodProveedorExistencias" type="big_decimal">
+            <column name="PROD_PROVEEDOR_EXISTENCIAS" precision="22" scale="0" />
+        </property>
+        <property name="prodProveedorDescripcion" type="string">
+            <column name="PROD_PROVEEDOR_DESCRIPCION" length="200" />
+        </property>
+        <property name="prodProveedorVoltaje" type="java.lang.Double">
+            <column name="PROD_PROVEEDOR_VOLTAJE" precision="8" scale="0" />
+        </property>
+        <property name="prodProveedorArea" type="java.lang.Double">
+            <column name="PROD_PROVEEDOR_AREA" precision="8" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

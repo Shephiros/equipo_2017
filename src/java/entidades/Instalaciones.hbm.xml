@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-may-2017 12:01:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.Instalaciones" table="INSTALACIONES" schema="EQUIPO" optimistic-lock="version">
+        <id name="instalacionId" type="big_decimal">
+            <column name="INSTALACION_ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="contratos" class="entidades.Contratos" fetch="select">
+            <column name="CONTRATO_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="proveedores" class="entidades.Proveedores" fetch="select">
+            <column name="PROVEEDOR_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="instalacionInicio" type="date">
+            <column name="INSTALACION_INICIO" length="7" not-null="true" />
+        </property>
+        <property name="instalacionFinalizacion" type="date">
+            <column name="INSTALACION_FINALIZACION" length="7" not-null="true" />
+        </property>
+        <property name="instalacionResponsable" type="string">
+            <column name="INSTALACION_RESPONSABLE" length="75" not-null="true" />
+        </property>
+        <property name="instalacionDescripcion" type="string">
+            <column name="INSTALACION_DESCRIPCION" length="200" />
+        </property>
+        <set name="detalleInstalacions" table="DETALLE_INSTALACION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="INSTALACION_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.DetalleInstalacion" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-may-2017 12:01:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.Mantenimientos" table="MANTENIMIENTOS" schema="EQUIPO" optimistic-lock="version">
+        <id name="mantoId" type="big_decimal">
+            <column name="MANTO_ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="contratos" class="entidades.Contratos" fetch="select">
+            <column name="CONTRATO_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="proveedores" class="entidades.Proveedores" fetch="select">
+            <column name="PROVEEDOR_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tipoMantenimientos" class="entidades.TipoMantenimientos" fetch="select">
+            <column name="TIPO_MANTO_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="mantoInicio" type="date">
+            <column name="MANTO_INICIO" length="7" not-null="true" />
+        </property>
+        <property name="mantoFinalizacion" type="date">
+            <column name="MANTO_FINALIZACION" length="7" not-null="true" />
+        </property>
+        <property name="mantoResponsable" type="string">
+            <column name="MANTO_RESPONSABLE" length="75" not-null="true" />
+        </property>
+        <property name="mantoDescripcion" type="string">
+            <column name="MANTO_DESCRIPCION" length="500" />
+        </property>
+        <property name="mantoAutorizadoPor" type="string">
+            <column name="MANTO_AUTORIZADO_POR" length="75" not-null="true" />
+        </property>
+        <set name="detalleMantenimientos" table="DETALLE_MANTENIMIENTO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="MANTO_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.DetalleMantenimiento" />
+        </set>
+    </class>
+</hibernate-mapping>

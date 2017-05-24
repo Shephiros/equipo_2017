@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-may-2017 12:01:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.Garantias" table="GARANTIAS" schema="EQUIPO" optimistic-lock="version">
+        <id name="garantiaId" type="big_decimal">
+            <column name="GARANTIA_ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="contratos" class="entidades.Contratos" fetch="select">
+            <column name="CONTRATO_ID" precision="22" scale="0" />
+        </many-to-one>
+        <many-to-one name="ofertas" class="entidades.Ofertas" fetch="select">
+            <column name="OFERTA_ID" precision="22" scale="0" />
+        </many-to-one>
+        <property name="garantiaTipo" type="string">
+            <column name="GARANTIA_TIPO" length="50" not-null="true" />
+        </property>
+        <property name="garantiaInicio" type="date">
+            <column name="GARANTIA_INICIO" length="7" not-null="true" />
+        </property>
+        <property name="garantiaFinalizacion" type="date">
+            <column name="GARANTIA_FINALIZACION" length="7" not-null="true" />
+        </property>
+        <property name="garantiaDescripcion" type="string">
+            <column name="GARANTIA_DESCRIPCION" length="500" />
+        </property>
+    </class>
+</hibernate-mapping>

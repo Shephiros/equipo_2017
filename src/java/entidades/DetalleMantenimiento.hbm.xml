@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-may-2017 12:01:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.DetalleMantenimiento" table="DETALLE_MANTENIMIENTO" schema="EQUIPO" optimistic-lock="version">
+        <id name="detMantoId" type="big_decimal">
+            <column name="DET_MANTO_ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="equipos" class="entidades.Equipos" fetch="select">
+            <column name="EQUIPO_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="mantenimientos" class="entidades.Mantenimientos" fetch="select">
+            <column name="MANTO_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="detMantoEstadoInicial" type="string">
+            <column name="DET_MANTO_ESTADO_INICIAL" length="200" not-null="true" />
+        </property>
+        <property name="detMantoEstadoFinal" type="string">
+            <column name="DET_MANTO_ESTADO_FINAL" length="200" not-null="true" />
+        </property>
+        <property name="detMantoDescripcion" type="string">
+            <column name="DET_MANTO_DESCRIPCION" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>

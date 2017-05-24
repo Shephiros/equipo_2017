@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+    <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+    <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
+    <property name="hibernate.connection.username">equipo</property>
+    <property name="hibernate.connection.password">qwerty123</property>
+    <mapping resource="entidades/Documentos.hbm.xml"/>
+    <mapping resource="entidades/Mantenimientos.hbm.xml"/>
+    <mapping resource="entidades/Alertas.hbm.xml"/>
+    <mapping resource="entidades/Ofertas.hbm.xml"/>
+    <mapping resource="entidades/Instalaciones.hbm.xml"/>
+    <mapping resource="entidades/Aprobados.hbm.xml"/>
+    <mapping resource="entidades/Pantallas.hbm.xml"/>
+    <mapping resource="entidades/ProductosProveedor.hbm.xml"/>
+    <mapping resource="entidades/TipoMantenimientos.hbm.xml"/>
+    <mapping resource="entidades/TipoSolicitudes.hbm.xml"/>
+    <mapping resource="entidades/Garantias.hbm.xml"/>
+    <mapping resource="entidades/ProductosInstitucion.hbm.xml"/>
+    <mapping resource="entidades/DepartamentosInstitucion.hbm.xml"/>
+    <mapping resource="entidades/Bitacora.hbm.xml"/>
+    <mapping resource="entidades/Licitaciones.hbm.xml"/>
+    <mapping resource="entidades/Equipos.hbm.xml"/>
+    <mapping resource="entidades/Roles.hbm.xml"/>
+    <mapping resource="entidades/Contratos.hbm.xml"/>
+    <mapping resource="entidades/DetalleInstalacion.hbm.xml"/>
+    <mapping resource="entidades/Proveedores.hbm.xml"/>
+    <mapping resource="entidades/Permisos.hbm.xml"/>
+    <mapping resource="entidades/DetalleSolicitud.hbm.xml"/>
+    <mapping resource="entidades/DetalleCompras.hbm.xml"/>
+    <mapping resource="entidades/Instituciones.hbm.xml"/>
+    <mapping resource="entidades/Compras.hbm.xml"/>
+    <mapping resource="entidades/Solicitudes.hbm.xml"/>
+    <mapping resource="entidades/Municipios.hbm.xml"/>
+    <mapping resource="entidades/Usuarios.hbm.xml"/>
+    <mapping resource="entidades/DetalleMantenimiento.hbm.xml"/>
+    <mapping resource="entidades/Departamentos.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

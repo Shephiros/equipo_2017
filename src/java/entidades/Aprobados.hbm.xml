@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-may-2017 12:01:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.Aprobados" table="APROBADOS" schema="EQUIPO" optimistic-lock="version">
+        <id name="aprobadoId" type="big_decimal">
+            <column name="APROBADO_ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="solicitudes" class="entidades.Solicitudes" fetch="select">
+            <column name="SOLICITUD_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="aprobadoFecha" type="date">
+            <column name="APROBADO_FECHA" length="7" not-null="true" />
+        </property>
+        <property name="aprobadoResponsable" type="string">
+            <column name="APROBADO_RESPONSABLE" length="75" not-null="true" />
+        </property>
+        <property name="aprobadoObservaciones" type="string">
+            <column name="APROBADO_OBSERVACIONES" length="500" />
+        </property>
+    </class>
+</hibernate-mapping>

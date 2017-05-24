@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-may-2017 12:01:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.Instituciones" table="INSTITUCIONES" schema="EQUIPO" optimistic-lock="version">
+        <id name="institucionId" type="big_decimal">
+            <column name="INSTITUCION_ID" precision="22" scale="0" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="municipios" class="entidades.Municipios" fetch="select">
+            <column name="MUNICIPIO_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="institucionNombre" type="string">
+            <column name="INSTITUCION_NOMBRE" length="150" not-null="true" />
+        </property>
+        <property name="institucionEncargado" type="string">
+            <column name="INSTITUCION_ENCARGADO" length="75" not-null="true" />
+        </property>
+        <property name="institucionTelefono" type="string">
+            <column name="INSTITUCION_TELEFONO" length="10" />
+        </property>
+        <property name="institucionDireccion" type="string">
+            <column name="INSTITUCION_DIRECCION" length="500" />
+        </property>
+        <property name="institucionDescripcion" type="string">
+            <column name="INSTITUCION_DESCRIPCION" length="500" />
+        </property>
+        <set name="departamentosInstitucions" table="DEPARTAMENTOS_INSTITUCION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="INSTITUCION_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.DepartamentosInstitucion" />
+        </set>
+        <set name="usuarioses" table="USUARIOS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="INSTITUCION_ID" precision="22" scale="0" />
+            </key>
+            <one-to-many class="entidades.Usuarios" />
+        </set>
+        <set name="comprases" table="COMPRAS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="INSTITUCION_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.Compras" />
+        </set>
+    </class>
+</hibernate-mapping>

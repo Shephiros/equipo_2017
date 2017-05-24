@@ -1,0 +1,82 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!--Modo para creacion despues eliminar o poner value ="false"-->
+    <constant name="struts.devMode" value="true"/>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default">
+        
+    </package>
+    
+    <package name="controladores" namespace="/" extends="struts-default">
+        <action name="usuarioNuevo" class="controladores.AdministracionControlador" method="mostrarNuevoUsuario">
+            <result>/vistas/usuario_nuevo.jsp</result>
+        </action>
+        <action name="usuarioListado" class="controladores.AdministracionControlador" method="execute">
+            <result>/vistas/usuario_listado.jsp</result>
+        </action>
+        <action name="usuarioGuardar" class="controladores.AdministracionControlador" method="guardarNuevoUsuario">
+            <result>/vistas/usuario_nuevo.jsp</result>
+        </action>
+        <action name="usuarioVer" class="controladores.AdministracionControlador" method="verUsuario">
+            <result>/vistas/usuario_ver.jsp</result>
+        </action>
+        <action name="usuarioEditar" class="controladores.AdministracionControlador" method="verUsuario">
+            <result>/vistas/usuario_editar.jsp</result>
+        </action>
+        <action name="usuarioEditarGuardar" class="controladores.AdministracionControlador" method="guardarSeleccionadoUsuario">
+            <result>/vistas/usuario_editar.jsp</result>
+        </action>
+        <action name="rolesListado" class="controladores.AdministracionControlador" method="listadoRoles">
+            <result>/vistas/rol_listado.jsp</result>
+        </action>
+        
+        
+        <action name="institucionNuevo" class="controladores.InstitucionControlador" method="mostrarNuevaInstitucion">
+            <result>/vistas/institucion_nuevo.jsp</result>
+        </action>
+        <action name="institucionListado" class="controladores.InstitucionControlador" method="execute">
+            <result>/vistas/institucion_listado.jsp</result>
+        </action>
+        <action name="institucionGuardar" class="controladores.InstitucionControlador" method="guardarNuevaInstitucion">
+            <result>/vistas/institucion_listado.jsp</result>
+        </action>
+        <action name="institucionVer" class="controladores.InstitucionControlador" method="verInstitucion">
+            <result>/vistas/institucion_ver.jsp</result>
+        </action>
+        <action name="institucionEditar" class="controladores.InstitucionControlador" method="verInstitucion">
+            <result>/vistas/institucion_editar.jsp</result>
+        </action>
+        <action name="institucionActualizar" class="controladores.InstitucionControlador" method="editarInstitucion">
+            <result>/vistas/institucion_listado.jsp</result>
+        </action>
+        
+        
+        
+        
+        
+        <action name="departamentoNuevo" class="controladores.InstitucionControlador" method="mostrarNuevoDepartamento">
+            <result>/vistas/departamento_nuevo.jsp</result>
+        </action>
+        <action name="departamentoListado" class="controladores.InstitucionControlador" method="execute">
+            <result>/vistas/departamento_listado.jsp</result>
+        </action>
+        <action name="departamentoGuardar" class="controladores.InstitucionControlador" method="guardarNuevoDepartamento">
+            <result>/vistas/departamento_listado.jsp</result>
+        </action>
+        <action name="departamentoVer" class="controladores.InstitucionControlador" method="verDepartamento">
+            <result>/vistas/departamento_ver.jsp</result>
+        </action>
+        <action name="departamentoEditar" class="controladores.InstitucionControlador" method="verDepartamento">
+            <result>/vistas/departamento_editar.jsp</result>
+        </action>
+        <action name="departamentoActualizar" class="controladores.InstitucionControlador" method="editarDepartamento">
+            <result>/vistas/departamento_listado.jsp</result>
+        </action>
+
+        
+        
+    </package>
+</struts>

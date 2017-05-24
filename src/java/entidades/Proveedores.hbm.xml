@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-may-2017 12:01:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.Proveedores" table="PROVEEDORES" schema="EQUIPO" optimistic-lock="version">
+        <id name="proveedorId" type="big_decimal">
+            <column name="PROVEEDOR_ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="municipios" class="entidades.Municipios" fetch="select">
+            <column name="MUNICIPIO_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="proveedorEmpresa" type="string">
+            <column name="PROVEEDOR_EMPRESA" length="100" not-null="true" />
+        </property>
+        <property name="proveedorContacto" type="string">
+            <column name="PROVEEDOR_CONTACTO" length="75" not-null="true" />
+        </property>
+        <property name="proveedorTelefono1" type="string">
+            <column name="PROVEEDOR_TELEFONO1" length="10" />
+        </property>
+        <property name="proveedorTelefono2" type="string">
+            <column name="PROVEEDOR_TELEFONO2" length="10" />
+        </property>
+        <property name="proveedorCorreo" type="string">
+            <column name="PROVEEDOR_CORREO" length="50" />
+        </property>
+        <property name="proveedorNit" type="string">
+            <column name="PROVEEDOR_NIT" length="20" />
+        </property>
+        <property name="proveedorInstalacion" type="big_decimal">
+            <column name="PROVEEDOR_INSTALACION" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="proveedorLimite" type="double">
+            <column name="PROVEEDOR_LIMITE" precision="8" scale="0" not-null="true" />
+        </property>
+        <property name="proveedorDescripcion" type="string">
+            <column name="PROVEEDOR_DESCRIPCION" length="200" />
+        </property>
+        <property name="proveedorDireccion" type="string">
+            <column name="PROVEEDOR_DIRECCION" length="200" />
+        </property>
+        <set name="ofertases" table="OFERTAS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PROVEEDOR_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.Ofertas" />
+        </set>
+        <set name="usuarioses" table="USUARIOS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PROVEEDOR_ID" precision="22" scale="0" />
+            </key>
+            <one-to-many class="entidades.Usuarios" />
+        </set>
+        <set name="productosProveedors" table="PRODUCTOS_PROVEEDOR" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PROVEEDOR_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.ProductosProveedor" />
+        </set>
+        <set name="instalacioneses" table="INSTALACIONES" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PROVEEDOR_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.Instalaciones" />
+        </set>
+        <set name="comprases" table="COMPRAS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PROVEEDOR_ID" precision="22" scale="0" />
+            </key>
+            <one-to-many class="entidades.Compras" />
+        </set>
+        <set name="mantenimientoses" table="MANTENIMIENTOS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PROVEEDOR_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.Mantenimientos" />
+        </set>
+    </class>
+</hibernate-mapping>

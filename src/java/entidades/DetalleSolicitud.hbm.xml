@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-may-2017 12:01:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.DetalleSolicitud" table="DETALLE_SOLICITUD" schema="EQUIPO" optimistic-lock="version">
+        <id name="detSolicitudId" type="big_decimal">
+            <column name="DET_SOLICITUD_ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="productosInstitucion" class="entidades.ProductosInstitucion" fetch="select">
+            <column name="PROD_INSTITUCION_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="solicitudes" class="entidades.Solicitudes" fetch="select">
+            <column name="SOLICITUD_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="detSolicitudCantidad" type="big_decimal">
+            <column name="DET_SOLICITUD_CANTIDAD" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="detSolicitudDescripcion" type="string">
+            <column name="DET_SOLICITUD_DESCRIPCION" length="200" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

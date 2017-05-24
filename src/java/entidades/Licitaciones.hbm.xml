@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-may-2017 12:01:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.Licitaciones" table="LICITACIONES" schema="EQUIPO" optimistic-lock="version">
+        <id name="licitacionId" type="big_decimal">
+            <column name="LICITACION_ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="solicitudes" class="entidades.Solicitudes" fetch="select">
+            <column name="SOLICITUD_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="licitacionNumero" type="big_decimal">
+            <column name="LICITACION_NUMERO" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="licitacionAnio" type="big_decimal">
+            <column name="LICITACION_ANIO" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="licitacionInicio" type="date">
+            <column name="LICITACION_INICIO" length="7" not-null="true" />
+        </property>
+        <property name="licitacionFinalizacion" type="date">
+            <column name="LICITACION_FINALIZACION" length="7" not-null="true" />
+        </property>
+        <property name="licitacionDescripcion" type="string">
+            <column name="LICITACION_DESCRIPCION" length="500" not-null="true" />
+        </property>
+        <set name="ofertases" table="OFERTAS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="LICITACION_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.Ofertas" />
+        </set>
+    </class>
+</hibernate-mapping>

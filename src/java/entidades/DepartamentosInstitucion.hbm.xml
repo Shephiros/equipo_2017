@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-may-2017 12:01:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.DepartamentosInstitucion" table="DEPARTAMENTOS_INSTITUCION" schema="EQUIPO" optimistic-lock="version">
+        <id name="deptoInstitucionId" type="big_decimal">
+            <column name="DEPTO_INSTITUCION_ID" precision="22" scale="0" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="instituciones" class="entidades.Instituciones" fetch="select">
+            <column name="INSTITUCION_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="deptoInstitucionNombre" type="string">
+            <column name="DEPTO_INSTITUCION_NOMBRE" length="100" not-null="true" />
+        </property>
+        <property name="deptoInstitucionJefe" type="string">
+            <column name="DEPTO_INSTITUCION_JEFE" length="75" not-null="true" />
+        </property>
+        <property name="deptoInstitucionDescripcion" type="string">
+            <column name="DEPTO_INSTITUCION_DESCRIPCION" length="200" />
+        </property>
+        <set name="solicitudeses" table="SOLICITUDES" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="DEPTO_INSTITUCION_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.Solicitudes" />
+        </set>
+    </class>
+</hibernate-mapping>
