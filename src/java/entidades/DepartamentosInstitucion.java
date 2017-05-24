@@ -1,5 +1,5 @@
 package entidades;
-// Generated 19-may-2017 12:01:36 by Hibernate Tools 4.3.1
+// Generated 24-may-2017 11:11:09 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -17,6 +17,7 @@ public class DepartamentosInstitucion  implements java.io.Serializable {
      private String deptoInstitucionNombre;
      private String deptoInstitucionJefe;
      private String deptoInstitucionDescripcion;
+     private String deptoInstitucionTelefono;
      private Set solicitudeses = new HashSet(0);
 
     public DepartamentosInstitucion() {
@@ -29,12 +30,13 @@ public class DepartamentosInstitucion  implements java.io.Serializable {
         this.deptoInstitucionNombre = deptoInstitucionNombre;
         this.deptoInstitucionJefe = deptoInstitucionJefe;
     }
-    public DepartamentosInstitucion(BigDecimal deptoInstitucionId, Instituciones instituciones, String deptoInstitucionNombre, String deptoInstitucionJefe, String deptoInstitucionDescripcion, Set solicitudeses) {
+    public DepartamentosInstitucion(BigDecimal deptoInstitucionId, Instituciones instituciones, String deptoInstitucionNombre, String deptoInstitucionJefe, String deptoInstitucionDescripcion, String deptoInstitucionTelefono, Set solicitudeses) {
        this.deptoInstitucionId = deptoInstitucionId;
        this.instituciones = instituciones;
        this.deptoInstitucionNombre = deptoInstitucionNombre;
        this.deptoInstitucionJefe = deptoInstitucionJefe;
        this.deptoInstitucionDescripcion = deptoInstitucionDescripcion;
+       this.deptoInstitucionTelefono = deptoInstitucionTelefono;
        this.solicitudeses = solicitudeses;
     }
    
@@ -72,6 +74,13 @@ public class DepartamentosInstitucion  implements java.io.Serializable {
     
     public void setDeptoInstitucionDescripcion(String deptoInstitucionDescripcion) {
         this.deptoInstitucionDescripcion = deptoInstitucionDescripcion;
+    }
+    public String getDeptoInstitucionTelefono() {
+        return this.deptoInstitucionTelefono;
+    }
+    
+    public void setDeptoInstitucionTelefono(String deptoInstitucionTelefono) {
+        this.deptoInstitucionTelefono = deptoInstitucionTelefono;
     }
     public Set getSolicitudeses() {
         return this.solicitudeses;
