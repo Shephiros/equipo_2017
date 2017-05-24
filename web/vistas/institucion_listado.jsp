@@ -19,7 +19,7 @@
                 <table class="table table-striped table-bordered table-condensed" id="example">
             <thead>
                 <th><center>No.</center></th>
-                <th><center>Usuario</center></th>
+                <th><center>Institución</center></th>
                 <th><center>Encargado</center></th>
                 <th><center>Teléfono</center></th>
                 <th><center>Opciones</center></th>
