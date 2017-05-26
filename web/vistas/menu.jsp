@@ -8,18 +8,18 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/recursos/css/bootstrap.min.css"/>
     </head>
     <body>
-        <nav class="navbar navbar-inverse" style="background-color: #122b40; font-size: 12pt">
+        <nav class="navbar navbar-inverse" style="background-color: #122b40; font-size: 12pt;">
             <div class="container-fluid">
                 <!-- Botón Inicio -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">INICIO</a>
+                    <a class="navbar-brand" href="#" style="color: white"><b>INICIO</b></a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <!-- Módulo Administración -->
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white">Administración<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><s:a action="usuarioListado">Listado de usuarios</s:a>
                                 <li><s:a action="usuarioNuevo">Nuevo usuario</s:a>
@@ -36,7 +36,7 @@
                     <!-- Módulo Institución -->
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Institución<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white">Institución<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><s:a action="institucionListado">Listado de instituciones</s:a>
                                 <li><s:a action="institucionNuevo">Nueva institución</s:a>
@@ -51,7 +51,7 @@
                     <!-- Módulo Proveedores -->
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Proveedores<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white">Proveedores<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><s:a action="proveedorListado">Listado de proveedores</s:a>
                                 <li><s:a action="menu">Nuevo proveedor</s:a>
@@ -64,7 +64,7 @@
                     <!-- Módulo Compras -->
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Compras<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white">Compras<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><s:a action="menu">Listado de compras</s:a>
                                 <li><s:a action="menu">Nueva compra</s:a>
@@ -79,7 +79,7 @@
                     <!-- Módulo Equipo -->
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Equipo<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white">Equipo<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><s:a action="menu">Catálogo de equipo</s:a>
                                 <li><s:a action="menu">Mantenimientos</s:a>
@@ -91,7 +91,7 @@
                     <!-- Módulo Perfil -->
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mi Perfil<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white">Mi Perfil<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Mi perfil</a></li>
                                 <li><a href="#">Cambiar contraseña</a></li>
