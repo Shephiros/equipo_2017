@@ -12,20 +12,18 @@ import org.hibernate.Transaction;
 
 public class ProductosInstitucionDao {
  
+    //Método que obtiene una lista de todos los productos de institución.
     public ArrayList<ProductosInstitucion> todosProductosInstitucion()
     {
         SessionFactory sesion=HibernateUtil.getSessionFactory();
         Session session =sesion.openSession();
         Transaction tx=session.beginTransaction();
-            //acá hacemos la magia
-            ArrayList<ProductosInstitucion> arreglo = new ArrayList<ProductosInstitucion>();
-            Query q=session.createQuery("from ProductosInstitucion");
-            List<ProductosInstitucion> lista=q.list();
-            Iterator<ProductosInstitucion> iter=lista.iterator();
-            //acá termina la magia
+        ArrayList<ProductosInstitucion> arreglo = new ArrayList<ProductosInstitucion>();
+        Query q=session.createQuery("from ProductosInstitucion");
+        List<ProductosInstitucion> lista=q.list();
+        Iterator<ProductosInstitucion> iter=lista.iterator();
         tx.commit();
         session.close();
-        //acá ya terminados todo y solo tomamos la lista y la pasamos a una arraylist
         while(iter.hasNext())
         {
             ProductosInstitucion prodi = (ProductosInstitucion) iter.next();
@@ -34,6 +32,7 @@ public class ProductosInstitucionDao {
         return arreglo;
     }
     
+    //Método que obtiene un proveedor por Id.
     public void guardarProductosInstitucion(ProductosInstitucion prodInstitucion){
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
