@@ -1,5 +1,5 @@
 package entidades;
-// Generated 24-may-2017 11:11:09 by Hibernate Tools 4.3.1
+// Generated 05-25-2017 11:33:58 AM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -13,6 +13,7 @@ public class ProductosInstitucion  implements java.io.Serializable {
 
 
      private BigDecimal prodInstitucionId;
+     private Instituciones instituciones;
      private String prodInstitucionNombre;
      private String prodInstitucionDescripcion;
      private Set detalleSolicituds = new HashSet(0);
@@ -21,13 +22,15 @@ public class ProductosInstitucion  implements java.io.Serializable {
     }
 
 	
-    public ProductosInstitucion(BigDecimal prodInstitucionId, String prodInstitucionNombre, String prodInstitucionDescripcion) {
+    public ProductosInstitucion(BigDecimal prodInstitucionId, Instituciones instituciones, String prodInstitucionNombre, String prodInstitucionDescripcion) {
         this.prodInstitucionId = prodInstitucionId;
+        this.instituciones = instituciones;
         this.prodInstitucionNombre = prodInstitucionNombre;
         this.prodInstitucionDescripcion = prodInstitucionDescripcion;
     }
-    public ProductosInstitucion(BigDecimal prodInstitucionId, String prodInstitucionNombre, String prodInstitucionDescripcion, Set detalleSolicituds) {
+    public ProductosInstitucion(BigDecimal prodInstitucionId, Instituciones instituciones, String prodInstitucionNombre, String prodInstitucionDescripcion, Set detalleSolicituds) {
        this.prodInstitucionId = prodInstitucionId;
+       this.instituciones = instituciones;
        this.prodInstitucionNombre = prodInstitucionNombre;
        this.prodInstitucionDescripcion = prodInstitucionDescripcion;
        this.detalleSolicituds = detalleSolicituds;
@@ -39,6 +42,13 @@ public class ProductosInstitucion  implements java.io.Serializable {
     
     public void setProdInstitucionId(BigDecimal prodInstitucionId) {
         this.prodInstitucionId = prodInstitucionId;
+    }
+    public Instituciones getInstituciones() {
+        return this.instituciones;
+    }
+    
+    public void setInstituciones(Instituciones instituciones) {
+        this.instituciones = instituciones;
     }
     public String getProdInstitucionNombre() {
         return this.prodInstitucionNombre;

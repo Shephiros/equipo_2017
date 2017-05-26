@@ -1,5 +1,5 @@
 package entidades;
-// Generated 24-may-2017 11:11:09 by Hibernate Tools 4.3.1
+// Generated 05-25-2017 11:33:58 AM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -21,9 +21,9 @@ public class Solicitudes  implements java.io.Serializable {
      private Date solicitudFecha;
      private BigDecimal solicitudEstado;
      private String solicitudObservacion;
+     private Set detalleSolicituds = new HashSet(0);
      private Set aprobadoses = new HashSet(0);
      private Set licitacioneses = new HashSet(0);
-     private Set detalleSolicituds = new HashSet(0);
 
     public Solicitudes() {
     }
@@ -39,7 +39,7 @@ public class Solicitudes  implements java.io.Serializable {
         this.solicitudEstado = solicitudEstado;
         this.solicitudObservacion = solicitudObservacion;
     }
-    public Solicitudes(BigDecimal solicitudId, DepartamentosInstitucion departamentosInstitucion, TipoSolicitudes tipoSolicitudes, BigDecimal solicitudCodigo, String solicitudReponsable, Date solicitudFecha, BigDecimal solicitudEstado, String solicitudObservacion, Set aprobadoses, Set licitacioneses, Set detalleSolicituds) {
+    public Solicitudes(BigDecimal solicitudId, DepartamentosInstitucion departamentosInstitucion, TipoSolicitudes tipoSolicitudes, BigDecimal solicitudCodigo, String solicitudReponsable, Date solicitudFecha, BigDecimal solicitudEstado, String solicitudObservacion, Set detalleSolicituds, Set aprobadoses, Set licitacioneses) {
        this.solicitudId = solicitudId;
        this.departamentosInstitucion = departamentosInstitucion;
        this.tipoSolicitudes = tipoSolicitudes;
@@ -48,9 +48,9 @@ public class Solicitudes  implements java.io.Serializable {
        this.solicitudFecha = solicitudFecha;
        this.solicitudEstado = solicitudEstado;
        this.solicitudObservacion = solicitudObservacion;
+       this.detalleSolicituds = detalleSolicituds;
        this.aprobadoses = aprobadoses;
        this.licitacioneses = licitacioneses;
-       this.detalleSolicituds = detalleSolicituds;
     }
    
     public BigDecimal getSolicitudId() {
@@ -109,6 +109,13 @@ public class Solicitudes  implements java.io.Serializable {
     public void setSolicitudObservacion(String solicitudObservacion) {
         this.solicitudObservacion = solicitudObservacion;
     }
+    public Set getDetalleSolicituds() {
+        return this.detalleSolicituds;
+    }
+    
+    public void setDetalleSolicituds(Set detalleSolicituds) {
+        this.detalleSolicituds = detalleSolicituds;
+    }
     public Set getAprobadoses() {
         return this.aprobadoses;
     }
@@ -122,13 +129,6 @@ public class Solicitudes  implements java.io.Serializable {
     
     public void setLicitacioneses(Set licitacioneses) {
         this.licitacioneses = licitacioneses;
-    }
-    public Set getDetalleSolicituds() {
-        return this.detalleSolicituds;
-    }
-    
-    public void setDetalleSolicituds(Set detalleSolicituds) {
-        this.detalleSolicituds = detalleSolicituds;
     }
 
 

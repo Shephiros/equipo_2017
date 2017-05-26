@@ -1,5 +1,5 @@
 package entidades;
-// Generated 24-may-2017 11:11:09 by Hibernate Tools 4.3.1
+// Generated 05-25-2017 11:33:58 AM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -25,11 +25,11 @@ public class Proveedores  implements java.io.Serializable {
      private String proveedorDescripcion;
      private String proveedorDireccion;
      private Set ofertases = new HashSet(0);
-     private Set usuarioses = new HashSet(0);
      private Set productosProveedors = new HashSet(0);
-     private Set instalacioneses = new HashSet(0);
      private Set comprases = new HashSet(0);
      private Set mantenimientoses = new HashSet(0);
+     private Set instalacioneses = new HashSet(0);
+     private Set usuarioses = new HashSet(0);
 
     public Proveedores() {
     }
@@ -43,7 +43,7 @@ public class Proveedores  implements java.io.Serializable {
         this.proveedorInstalacion = proveedorInstalacion;
         this.proveedorLimite = proveedorLimite;
     }
-    public Proveedores(BigDecimal proveedorId, Municipios municipios, String proveedorEmpresa, String proveedorContacto, String proveedorTelefono1, String proveedorTelefono2, String proveedorCorreo, String proveedorNit, BigDecimal proveedorInstalacion, double proveedorLimite, String proveedorDescripcion, String proveedorDireccion, Set ofertases, Set usuarioses, Set productosProveedors, Set instalacioneses, Set comprases, Set mantenimientoses) {
+    public Proveedores(BigDecimal proveedorId, Municipios municipios, String proveedorEmpresa, String proveedorContacto, String proveedorTelefono1, String proveedorTelefono2, String proveedorCorreo, String proveedorNit, BigDecimal proveedorInstalacion, double proveedorLimite, String proveedorDescripcion, String proveedorDireccion, Set ofertases, Set productosProveedors, Set comprases, Set mantenimientoses, Set instalacioneses, Set usuarioses) {
        this.proveedorId = proveedorId;
        this.municipios = municipios;
        this.proveedorEmpresa = proveedorEmpresa;
@@ -57,11 +57,11 @@ public class Proveedores  implements java.io.Serializable {
        this.proveedorDescripcion = proveedorDescripcion;
        this.proveedorDireccion = proveedorDireccion;
        this.ofertases = ofertases;
-       this.usuarioses = usuarioses;
        this.productosProveedors = productosProveedors;
-       this.instalacioneses = instalacioneses;
        this.comprases = comprases;
        this.mantenimientoses = mantenimientoses;
+       this.instalacioneses = instalacioneses;
+       this.usuarioses = usuarioses;
     }
    
     public BigDecimal getProveedorId() {
@@ -155,26 +155,12 @@ public class Proveedores  implements java.io.Serializable {
     public void setOfertases(Set ofertases) {
         this.ofertases = ofertases;
     }
-    public Set getUsuarioses() {
-        return this.usuarioses;
-    }
-    
-    public void setUsuarioses(Set usuarioses) {
-        this.usuarioses = usuarioses;
-    }
     public Set getProductosProveedors() {
         return this.productosProveedors;
     }
     
     public void setProductosProveedors(Set productosProveedors) {
         this.productosProveedors = productosProveedors;
-    }
-    public Set getInstalacioneses() {
-        return this.instalacioneses;
-    }
-    
-    public void setInstalacioneses(Set instalacioneses) {
-        this.instalacioneses = instalacioneses;
     }
     public Set getComprases() {
         return this.comprases;
@@ -189,6 +175,20 @@ public class Proveedores  implements java.io.Serializable {
     
     public void setMantenimientoses(Set mantenimientoses) {
         this.mantenimientoses = mantenimientoses;
+    }
+    public Set getInstalacioneses() {
+        return this.instalacioneses;
+    }
+    
+    public void setInstalacioneses(Set instalacioneses) {
+        this.instalacioneses = instalacioneses;
+    }
+    public Set getUsuarioses() {
+        return this.usuarioses;
+    }
+    
+    public void setUsuarioses(Set usuarioses) {
+        this.usuarioses = usuarioses;
     }
 
 

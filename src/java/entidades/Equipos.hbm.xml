@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 24-may-2017 11:11:10 by Hibernate Tools 4.3.1 -->
+<!-- Generated 05-25-2017 11:34:01 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="entidades.Equipos" table="EQUIPOS" schema="EQUIPO" optimistic-lock="version">
         <id name="equipoId" type="big_decimal">
@@ -44,12 +44,6 @@
             </key>
             <one-to-many class="entidades.DetalleInstalacion" />
         </set>
-        <set name="detalleMantenimientos" table="DETALLE_MANTENIMIENTO" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="EQUIPO_ID" precision="22" scale="0" not-null="true" />
-            </key>
-            <one-to-many class="entidades.DetalleMantenimiento" />
-        </set>
         <set name="documentoses" table="DOCUMENTOS" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="EQUIPO_ID" precision="22" scale="0" not-null="true" />
@@ -61,6 +55,12 @@
                 <column name="EQUIPO_ID" precision="22" scale="0" not-null="true" />
             </key>
             <one-to-many class="entidades.Alertas" />
+        </set>
+        <set name="detalleMantenimientos" table="DETALLE_MANTENIMIENTO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="EQUIPO_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.DetalleMantenimiento" />
         </set>
     </class>
 </hibernate-mapping>

@@ -1,5 +1,5 @@
 package entidades;
-// Generated 24-may-2017 11:11:09 by Hibernate Tools 4.3.1
+// Generated 05-25-2017 11:33:58 AM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -15,8 +15,8 @@ public class Municipios  implements java.io.Serializable {
      private BigDecimal municipioId;
      private Departamentos departamentos;
      private String municipioNombre;
-     private Set proveedoreses = new HashSet(0);
      private Set institucioneses = new HashSet(0);
+     private Set proveedoreses = new HashSet(0);
 
     public Municipios() {
     }
@@ -27,12 +27,12 @@ public class Municipios  implements java.io.Serializable {
         this.departamentos = departamentos;
         this.municipioNombre = municipioNombre;
     }
-    public Municipios(BigDecimal municipioId, Departamentos departamentos, String municipioNombre, Set proveedoreses, Set institucioneses) {
+    public Municipios(BigDecimal municipioId, Departamentos departamentos, String municipioNombre, Set institucioneses, Set proveedoreses) {
        this.municipioId = municipioId;
        this.departamentos = departamentos;
        this.municipioNombre = municipioNombre;
-       this.proveedoreses = proveedoreses;
        this.institucioneses = institucioneses;
+       this.proveedoreses = proveedoreses;
     }
    
     public BigDecimal getMunicipioId() {
@@ -56,19 +56,19 @@ public class Municipios  implements java.io.Serializable {
     public void setMunicipioNombre(String municipioNombre) {
         this.municipioNombre = municipioNombre;
     }
-    public Set getProveedoreses() {
-        return this.proveedoreses;
-    }
-    
-    public void setProveedoreses(Set proveedoreses) {
-        this.proveedoreses = proveedoreses;
-    }
     public Set getInstitucioneses() {
         return this.institucioneses;
     }
     
     public void setInstitucioneses(Set institucioneses) {
         this.institucioneses = institucioneses;
+    }
+    public Set getProveedoreses() {
+        return this.proveedoreses;
+    }
+    
+    public void setProveedoreses(Set proveedoreses) {
+        this.proveedoreses = proveedoreses;
     }
 
 

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 24-may-2017 11:11:10 by Hibernate Tools 4.3.1 -->
+<!-- Generated 05-25-2017 11:34:01 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="entidades.Instituciones" table="INSTITUCIONES" schema="EQUIPO" optimistic-lock="version">
         <id name="institucionId" type="big_decimal">
@@ -32,17 +32,23 @@
             </key>
             <one-to-many class="entidades.DepartamentosInstitucion" />
         </set>
-        <set name="usuarioses" table="USUARIOS" inverse="true" lazy="true" fetch="select">
+        <set name="productosInstitucions" table="PRODUCTOS_INSTITUCION" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="INSTITUCION_ID" precision="22" scale="0" />
+                <column name="INSTITUCION_ID" precision="38" scale="0" not-null="true" />
             </key>
-            <one-to-many class="entidades.Usuarios" />
+            <one-to-many class="entidades.ProductosInstitucion" />
         </set>
         <set name="comprases" table="COMPRAS" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="INSTITUCION_ID" precision="22" scale="0" not-null="true" />
             </key>
             <one-to-many class="entidades.Compras" />
+        </set>
+        <set name="usuarioses" table="USUARIOS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="INSTITUCION_ID" precision="22" scale="0" />
+            </key>
+            <one-to-many class="entidades.Usuarios" />
         </set>
     </class>
 </hibernate-mapping>

@@ -1,5 +1,5 @@
 package entidades;
-// Generated 24-may-2017 11:11:09 by Hibernate Tools 4.3.1
+// Generated 05-25-2017 11:33:58 AM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -20,8 +20,9 @@ public class Instituciones  implements java.io.Serializable {
      private String institucionDireccion;
      private String institucionDescripcion;
      private Set departamentosInstitucions = new HashSet(0);
-     private Set usuarioses = new HashSet(0);
+     private Set productosInstitucions = new HashSet(0);
      private Set comprases = new HashSet(0);
+     private Set usuarioses = new HashSet(0);
 
     public Instituciones() {
     }
@@ -33,7 +34,7 @@ public class Instituciones  implements java.io.Serializable {
         this.institucionNombre = institucionNombre;
         this.institucionEncargado = institucionEncargado;
     }
-    public Instituciones(BigDecimal institucionId, Municipios municipios, String institucionNombre, String institucionEncargado, String institucionTelefono, String institucionDireccion, String institucionDescripcion, Set departamentosInstitucions, Set usuarioses, Set comprases) {
+    public Instituciones(BigDecimal institucionId, Municipios municipios, String institucionNombre, String institucionEncargado, String institucionTelefono, String institucionDireccion, String institucionDescripcion, Set departamentosInstitucions, Set productosInstitucions, Set comprases, Set usuarioses) {
        this.institucionId = institucionId;
        this.municipios = municipios;
        this.institucionNombre = institucionNombre;
@@ -42,8 +43,9 @@ public class Instituciones  implements java.io.Serializable {
        this.institucionDireccion = institucionDireccion;
        this.institucionDescripcion = institucionDescripcion;
        this.departamentosInstitucions = departamentosInstitucions;
-       this.usuarioses = usuarioses;
+       this.productosInstitucions = productosInstitucions;
        this.comprases = comprases;
+       this.usuarioses = usuarioses;
     }
    
     public BigDecimal getInstitucionId() {
@@ -102,12 +104,12 @@ public class Instituciones  implements java.io.Serializable {
     public void setDepartamentosInstitucions(Set departamentosInstitucions) {
         this.departamentosInstitucions = departamentosInstitucions;
     }
-    public Set getUsuarioses() {
-        return this.usuarioses;
+    public Set getProductosInstitucions() {
+        return this.productosInstitucions;
     }
     
-    public void setUsuarioses(Set usuarioses) {
-        this.usuarioses = usuarioses;
+    public void setProductosInstitucions(Set productosInstitucions) {
+        this.productosInstitucions = productosInstitucions;
     }
     public Set getComprases() {
         return this.comprases;
@@ -115,6 +117,13 @@ public class Instituciones  implements java.io.Serializable {
     
     public void setComprases(Set comprases) {
         this.comprases = comprases;
+    }
+    public Set getUsuarioses() {
+        return this.usuarioses;
+    }
+    
+    public void setUsuarioses(Set usuarioses) {
+        this.usuarioses = usuarioses;
     }
 
 

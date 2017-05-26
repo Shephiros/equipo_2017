@@ -1,6 +1,6 @@
 package dao;
 
-import entidades.Instituciones;
+import entidades.ProductosInstitucion;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -10,55 +10,55 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-public class InstitucionesDao {
-    
-    //Método que obtiene una lista de todas las instituciones.
-    public ArrayList<Instituciones> todasInstituciones()
+public class ProductosInstitucionDao {
+ 
+    public ArrayList<ProductosInstitucion> todosProductosInstitucion()
     {
         SessionFactory sesion=HibernateUtil.getSessionFactory();
         Session session =sesion.openSession();
         Transaction tx=session.beginTransaction();
-        ArrayList<Instituciones> arreglo = new ArrayList<Instituciones>();
-        Query q=session.createQuery("from Instituciones");
-        List<Instituciones> lista=q.list();
-        Iterator<Instituciones> iter=lista.iterator();
+            //acá hacemos la magia
+            ArrayList<ProductosInstitucion> arreglo = new ArrayList<ProductosInstitucion>();
+            Query q=session.createQuery("from ProductosInstitucion");
+            List<ProductosInstitucion> lista=q.list();
+            Iterator<ProductosInstitucion> iter=lista.iterator();
+            //acá termina la magia
         tx.commit();
         session.close();
+        //acá ya terminados todo y solo tomamos la lista y la pasamos a una arraylist
         while(iter.hasNext())
         {
-            Instituciones rol = (Instituciones) iter.next();
-            arreglo.add(rol);
+            ProductosInstitucion prodi = (ProductosInstitucion) iter.next();
+            arreglo.add(prodi);
         }
         return arreglo;
     }
     
-    //Método que guarda las instituciones.
-    public void guardarInstitucion(Instituciones institucion){
+    public void guardarProductosInstitucion(ProductosInstitucion prodInstitucion){
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
-        session.save(institucion);
+        session.save(prodInstitucion);
         tx.commit();
         session.close();
     }
     
-    //Método que obtiene una institución por Id.
-    public Instituciones institucionPorId(BigDecimal institucionId){
+    public ProductosInstitucion prodInstitucionPorId(BigDecimal prodInstitucionId){
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
-        Instituciones inst = (Instituciones)session.get(Instituciones.class, institucionId);
+        
+        ProductosInstitucion prodi = (ProductosInstitucion)session.get(ProductosInstitucion.class, prodInstitucionId);
         tx.commit();
         session.close();
-        return inst;
+        return prodi;
     }
     
-    //Método que actualiza las instituciones.
-    public void actualizarInstitucion(Instituciones institucionId){
+    public void actualizarProdInstitucion(ProductosInstitucion prodInstitucionId){
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
-        session.update(institucionId);
+        session.update(prodInstitucionId);
         tx.commit();
         session.close();
     }

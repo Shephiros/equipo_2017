@@ -6,42 +6,57 @@ import dao.DepartamentosDao;
 import dao.DepartamentosInstitucionDao;
 import dao.InstitucionesDao;
 import dao.MunicipiosDao;
+import dao.ProductosInstitucionDao;
 import entidades.Departamentos;
 import entidades.DepartamentosInstitucion;
 import entidades.Instituciones;
 import entidades.Municipios;
+import entidades.ProductosInstitucion;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class InstitucionControlador extends ActionSupport{
     
-    private ArrayList<Instituciones> todasInstituciones;
+//****************************************************************************//
+//                                  Variables                                 //
+//****************************************************************************//
+    
     private ArrayList<Departamentos> todosDepartamentos;
     private ArrayList<DepartamentosInstitucion> todosDeptosInstitucion;
+    private ArrayList<Instituciones> todasInstituciones;
     private ArrayList<Municipios> todosMunicipios;
-    private Instituciones nuevaInstitucion = new Instituciones();
+    private ArrayList<ProductosInstitucion> todosProductosInstitucion;
     private DepartamentosInstitucion nuevoDeptoInstitucion = new DepartamentosInstitucion();
+    private DepartamentosInstitucion deptoInstitucionSeleccionado = new DepartamentosInstitucion();
+    private Instituciones nuevaInstitucion = new Instituciones();
     private Instituciones institucionSeleccionada = new Instituciones();
     private Municipios municipioSeleccionado = new Municipios();
-    private DepartamentosInstitucion deptoInstitucionSeleccionado = new DepartamentosInstitucion();
-    private BigDecimal municipioId;
-    private BigDecimal institucionId;
+    private ProductosInstitucion nuevoProdInstitucion = new ProductosInstitucion();
+    private ProductosInstitucion prodInstitucionSeleccionado = new ProductosInstitucion();
     private BigDecimal deptoInstitucionId;
-            
-    @Override
-    public String execute() throws Exception {
+    private BigDecimal institucionId;
+    private BigDecimal municipioId;
+    private BigDecimal prodInstitucionId;
+    
+//****************************************************************************//
+//                            Métodos para guardar                            //
+//****************************************************************************//
+    
+    public String guardarDepartamento() throws Exception{
         this.todasInstituciones = new InstitucionesDao().todasInstituciones();
-        this.todosDeptosInstitucion = new DepartamentosInstitucionDao().todosDeptosInstitucion();
+        DepartamentosInstitucionDao gDepartamento = new DepartamentosInstitucionDao();
+        Instituciones institucionU = new Instituciones();
+        institucionU.setInstitucionId(institucionId);
+        this.nuevoDeptoInstitucion.setInstituciones(institucionU);
+        gDepartamento.guardarDeptoInstitucion(nuevoDeptoInstitucion);
+        this.setInstitucionId(BigDecimal.ZERO);
+        nuevoDeptoInstitucion = new DepartamentosInstitucion();
+        this.todasInstituciones = new InstitucionesDao().todasInstituciones();
+        execute();
         return SUCCESS;
     }
-
-    public String mostrarNuevaInstitucion(){
-        this.todosDepartamentos = new DepartamentosDao().todosDepartamentos();
-        this.todosMunicipios = new MunicipiosDao().todosMunicipios();
-        return SUCCESS;
-    }
-
-    public String guardarNuevaInstitucion() throws Exception{
+    
+    public String guardarInstitucion() throws Exception{
         this.todosMunicipios = new MunicipiosDao().todosMunicipios();
         InstitucionesDao gInstitucion = new InstitucionesDao();
         Municipios municipioU = new Municipios();
@@ -56,18 +71,37 @@ public class InstitucionControlador extends ActionSupport{
         return SUCCESS;
     }
     
-    public String verInstitucion(){
-        this.todosMunicipios = new MunicipiosDao().todosMunicipios();
-        InstitucionesDao vInstitucion = new InstitucionesDao();
-        this.institucionSeleccionada = vInstitucion.institucionPorId(institucionId);
-        MunicipiosDao municipioDao = new MunicipiosDao();
-        this.municipioSeleccionado = municipioDao.municipionPorId(institucionSeleccionada.getMunicipios().getMunicipioId());
-        //this.institucionSeleccionada.setInstitucionId(institucionId);
-        //System.out.println("IdBig: "+getInstitucionId());
+    public String guardarProdInstitucion() throws Exception{
+        this.todasInstituciones = new InstitucionesDao().todasInstituciones();
+        ProductosInstitucionDao gProdInstitucion = new ProductosInstitucionDao();
+        Instituciones institucionU = new Instituciones();
+        institucionU.setInstitucionId(institucionId);
+        this.nuevoProdInstitucion.setInstituciones(institucionU);
+        gProdInstitucion.guardarProductosInstitucion(nuevoProdInstitucion);
+        this.setInstitucionId(BigDecimal.ZERO);
+        nuevoProdInstitucion = new ProductosInstitucion();
+        this.todasInstituciones = new InstitucionesDao().todasInstituciones();
+        execute();
         return SUCCESS;
     }
     
-    public String editarInstitucion() throws Exception{
+//****************************************************************************//
+//                           Métodos para actualizar                          //
+//****************************************************************************//
+    
+    public String actualizarDepartamento() throws Exception{
+        this.todasInstituciones = new InstitucionesDao().todasInstituciones();
+        DepartamentosInstitucionDao eDepartamento = new DepartamentosInstitucionDao();
+        Instituciones institucionU = new Instituciones(); 
+        institucionU.setInstitucionId(institucionId);
+        this.deptoInstitucionSeleccionado.setInstituciones(institucionU);
+        /*Guardando y cargando el nuevo rol*/
+        eDepartamento.actualizarDeptoInstitucion(deptoInstitucionSeleccionado);
+        execute();
+        return SUCCESS;
+    }
+    
+    public String actualizarInstitucion() throws Exception{
         this.todosMunicipios = new MunicipiosDao().todosMunicipios();
         InstitucionesDao eInstitucion = new InstitucionesDao();
         Municipios municipioU = new Municipios(); 
@@ -77,32 +111,49 @@ public class InstitucionControlador extends ActionSupport{
         System.out.println("Nombre: "+getInstitucionSeleccionada().getInstitucionNombre());
         System.out.println("IdBig: "+getInstitucionId());
         System.out.println("Id: "+getInstitucionSeleccionada().getInstitucionId());
-        /*Datos que no le muestro en el formulario y es posible que ser vayan como null lo cual provoca un error*/
-        //Instituciones antiguoDatos= new InstitucionesDao().institucionPorId(institucionSeleccionada.getInstitucionId());
-        //this.institucionSeleccionada.setInstitucionId(institucionId);
-        
         /*Guardando y cargando el nuevo rol*/
         eInstitucion.actualizarInstitucion(institucionSeleccionada);
         execute();
         return SUCCESS;
     }
     
-    public String mostrarNuevoDepartamento(){
+    public String actualizarProdInstitucion() throws Exception{
+        this.todasInstituciones = new InstitucionesDao().todasInstituciones();
+        ProductosInstitucionDao eProdInstitucion = new ProductosInstitucionDao();
+        Instituciones institucionU = new Instituciones(); 
+        institucionU.setInstitucionId(institucionId);
+        this.prodInstitucionSeleccionado.setInstituciones(institucionU);
+        /*Guardando y cargando el nuevo rol*/
+        eProdInstitucion.actualizarProdInstitucion(prodInstitucionSeleccionado);
+        execute();
+        return SUCCESS;
+    }
+        
+//****************************************************************************//
+//                                Otros métodos                               //
+//****************************************************************************//
+    
+    @Override
+    public String execute() throws Exception {
+        this.todasInstituciones = new InstitucionesDao().todasInstituciones();
+        this.todosDeptosInstitucion = new DepartamentosInstitucionDao().todosDeptosInstitucion();
+        this.todosProductosInstitucion = new ProductosInstitucionDao().todosProductosInstitucion();
+        return SUCCESS;
+    }
+
+    public String nuevaInstitucion(){
+        this.todosDepartamentos = new DepartamentosDao().todosDepartamentos();
+        this.todosMunicipios = new MunicipiosDao().todosMunicipios();
+        return SUCCESS;
+    }
+
+    public String nuevoDepartamento(){
         this.todasInstituciones = new InstitucionesDao().todasInstituciones();
         return SUCCESS;
     }
     
-    public String guardarNuevoDepartamento() throws Exception{
+    public String nuevoProdInstitucion(){
         this.todasInstituciones = new InstitucionesDao().todasInstituciones();
-        DepartamentosInstitucionDao gDepartamento = new DepartamentosInstitucionDao();
-        Instituciones institucionU = new Instituciones();
-        institucionU.setInstitucionId(institucionId);
-        this.nuevoDeptoInstitucion.setInstituciones(institucionU);
-        gDepartamento.guardarDeptoInstitucion(nuevoDeptoInstitucion);
-        this.setInstitucionId(BigDecimal.ZERO);
-        nuevoDeptoInstitucion = new DepartamentosInstitucion();
-        this.todasInstituciones = new InstitucionesDao().todasInstituciones();
-        execute();
         return SUCCESS;
     }
     
@@ -115,84 +166,33 @@ public class InstitucionControlador extends ActionSupport{
         return SUCCESS;
     }
     
-    /*public String editarDepartamento() throws Exception{
+    public String verInstitucion(){
         this.todosMunicipios = new MunicipiosDao().todosMunicipios();
-        InstitucionesDao eInstitucion = new InstitucionesDao();
-        Municipios municipioU = new Municipios(); 
-        municipioU.setMunicipioId(municipioId);
-        this.institucionSeleccionada.setMunicipios(municipioU);
-        System.out.println("Objeto: "+getInstitucionSeleccionada());
-        System.out.println("Nombre: "+getInstitucionSeleccionada().getInstitucionNombre());
-        System.out.println("IdBig: "+getInstitucionId());
-        System.out.println("Id: "+getInstitucionSeleccionada().getInstitucionId());
-        /*Datos que no le muestro en el formulario y es posible que ser vayan como null lo cual provoca un error*/
-        //Instituciones antiguoDatos= new InstitucionesDao().institucionPorId(institucionSeleccionada.getInstitucionId());
-        //this.institucionSeleccionada.setInstitucionId(institucionId);
-        
-        /*Guardando y cargando el nuevo rol*//*
-        eInstitucion.actualizarInstitucion(institucionSeleccionada);
-        execute();
+        InstitucionesDao vInstitucion = new InstitucionesDao();
+        this.institucionSeleccionada = vInstitucion.institucionPorId(institucionId);
+        MunicipiosDao municipioDao = new MunicipiosDao();
+        this.municipioSeleccionado = municipioDao.municipionPorId(institucionSeleccionada.getMunicipios().getMunicipioId());
         return SUCCESS;
-    }*/
+    }
     
-/////////////////////////////////////////////////////////////////////////////////////    
-/***************************** Métodos Getter y Setter *****************************/    
-/////////////////////////////////////////////////////////////////////////////////////
+    public String verProdInstitucion(){
+        this.todasInstituciones = new InstitucionesDao().todasInstituciones();
+        ProductosInstitucionDao vProdInstitucion = new ProductosInstitucionDao();
+        this.prodInstitucionSeleccionado = vProdInstitucion.prodInstitucionPorId(prodInstitucionId);
+        InstitucionesDao institucionDao = new InstitucionesDao();
+        this.institucionSeleccionada = institucionDao.institucionPorId(prodInstitucionSeleccionado.getInstituciones().getInstitucionId());
+        return SUCCESS;
+    }
+            
+//****************************************************************************//
+//                      Métodos GET y SET para variables                      //
+//****************************************************************************//
     
-    public ArrayList<Instituciones> getTodasInstituciones() {
-        return todasInstituciones;
-    }
-    public void setTodasInstituciones(ArrayList<Instituciones> todasInstituciones) {
-        this.todasInstituciones = todasInstituciones;
-    }
-
-    public Instituciones getNuevaInstitucion() {
-        return nuevaInstitucion;
-    }
-    public void setNuevaInstitucion(Instituciones nuevaInstitucion) {
-        this.nuevaInstitucion = nuevaInstitucion;
-    }
-
     public ArrayList<Departamentos> getTodosDepartamentos() {
         return todosDepartamentos;
     }
     public void setTodosDepartamentos(ArrayList<Departamentos> todosDepartamentos) {
         this.todosDepartamentos = todosDepartamentos;
-    }
-
-    public ArrayList<Municipios> getTodosMunicipios() {
-        return todosMunicipios;
-    }
-    public void setTodosMunicipios(ArrayList<Municipios> todosMunicipios) {
-        this.todosMunicipios = todosMunicipios;
-    }
-
-    public BigDecimal getMunicipioId() {
-        return municipioId;
-    }
-    public void setMunicipioId(BigDecimal municipioId) {
-        this.municipioId = municipioId;
-    }
-
-    public Instituciones getInstitucionSeleccionada() {
-        return institucionSeleccionada;
-    }
-    public void setInstitucionSeleccionada(Instituciones institucionSeleccionada) {
-        this.institucionSeleccionada = institucionSeleccionada;
-    }
-
-    public BigDecimal getInstitucionId() {
-        return institucionId;
-    }
-    public void setInstitucionId(BigDecimal institucionId) {
-        this.institucionId = institucionId;
-    }
-
-    public Municipios getMunicipioSeleccionado() {
-        return municipioSeleccionado;
-    }
-    public void setMunicipioSeleccionado(Municipios municipioSeleccionado) {
-        this.municipioSeleccionado = municipioSeleccionado;
     }
 
     public ArrayList<DepartamentosInstitucion> getTodosDeptosInstitucion() {
@@ -202,6 +202,27 @@ public class InstitucionControlador extends ActionSupport{
         this.todosDeptosInstitucion = todosDeptosInstitucion;
     }
 
+    public ArrayList<Instituciones> getTodasInstituciones() {
+        return todasInstituciones;
+    }
+    public void setTodasInstituciones(ArrayList<Instituciones> todasInstituciones) {
+        this.todasInstituciones = todasInstituciones;
+    }
+
+    public ArrayList<Municipios> getTodosMunicipios() {
+        return todosMunicipios;
+    }
+    public void setTodosMunicipios(ArrayList<Municipios> todosMunicipios) {
+        this.todosMunicipios = todosMunicipios;
+    }
+
+    public ArrayList<ProductosInstitucion> getTodosProductosInstitucion() {
+        return todosProductosInstitucion;
+    }
+    public void setTodosProductosInstitucion(ArrayList<ProductosInstitucion> todosProductosInstitucion) {
+        this.todosProductosInstitucion = todosProductosInstitucion;
+    }
+
     public DepartamentosInstitucion getNuevoDeptoInstitucion() {
         return nuevoDeptoInstitucion;
     }
@@ -209,6 +230,48 @@ public class InstitucionControlador extends ActionSupport{
         this.nuevoDeptoInstitucion = nuevoDeptoInstitucion;
     }
 
+    public Instituciones getNuevaInstitucion() {
+        return nuevaInstitucion;
+    }
+    public void setNuevaInstitucion(Instituciones nuevaInstitucion) {
+        this.nuevaInstitucion = nuevaInstitucion;
+    }
+
+    public ProductosInstitucion getNuevoProdInstitucion() {
+        return nuevoProdInstitucion;
+    }
+    public void setNuevoProdInstitucion(ProductosInstitucion nuevoProdInstitucion) {
+        this.nuevoProdInstitucion = nuevoProdInstitucion;
+    }
+    
+    public BigDecimal getDeptoInstitucionId() {
+        return deptoInstitucionId;
+    }
+    public void setDeptoInstitucionId(BigDecimal deptoInstitucionId) {
+        this.deptoInstitucionId = deptoInstitucionId;
+    }
+
+    public BigDecimal getInstitucionId() {
+        return institucionId;
+    }
+    public void setInstitucionId(BigDecimal institucionId) {
+        this.institucionId = institucionId;
+    }
+
+    public BigDecimal getMunicipioId() {
+        return municipioId;
+    }
+    public void setMunicipioId(BigDecimal municipioId) {
+        this.municipioId = municipioId;
+    }
+
+    public BigDecimal getProdInstitucionId() {
+        return prodInstitucionId;
+    }
+    public void setProdInstitucionId(BigDecimal prodInstitucionId) {
+        this.prodInstitucionId = prodInstitucionId;
+    }
+        
     public DepartamentosInstitucion getDeptoInstitucionSeleccionado() {
         return deptoInstitucionSeleccionado;
     }
@@ -216,12 +279,25 @@ public class InstitucionControlador extends ActionSupport{
         this.deptoInstitucionSeleccionado = deptoInstitucionSeleccionado;
     }
 
-    public BigDecimal getDeptoInstitucionId() {
-        return deptoInstitucionId;
+    public Instituciones getInstitucionSeleccionada() {
+        return institucionSeleccionada;
     }
-    public void setDeptoInstitucionId(BigDecimal deptoInstitucionId) {
-        this.deptoInstitucionId = deptoInstitucionId;
+    public void setInstitucionSeleccionada(Instituciones institucionSeleccionada) {
+        this.institucionSeleccionada = institucionSeleccionada;
     }
-    
+
+    public Municipios getMunicipioSeleccionado() {
+        return municipioSeleccionado;
+    }
+    public void setMunicipioSeleccionado(Municipios municipioSeleccionado) {
+        this.municipioSeleccionado = municipioSeleccionado;
+    }
+
+    public ProductosInstitucion getProdInstitucionSeleccionado() {
+        return prodInstitucionSeleccionado;
+    }
+    public void setProdInstitucionSeleccionado(ProductosInstitucion prodInstitucionSeleccionado) {
+        this.prodInstitucionSeleccionado = prodInstitucionSeleccionado;
+    }
     
 }

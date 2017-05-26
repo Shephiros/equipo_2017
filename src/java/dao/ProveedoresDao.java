@@ -1,6 +1,6 @@
 package dao;
 
-import entidades.Municipios;
+import entidades.Proveedores;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -10,37 +10,37 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-public class MunicipiosDao {
+public class ProveedoresDao {
     
-    //Método que obtiene una lista de todos los muinicipios.
-    public ArrayList<Municipios> todosMunicipios()
+    //Método que obtiene una lista de todos los proveedores.
+    public ArrayList<Proveedores> todosProveedores()
     {
         SessionFactory sesion=HibernateUtil.getSessionFactory();
         Session session =sesion.openSession();
         Transaction tx=session.beginTransaction();
-        ArrayList<Municipios> arreglo = new ArrayList<Municipios>();
-        Query q=session.createQuery("from Municipios");
-        List<Municipios> lista=q.list();
-        Iterator<Municipios> iter=lista.iterator();
+        ArrayList<Proveedores> arreglo = new ArrayList<Proveedores>();
+        Query q=session.createQuery("from Proveedores");
+        List<Proveedores> lista=q.list();
+        Iterator<Proveedores> iter=lista.iterator();
         tx.commit();
         session.close();
         while(iter.hasNext())
         {
-            Municipios municipio = (Municipios) iter.next();
-            arreglo.add(municipio);
+            Proveedores pro = (Proveedores) iter.next();
+            arreglo.add(pro);
         }
         return arreglo;
     }
     
-    //Método que obtiene un municipio por Id.
-    public Municipios municipionPorId(BigDecimal municipioId){
+    //Método que obtiene un proveedor por Id.
+    public Proveedores proveedorPorId(BigDecimal proveedorId){
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
-        Municipios muni = (Municipios)session.get(Municipios.class, municipioId);
+        Proveedores in = (Proveedores)session.get(Proveedores.class, proveedorId);
         tx.commit();
         session.close();
-        return muni;
+        return in;
     }
     
 }

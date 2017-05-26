@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 24-may-2017 11:11:10 by Hibernate Tools 4.3.1 -->
+<!-- Generated 05-25-2017 11:34:01 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="entidades.Municipios" table="MUNICIPIOS" schema="EQUIPO" optimistic-lock="version">
         <id name="municipioId" type="big_decimal">
@@ -14,17 +14,17 @@
         <property name="municipioNombre" type="string">
             <column name="MUNICIPIO_NOMBRE" length="40" not-null="true" />
         </property>
-        <set name="proveedoreses" table="PROVEEDORES" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="MUNICIPIO_ID" precision="22" scale="0" not-null="true" />
-            </key>
-            <one-to-many class="entidades.Proveedores" />
-        </set>
         <set name="institucioneses" table="INSTITUCIONES" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="MUNICIPIO_ID" precision="22" scale="0" not-null="true" />
             </key>
             <one-to-many class="entidades.Instituciones" />
+        </set>
+        <set name="proveedoreses" table="PROVEEDORES" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="MUNICIPIO_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.Proveedores" />
         </set>
     </class>
 </hibernate-mapping>

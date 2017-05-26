@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 24-may-2017 11:11:10 by Hibernate Tools 4.3.1 -->
+<!-- Generated 05-25-2017 11:34:01 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="entidades.Proveedores" table="PROVEEDORES" schema="EQUIPO" optimistic-lock="version">
         <id name="proveedorId" type="big_decimal">
             <column name="PROVEEDOR_ID" precision="22" scale="0" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <many-to-one name="municipios" class="entidades.Municipios" fetch="select">
             <column name="MUNICIPIO_ID" precision="22" scale="0" not-null="true" />
@@ -47,23 +47,11 @@
             </key>
             <one-to-many class="entidades.Ofertas" />
         </set>
-        <set name="usuarioses" table="USUARIOS" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="PROVEEDOR_ID" precision="22" scale="0" />
-            </key>
-            <one-to-many class="entidades.Usuarios" />
-        </set>
         <set name="productosProveedors" table="PRODUCTOS_PROVEEDOR" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="PROVEEDOR_ID" precision="22" scale="0" not-null="true" />
             </key>
             <one-to-many class="entidades.ProductosProveedor" />
-        </set>
-        <set name="instalacioneses" table="INSTALACIONES" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="PROVEEDOR_ID" precision="22" scale="0" not-null="true" />
-            </key>
-            <one-to-many class="entidades.Instalaciones" />
         </set>
         <set name="comprases" table="COMPRAS" inverse="true" lazy="true" fetch="select">
             <key>
@@ -76,6 +64,18 @@
                 <column name="PROVEEDOR_ID" precision="22" scale="0" not-null="true" />
             </key>
             <one-to-many class="entidades.Mantenimientos" />
+        </set>
+        <set name="instalacioneses" table="INSTALACIONES" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PROVEEDOR_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.Instalaciones" />
+        </set>
+        <set name="usuarioses" table="USUARIOS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PROVEEDOR_ID" precision="22" scale="0" />
+            </key>
+            <one-to-many class="entidades.Usuarios" />
         </set>
     </class>
 </hibernate-mapping>

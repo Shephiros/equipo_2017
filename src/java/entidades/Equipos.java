@@ -1,5 +1,5 @@
 package entidades;
-// Generated 24-may-2017 11:11:09 by Hibernate Tools 4.3.1
+// Generated 05-25-2017 11:33:58 AM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -25,9 +25,9 @@ public class Equipos  implements java.io.Serializable {
      private Date equipoMantenimiento;
      private BigDecimal equipoEstado;
      private Set detalleInstalacions = new HashSet(0);
-     private Set detalleMantenimientos = new HashSet(0);
      private Set documentoses = new HashSet(0);
      private Set alertases = new HashSet(0);
+     private Set detalleMantenimientos = new HashSet(0);
 
     public Equipos() {
     }
@@ -41,7 +41,7 @@ public class Equipos  implements java.io.Serializable {
         this.equipoFechaCompra = equipoFechaCompra;
         this.equipoEstado = equipoEstado;
     }
-    public Equipos(BigDecimal equipoId, DetalleCompras detalleCompras, String equipoNombre, String equipoMarca, String equipoModelo, Date equipoFechaCompra, BigDecimal equipoAnioFabricacion, Double equipoBtu, Double equipoPotencia, Date equipoMantenimiento, BigDecimal equipoEstado, Set detalleInstalacions, Set detalleMantenimientos, Set documentoses, Set alertases) {
+    public Equipos(BigDecimal equipoId, DetalleCompras detalleCompras, String equipoNombre, String equipoMarca, String equipoModelo, Date equipoFechaCompra, BigDecimal equipoAnioFabricacion, Double equipoBtu, Double equipoPotencia, Date equipoMantenimiento, BigDecimal equipoEstado, Set detalleInstalacions, Set documentoses, Set alertases, Set detalleMantenimientos) {
        this.equipoId = equipoId;
        this.detalleCompras = detalleCompras;
        this.equipoNombre = equipoNombre;
@@ -54,9 +54,9 @@ public class Equipos  implements java.io.Serializable {
        this.equipoMantenimiento = equipoMantenimiento;
        this.equipoEstado = equipoEstado;
        this.detalleInstalacions = detalleInstalacions;
-       this.detalleMantenimientos = detalleMantenimientos;
        this.documentoses = documentoses;
        this.alertases = alertases;
+       this.detalleMantenimientos = detalleMantenimientos;
     }
    
     public BigDecimal getEquipoId() {
@@ -143,13 +143,6 @@ public class Equipos  implements java.io.Serializable {
     public void setDetalleInstalacions(Set detalleInstalacions) {
         this.detalleInstalacions = detalleInstalacions;
     }
-    public Set getDetalleMantenimientos() {
-        return this.detalleMantenimientos;
-    }
-    
-    public void setDetalleMantenimientos(Set detalleMantenimientos) {
-        this.detalleMantenimientos = detalleMantenimientos;
-    }
     public Set getDocumentoses() {
         return this.documentoses;
     }
@@ -163,6 +156,13 @@ public class Equipos  implements java.io.Serializable {
     
     public void setAlertases(Set alertases) {
         this.alertases = alertases;
+    }
+    public Set getDetalleMantenimientos() {
+        return this.detalleMantenimientos;
+    }
+    
+    public void setDetalleMantenimientos(Set detalleMantenimientos) {
+        this.detalleMantenimientos = detalleMantenimientos;
     }
 
 
