@@ -34,6 +34,12 @@
         <action name="rolesListado" class="controladores.AdministracionControlador" method="listadoRoles">
             <result>/vistas/rol_listado.jsp</result>
         </action>
+        <action name="pantallasListado" class="controladores.AdministracionControlador" method="listadoPantallas">
+            <result>/vistas/pantalla_listado.jsp</result>
+        </action>
+        <action name="pantallaVer" class="controladores.AdministracionControlador" method="verPantalla">
+            <result>/vistas/pantalla_ver.jsp</result>
+        </action>
         
         <!-- Módulo Institución -->
         <action name="institucionNuevo" class="controladores.InstitucionControlador" method="nuevaInstitucion">

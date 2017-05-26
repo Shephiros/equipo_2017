@@ -1,8 +1,11 @@
 package controladores;
 
+import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
+import dao.PantallasDao;
 import dao.RolesDao;
 import dao.UsuariosDao;
+import entidades.Pantallas;
 import entidades.Roles;
 import entidades.Usuarios;
 import java.math.BigDecimal;
@@ -16,9 +19,12 @@ public class AdministracionControlador extends ActionSupport{
     
     private ArrayList<Usuarios> todosUsuarios; 
     private ArrayList<Roles> todosRoles;
+    private ArrayList<Pantallas> todasPantallas;
     private Usuarios nuevoUsuario = new Usuarios();
     private Usuarios usuarioSeleccionado = new Usuarios();
+    private Pantallas pantalla = new Pantallas();
     private BigDecimal rolId;
+    private BigDecimal pantallaId;
     private String usuarioUsuario;
     private String estadoUsuario;
     //para sacar rol
@@ -33,6 +39,11 @@ public class AdministracionControlador extends ActionSupport{
     public String listadoRoles(){
         this.todosRoles= new RolesDao().todosRoles();
         return  SUCCESS;
+    }
+    
+    public String listadoPantallas(){
+        this.todasPantallas = new PantallasDao().todasPantallas();
+        return SUCCESS;
     }
 
     public String mostrarNuevoUsuario(){
@@ -98,7 +109,10 @@ public class AdministracionControlador extends ActionSupport{
         return SUCCESS;
     }
     
-    
+    public String verPantalla(){
+        this.pantalla = new PantallasDao().pantallaPorPantalla(pantallaId);
+        return SUCCESS;
+    }
     
     
     public ArrayList<Usuarios> getTodosUsuarios() {
@@ -153,9 +167,32 @@ public class AdministracionControlador extends ActionSupport{
     public Roles getRolSeleccionado() {
         return rolSeleccionado;
     }
-
     public void setRolSeleccionado(Roles rolSeleccionado) {
         this.rolSeleccionado = rolSeleccionado;
     }
 
+    public ArrayList<Pantallas> getTodasPantallas() {
+        return todasPantallas;
+    }
+    public void setTodasPantallas(ArrayList<Pantallas> todasPantallas) {
+        this.todasPantallas = todasPantallas;
+    }
+
+    public Pantallas getPantalla() {
+        return pantalla;
+    }
+    public void setPantalla(Pantallas pantalla) {
+        this.pantalla = pantalla;
+    }
+
+    public BigDecimal getPantallaId() {
+        return pantallaId;
+    }
+
+    public void setPantallaId(BigDecimal pantallaId) {
+        this.pantallaId = pantallaId;
+    }
+
+  
+    
 }
