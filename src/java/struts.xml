@@ -31,10 +31,10 @@
         <action name="usuarioEditarGuardar" class="controladores.AdministracionControlador" method="guardarSeleccionadoUsuario">
             <result>/vistas/usuario_editar.jsp</result>
         </action>
-        <action name="rolesListado" class="controladores.AdministracionControlador" method="listadoRoles">
+        <action name="rolListado" class="controladores.AdministracionControlador" method="listadoRoles">
             <result>/vistas/rol_listado.jsp</result>
         </action>
-        <action name="pantallasListado" class="controladores.AdministracionControlador" method="listadoPantallas">
+        <action name="pantallaListado" class="controladores.AdministracionControlador" method="listadoPantallas">
             <result>/vistas/pantalla_listado.jsp</result>
         </action>
         <action name="pantallaVer" class="controladores.AdministracionControlador" method="verPantalla">

@@ -49,7 +49,7 @@
                 <div class="form-row">
                     <div class="col-lg-12">
                         <center>
-                        <s:a action="pantallasListado" cssClass="btn btn-default">Regresar</s:a>
+                        <s:a action="pantallaListado" cssClass="btn btn-default">Regresar</s:a>
                         </center>
                     </div>
                 </div>
