@@ -1,6 +1,6 @@
 package dao;
 
-import entidades.ProductosInstitucion;
+import entidades.ProductosProveedor;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -10,55 +10,55 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-public class ProductosInstitucionDao {
- 
-    //Método que obtiene una lista de todos los productos de institución.
-    public ArrayList<ProductosInstitucion> todosProductosInstitucion()
+public class ProductosProveedorDao {
+    
+    //Método que obtiene una lista de todos los productos de proveedor.
+    public ArrayList<ProductosProveedor> todosProductosProveedor()
     {
         SessionFactory sesion=HibernateUtil.getSessionFactory();
         Session session =sesion.openSession();
         Transaction tx=session.beginTransaction();
-        ArrayList<ProductosInstitucion> arreglo = new ArrayList<ProductosInstitucion>();
-        Query q=session.createQuery("from ProductosInstitucion");
-        List<ProductosInstitucion> lista=q.list();
-        Iterator<ProductosInstitucion> iter=lista.iterator();
+        ArrayList<ProductosProveedor> arreglo = new ArrayList<ProductosProveedor>();
+        Query q=session.createQuery("from ProductosProveedor");
+        List<ProductosProveedor> lista=q.list();
+        Iterator<ProductosProveedor> iter=lista.iterator();
         tx.commit();
         session.close();
         while(iter.hasNext())
         {
-            ProductosInstitucion prodi = (ProductosInstitucion) iter.next();
-            arreglo.add(prodi);
+            ProductosProveedor prodp = (ProductosProveedor) iter.next();
+            arreglo.add(prodp);
         }
         return arreglo;
     }
     
-    //Método que guarda los productos de instituciones.
-    public void guardarProductosInstitucion(ProductosInstitucion prodInstitucion){
+    //Método que guarda los productos de prveedores.
+    public void guardarProductosProveedor(ProductosProveedor prodProveedor){
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
-        session.save(prodInstitucion);
+        session.save(prodProveedor);
         tx.commit();
         session.close();
     }
     
-    //Método que obtiene un producto de institución por Id.
-    public ProductosInstitucion prodInstitucionPorId(BigDecimal prodInstitucionId){
+    //Método que obtiene un producto de proveedor por Id.
+    public ProductosProveedor prodProveedorPorId(BigDecimal prodProveedorId){
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
-        ProductosInstitucion prodi = (ProductosInstitucion)session.get(ProductosInstitucion.class, prodInstitucionId);
+        ProductosProveedor prodp = (ProductosProveedor)session.get(ProductosProveedor.class, prodProveedorId);
         tx.commit();
         session.close();
-        return prodi;
+        return prodp;
     }
     
-    //Método que actualiza los productos de instituciones.
-    public void actualizarProdInstitucion(ProductosInstitucion prodInstitucionId){
+    //Método que actualiza los productos de proveedores.
+    public void actualizarProdProveedor(ProductosProveedor prodProveedorId){
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
-        session.update(prodInstitucionId);
+        session.update(prodProveedorId);
         tx.commit();
         session.close();
     }

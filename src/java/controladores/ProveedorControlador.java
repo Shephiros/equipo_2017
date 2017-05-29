@@ -2,8 +2,10 @@ package controladores;
 
 import com.opensymphony.xwork2.ActionSupport;
 import dao.MunicipiosDao;
+import dao.ProductosProveedorDao;
 import dao.ProveedoresDao;
 import entidades.Municipios;
+import entidades.ProductosProveedor;
 import entidades.Proveedores;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -16,9 +18,47 @@ public class ProveedorControlador extends ActionSupport{
 
     private ArrayList<Municipios> todosMunicipios;
     private ArrayList<Proveedores> todosProveedores;
+    private ArrayList<ProductosProveedor> todosProductosProveedor;
     private Municipios municipioSeleccionado = new Municipios();
     private Proveedores proveedorSeleccionado = new Proveedores();
+    private ProductosProveedor prodProveedorSeleccionado = new ProductosProveedor();
+    private ProductosProveedor nuevoProdProveedor = new ProductosProveedor();
     private BigDecimal proveedorId;
+    private BigDecimal prodProveedorId;
+    
+//****************************************************************************//
+//                            Métodos para guardar                            //
+//****************************************************************************//
+
+    public String guardarProdProveedor() throws Exception{
+        this.todosProveedores = new ProveedoresDao().todosProveedores();
+        ProductosProveedorDao gProdProveedor = new ProductosProveedorDao();
+        Proveedores proveedorU = new Proveedores();
+        proveedorU.setProveedorId(proveedorId);
+        this.nuevoProdProveedor.setProveedores(proveedorU);
+        gProdProveedor.guardarProductosProveedor(nuevoProdProveedor);
+        this.setProveedorId(BigDecimal.ZERO);
+        nuevoProdProveedor = new ProductosProveedor();
+        this.todosProveedores = new ProveedoresDao().todosProveedores();
+        execute();
+        return SUCCESS;
+    }
+    
+//****************************************************************************//
+//                           Métodos para actualizar                          //
+//****************************************************************************//
+
+    public String actualizarProdProveedor() throws Exception{
+        this.todosProveedores = new ProveedoresDao().todosProveedores();
+        ProductosProveedorDao eProdProveedor = new ProductosProveedorDao();
+        Proveedores proveedorU = new Proveedores(); 
+        proveedorU.setProveedorId(proveedorId);
+        this.prodProveedorSeleccionado.setProveedores(proveedorU);
+        /*Guardando y cargando el nuevo rol*/
+        eProdProveedor.actualizarProdProveedor(prodProveedorSeleccionado);
+        execute();
+        return SUCCESS;
+    }
     
 //****************************************************************************//
 //                                Otros métodos                               //
@@ -27,6 +67,21 @@ public class ProveedorControlador extends ActionSupport{
     @Override
     public String execute() throws Exception {
         this.todosProveedores = new ProveedoresDao().todosProveedores();
+        this.todosProductosProveedor = new ProductosProveedorDao().todosProductosProveedor();
+        return SUCCESS;
+    }
+    
+    public String nuevoProdProveedor(){
+        this.todosProveedores = new ProveedoresDao().todosProveedores();
+        return SUCCESS;
+    }
+    
+    public String verProdProveedor(){
+        this.todosProveedores = new ProveedoresDao().todosProveedores();
+        ProductosProveedorDao vProdProveedor = new ProductosProveedorDao();
+        this.prodProveedorSeleccionado = vProdProveedor.prodProveedorPorId(prodProveedorId);
+        ProveedoresDao proveedorDao = new ProveedoresDao();
+        this.proveedorSeleccionado = proveedorDao.proveedorPorId(prodProveedorSeleccionado.getProveedores().getProveedorId());
         return SUCCESS;
     }
     
@@ -57,6 +112,13 @@ public class ProveedorControlador extends ActionSupport{
         this.todosProveedores = todosProveedores;
     }
 
+    public ArrayList<ProductosProveedor> getTodosProductosProveedor() {
+        return todosProductosProveedor;
+    }
+    public void setTodosProductosProveedor(ArrayList<ProductosProveedor> todosProductosProveedor) {
+        this.todosProductosProveedor = todosProductosProveedor;
+    }
+
     public BigDecimal getProveedorId() {
         return proveedorId;
     }
@@ -77,5 +139,26 @@ public class ProveedorControlador extends ActionSupport{
     public void setProveedorSeleccionado(Proveedores proveedorSeleccionado) {
         this.proveedorSeleccionado = proveedorSeleccionado;
     }
-    
+
+    public BigDecimal getProdProveedorId() {
+        return prodProveedorId;
+    }
+    public void setProdProveedorId(BigDecimal prodProveedorId) {
+        this.prodProveedorId = prodProveedorId;
+    }
+
+    public ProductosProveedor getNuevoProdProveedor() {
+        return nuevoProdProveedor;
+    }
+    public void setNuevoProdProveedor(ProductosProveedor nuevoProdProveedor) {
+        this.nuevoProdProveedor = nuevoProdProveedor;
+    }
+
+    public ProductosProveedor getProdProveedorSeleccionado() {
+        return prodProveedorSeleccionado;
+    }
+    public void setProdProveedorSeleccionado(ProductosProveedor prodProveedorSeleccionado) {
+        this.prodProveedorSeleccionado = prodProveedorSeleccionado;
+    }
+
 }

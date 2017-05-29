@@ -35,7 +35,7 @@
                     <div class="col-lg-3">
                     </div>
                     <div class="col-lg-1">
-                        <s:label value="nombre:"></s:label>
+                        <s:label value="Nombre:"></s:label>
                     </div>
                     <div class="col-lg-5">
                         <s:textfield name="nuevoProdInstitucion.prodInstitucionNombre" cssClass="form-control" cssStyle="width: 100%"></s:textfield>

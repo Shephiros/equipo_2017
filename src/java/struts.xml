@@ -119,6 +119,25 @@
             <result>/vistas/proveedor_listado.jsp</result>
         </action>
         
+        <action name="prodProveedorNuevo" class="controladores.ProveedorControlador" method="nuevoProdProveedor">
+            <result>/vistas/prod_proveedor_nuevo.jsp</result>
+        </action>
+        <action name="prodProveedorListado" class="controladores.ProveedorControlador" method="execute">
+            <result>/vistas/prod_proveedor_listado.jsp</result>
+        </action>
+        <action name="prodProveedorGuardar" class="controladores.ProveedorControlador" method="guardarProdProveedor">
+            <result>/vistas/prod_proveedor_listado.jsp</result>
+        </action>
+        <action name="prodProveedorVer" class="controladores.ProveedorControlador" method="verProdProveedor">
+            <result>/vistas/prod_proveedor_ver.jsp</result>
+        </action>
+        <action name="prodProveedorEditar" class="controladores.ProveedorControlador" method="verProdProveedor">
+            <result>/vistas/prod_proveedor_editar.jsp</result>
+        </action>
+        <action name="prodProveedorActualizar" class="controladores.ProveedorControlador" method="actualizarProdProveedor">
+            <result>/vistas/prod_proveedor_listado.jsp</result>
+        </action>
+        
         <!-- Barra de menú -->
         <action name="menu" class="controladores.InstitucionControlador" method="execute">
             <result>/vistas/menu.jsp</result>
