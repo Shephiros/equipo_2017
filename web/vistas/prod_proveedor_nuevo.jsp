@@ -22,7 +22,7 @@
                     </div>
                     <div class="col-lg-5">
                         <s:select headerKey="-1" cssClass="form-control" headerValue="Seleccionar..."
-                              list="%{todosProveedores}" listKey="%{proveedorId}" listValue="%{proveedorNombre}"
+                              list="%{todosProveedores}" listKey="%{proveedorId}" listValue="%{proveedorEmpresa}"
                               name="proveedorId" cssStyle="width: 100%"></s:select>
                     </div>
                     <div class="col-lg-3">
