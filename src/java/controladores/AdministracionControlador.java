@@ -2,9 +2,11 @@ package controladores;
 
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
+import dao.BitacoraDao;
 import dao.PantallasDao;
 import dao.RolesDao;
 import dao.UsuariosDao;
+import entidades.Bitacora;
 import entidades.Pantallas;
 import entidades.Roles;
 import entidades.Usuarios;
@@ -20,6 +22,7 @@ public class AdministracionControlador extends ActionSupport{
     private ArrayList<Usuarios> todosUsuarios; 
     private ArrayList<Roles> todosRoles;
     private ArrayList<Pantallas> todasPantallas;
+    private ArrayList<Bitacora> todasBitacoras;
     private Usuarios nuevoUsuario = new Usuarios();
     private Usuarios usuarioSeleccionado = new Usuarios();
     private Pantallas pantalla = new Pantallas();
@@ -33,6 +36,7 @@ public class AdministracionControlador extends ActionSupport{
     @Override
     public String execute() throws Exception {
         this.todosUsuarios = new UsuariosDao().todosUsuarios();
+        this.todasBitacoras= new BitacoraDao().todasBitacoras();
         return SUCCESS;
     }
     
@@ -51,7 +55,7 @@ public class AdministracionControlador extends ActionSupport{
         return SUCCESS;
     }
     
-    public String guardarNuevoUsuario(){
+    public String guardarUsuario() throws Exception{
         this.todosRoles = new RolesDao().todosRoles();
         UsuariosDao gUsuario = new UsuariosDao();
         Roles rolU = new Roles();
@@ -63,6 +67,7 @@ public class AdministracionControlador extends ActionSupport{
         this.setRolId(BigDecimal.ZERO);
         nuevoUsuario = new Usuarios();
         this.todosRoles = new RolesDao().todosRoles();
+        execute();
         return SUCCESS;
     }
     
@@ -80,7 +85,7 @@ public class AdministracionControlador extends ActionSupport{
         return SUCCESS;
     }
     
-    public String guardarSeleccionadoUsuario(){
+    public String actualizarUsuario() throws Exception{
         
         this.todosRoles = new RolesDao().todosRoles();
         UsuariosDao gUsuario = new UsuariosDao(); 
@@ -105,7 +110,7 @@ public class AdministracionControlador extends ActionSupport{
         /*Mostrando el nuevo rol del usuario, se realiza una nueva carga*/
         RolesDao rolDao = new RolesDao();
         this.rolSeleccionado = rolDao.rolPorId(usuarioSeleccionado.getRoles().getRolId());
-        
+        execute();
         return SUCCESS;
     }
     
@@ -192,6 +197,16 @@ public class AdministracionControlador extends ActionSupport{
     public void setPantallaId(BigDecimal pantallaId) {
         this.pantallaId = pantallaId;
     }
+
+    public ArrayList<Bitacora> getTodasBitacoras() {
+        return todasBitacoras;
+    }
+
+    public void setTodasBitacoras(ArrayList<Bitacora> todasBitacoras) {
+        this.todasBitacoras = todasBitacoras;
+    }
+
+   
 
   
     

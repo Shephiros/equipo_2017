@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC   
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"  
+ "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+ 
+<tiles-definitions>
+    <definition name="plantilla" template="/vistas/plantilla/plantilla.jsp">
+        <put-attribute name="titulo" value="Bienvenido"/>
+        <put-attribute name="cabecera" value="/vistas/plantilla/cabecera.jsp"/>
+        <put-attribute name="cuerpo" value="/vistas/plantilla/inicio.jsp"/>
+        <put-attribute name="pie" value="/vistas/plantilla/pie.jsp"/>
+    </definition>
+    
+    <definition name="listadoUsuario" extends="plantilla">
+        <put-attribute name="titulo" value="Listado Usuarios"/>
+        <put-attribute name="cuerpo" value="/vistas/administracion/usuario_listado.jsp"/>
+    </definition>
+    
+    <definition name="nuevoUsuario" extends="plantilla">
+        <put-attribute name="titulo" value="Nuevo Usuario"/>
+        <put-attribute name="cuerpo" value="/vistas/administracion/usuario_nuevo.jsp"/>
+    </definition>
+    
+    <definition name="verUsuario" extends="plantilla">
+        <put-attribute name="titulo" value="Ver Usuario"/>
+        <put-attribute name="cuerpo" value="/vistas/administracion/usuario_ver.jsp"/>
+    </definition>
+    
+    <definition name="editarUsuario" extends="plantilla">
+        <put-attribute name="titulo" value="Editar Usuario"/>
+        <put-attribute name="cuerpo" value="/vistas/administracion/usuario_editar.jsp"/>
+    </definition>
+    
+    <definition name="listadoRol" extends="plantilla">
+        <put-attribute name="titulo" value="Rol Listado"/>
+        <put-attribute name="cuerpo" value="/vistas/administracion/rol_listado.jsp"/>
+    </definition>
+    
+    <definition name="listadoPantalla" extends="plantilla">
+        <put-attribute name="titulo" value="Pantalla Listado"/>
+        <put-attribute name="cuerpo" value="/vistas/administracion/pantalla_listado.jsp"/>
+    </definition>
+    
+    <definition name="verPantalla" extends="plantilla">
+        <put-attribute name="titulo" value="Ver Listado"/>
+        <put-attribute name="cuerpo" value="/vistas/administracion/pantalla_ver.jsp"/>
+    </definition>
+    <definition name="listadoBitacora" extends="plantilla">
+        <put-attribute name="titulo" value="Bitacora"/>
+        <put-attribute name="cuerpo" value="/vistas/administracion/bitacora_listado.jsp"/>
+    </definition>
+    
+    <!--*************************Modulo Institucion**************************-->
+    <definition name="listadoInstitucion" extends="plantilla">
+        <put-attribute name="titulo" value="Listado Instituciones"/>
+        <put-attribute name="cuerpo" value="/vistas/institucion/institucion_listado.jsp"/>
+    </definition>
+    
+    <definition name="nuevoInstitucion" extends="plantilla">
+        <put-attribute name="titulo" value="Nueva Institución"/>
+        <put-attribute name="cuerpo" value="/vistas/institucion/institucion_nuevo.jsp"/>
+    </definition>
+    
+    <definition name="verInstitucion" extends="plantilla">
+        <put-attribute name="titulo" value="Información de Institución"/>
+        <put-attribute name="cuerpo" value="/vistas/institucion/institucion_ver.jsp"/>
+    </definition>
+    <definition name="editarInstitucion" extends="plantilla">
+        <put-attribute name="titulo" value="Editar Institución"/>
+        <put-attribute name="cuerpo" value="/vistas/institucion/institucion_editar.jsp"/>
+    </definition>
+    
+    
+    <definition name="listadoDepartamento" extends="plantilla">
+        <put-attribute name="titulo" value="Listado Departamentos"/>
+        <put-attribute name="cuerpo" value="/vistas/institucion/departamento_listado.jsp"/>
+    </definition>
+    
+    <definition name="nuevoDepartamento" extends="plantilla">
+        <put-attribute name="titulo" value="Nuevo Departamento"/>
+        <put-attribute name="cuerpo" value="/vistas/institucion/departamento_nuevo.jsp"/>
+    </definition>
+    
+     <definition name="verDepartamento" extends="plantilla">
+        <put-attribute name="titulo" value="Información de Departamento"/>
+        <put-attribute name="cuerpo" value="/vistas/institucion/departamento_ver.jsp"/>
+    </definition>
+    
+    <definition name="editarDepartamento" extends="plantilla">
+        <put-attribute name="titulo" value="Editar Departamento"/>
+        <put-attribute name="cuerpo" value="/vistas/institucion/departamento_editar.jsp"/>
+    </definition>
+    
+    <definition name="listadoProdInstitucion" extends="plantilla">
+        <put-attribute name="titulo" value="Catálogo de Equipo"/>
+        <put-attribute name="cuerpo" value="/vistas/institucion/prod_institucion_listado.jsp"/>
+    </definition>
+    
+    <definition name="nuevoProdInstitucion" extends="plantilla">
+        <put-attribute name="titulo" value="Nuevo Equipo"/>
+        <put-attribute name="cuerpo" value="/vistas/institucion/prod_institucion_nuevo.jsp"/>
+    </definition>
+    
+    <definition name="verProdInstitucion" extends="plantilla">
+        <put-attribute name="titulo" value="Información de Equipo"/>
+        <put-attribute name="cuerpo" value="/vistas/institucion/prod_institucion_ver.jsp"/>
+    </definition>
+    
+    <definition name="editarProdInstitucion" extends="plantilla">
+        <put-attribute name="titulo" value="Editar Equipo"/>
+        <put-attribute name="cuerpo" value="/vistas/institucion/prod_institucion_editar.jsp"/>
+    </definition>
+    
+    <!--*********************Modulo Proveedor*************-->
+    <definition name="listadoProveedor" extends="plantilla">
+        <put-attribute name="titulo" value="Listado Proveedores"/>
+        <put-attribute name="cuerpo" value="/vistas/proveedores/proveedor_listado.jsp"/>
+    </definition>
+    <definition name="nuevoProveedor" extends="plantilla">
+        <put-attribute name="titulo" value="Nuevo Producto"/>
+        <put-attribute name="cuerpo" value="/vistas/proveedores/proveedor_nuevo.jsp"/>
+    </definition>
+    <definition name="verProveedor" extends="plantilla">
+        <put-attribute name="titulo" value="Información de Proveedor"/>
+        <put-attribute name="cuerpo" value="/vistas/proveedores/proveedor_ver.jsp"/>
+    </definition>
+    
+    <definition name="listadoProdProveedor" extends="plantilla">
+        <put-attribute name="titulo" value="Catálogo de Productos"/>
+        <put-attribute name="cuerpo" value="/vistas/proveedores/prod_proveedor_listado.jsp"/>
+    </definition>
+    <definition name="nuevoProdProveedor" extends="plantilla">
+        <put-attribute name="titulo" value="Nuevo Producto"/>
+        <put-attribute name="cuerpo" value="/vistas/proveedores/prod_proveedor_nuevo.jsp"/>
+    </definition>
+    <definition name="verProdProveedor" extends="plantilla">
+        <put-attribute name="titulo" value="Información de Producto"/>
+        <put-attribute name="cuerpo" value="/vistas/proveedores/prod_proveedor_ver.jsp"/>
+    </definition>
+    <definition name="editarProdProveedor" extends="plantilla">
+        <put-attribute name="titulo" value="Editar Producto"/>
+        <put-attribute name="cuerpo" value="/vistas/proveedores/prod_proveedor_editar.jsp"/>
+    </definition>
+</tiles-definitions>

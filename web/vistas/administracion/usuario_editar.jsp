@@ -12,7 +12,7 @@
                         
         <div class="tab-content">
             
-            <form action="usuarioEditarGuardar" method="post">
+            <form action="usuarioActualizar" method="post">
                 <div class="form-row">
                     <div class="col-lg-3">
                     </div>

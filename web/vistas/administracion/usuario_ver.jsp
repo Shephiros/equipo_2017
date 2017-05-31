@@ -1,13 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Nuevo Usuario</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
-    </head>
-    <body>
+
         <h2 style="color: navy"><b><center>INFORMACIÓN DE USUARIO</center></b></h2><br>
                         
         <div class="tab-content">
@@ -114,5 +108,4 @@
                 </div>
             </form>
         </div>
-    </body>
-</html>
+    

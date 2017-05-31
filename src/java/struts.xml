@@ -10,138 +10,145 @@
         
     </package>
     
-    <package name="controladores" namespace="/" extends="struts-default">
+    <package name="controladores" namespace="/" extends="tiles-default">
+        <!-- Barra de menú -->
+        <action name="inicio" class="controladores.InicioControlador" method="execute">
+            <result type="tiles">plantilla</result>
+        </action>
         
-        <!-- Módulo Aministración -->
+         <!-- Módulo Aministración -->
+         <action name="usuarioListado" class="controladores.AdministracionControlador" method="execute">
+            <result type="tiles">listadoUsuario</result>
+        </action>
         <action name="usuarioNuevo" class="controladores.AdministracionControlador" method="mostrarNuevoUsuario">
-            <result>/vistas/usuario_nuevo.jsp</result>
+            <result type="tiles">nuevoUsuario</result>
         </action>
-        <action name="usuarioListado" class="controladores.AdministracionControlador" method="execute">
-            <result>/vistas/usuario_listado.jsp</result>
-        </action>
-        <action name="usuarioGuardar" class="controladores.AdministracionControlador" method="guardarNuevoUsuario">
-            <result>/vistas/usuario_nuevo.jsp</result>
+        <action name="usuarioGuardar" class="controladores.AdministracionControlador" method="guardarUsuario">
+            <result type="tiles">listadoUsuario</result>
         </action>
         <action name="usuarioVer" class="controladores.AdministracionControlador" method="verUsuario">
-            <result>/vistas/usuario_ver.jsp</result>
+            <result type="tiles">verUsuario</result>
         </action>
         <action name="usuarioEditar" class="controladores.AdministracionControlador" method="verUsuario">
-            <result>/vistas/usuario_editar.jsp</result>
+            <result type="tiles">editarUsuario</result>
         </action>
-        <action name="usuarioEditarGuardar" class="controladores.AdministracionControlador" method="guardarSeleccionadoUsuario">
-            <result>/vistas/usuario_editar.jsp</result>
+        <action name="usuarioActualizar" class="controladores.AdministracionControlador" method="actualizarUsuario">
+            <result type="tiles">listadoUsuario</result>
         </action>
+        
         <action name="rolListado" class="controladores.AdministracionControlador" method="listadoRoles">
-            <result>/vistas/rol_listado.jsp</result>
+            <result type="tiles">listadoRol</result>
         </action>
+        
         <action name="pantallaListado" class="controladores.AdministracionControlador" method="listadoPantallas">
-            <result>/vistas/pantalla_listado.jsp</result>
+            <result type="tiles">listadoPantalla</result>
         </action>
+        
         <action name="pantallaVer" class="controladores.AdministracionControlador" method="verPantalla">
-            <result>/vistas/pantalla_ver.jsp</result>
+            <result type="tiles">verPantalla</result>
+        </action>
+        
+        <action name="bitacoraListado" class="controladores.AdministracionControlador" method="execute">
+            <result type="tiles">listadoBitacora</result>
         </action>
         
         <!-- Módulo Institución -->
-        <action name="institucionNuevo" class="controladores.InstitucionControlador" method="nuevaInstitucion">
-            <result>/vistas/institucion_nuevo.jsp</result>
-        </action>
         <action name="institucionListado" class="controladores.InstitucionControlador" method="execute">
-            <result>/vistas/institucion_listado.jsp</result>
+            <result type="tiles">listadoInstitucion</result>
         </action>
-        <action name="institucionGuardar" class="controladores.InstitucionControlador" method="guardarInstitucion">
-            <result>/vistas/institucion_listado.jsp</result>
-        </action>
-        <action name="institucionVer" class="controladores.InstitucionControlador" method="verInstitucion">
-            <result>/vistas/institucion_ver.jsp</result>
-        </action>
-        <action name="institucionEditar" class="controladores.InstitucionControlador" method="verInstitucion">
-            <result>/vistas/institucion_editar.jsp</result>
-        </action>
-        <action name="institucionActualizar" class="controladores.InstitucionControlador" method="actualizarInstitucion">
-            <result>/vistas/institucion_listado.jsp</result>
+        <action name="institucionNuevo" class="controladores.InstitucionControlador" method="nuevaInstitucion">
+            <result type="tiles">nuevoInstitucion</result>
         </action>
         
-        <action name="departamentoNuevo" class="controladores.InstitucionControlador" method="nuevoDepartamento">
-            <result>/vistas/departamento_nuevo.jsp</result>
+        <action name="institucionGuardar" class="controladores.InstitucionControlador" method="guardarInstitucion">
+            <result type="tiles">listadoInstitucion</result>
         </action>
+        <action name="institucionVer" class="controladores.InstitucionControlador" method="verInstitucion">
+            <result type="tiles">verInstitucion</result>
+        </action>
+        
+        <action name="institucionEditar" class="controladores.InstitucionControlador" method="verInstitucion">
+            <result type="tiles">editarInstitucion</result>
+        </action>
+        
+        <action name="institucionActualizar" class="controladores.InstitucionControlador" method="actualizarInstitucion">
+            <result type="tiles">listadoInstitucion</result>
+        </action>
+        
         <action name="departamentoListado" class="controladores.InstitucionControlador" method="execute">
-            <result>/vistas/departamento_listado.jsp</result>
+            <result type="tiles">listadoDepartamento</result>
+        </action>
+        
+          <action name="departamentoNuevo" class="controladores.InstitucionControlador" method="nuevoDepartamento">
+            <result type="tiles">nuevoDepartamento</result>
         </action>
         <action name="departamentoGuardar" class="controladores.InstitucionControlador" method="guardarDepartamento">
-            <result>/vistas/departamento_listado.jsp</result>
+            <result type="tiles">listadoDepartamento</result>
         </action>
         <action name="departamentoVer" class="controladores.InstitucionControlador" method="verDepartamento">
-            <result>/vistas/departamento_ver.jsp</result>
+            <result type="tiles">verDepartamento</result>
         </action>
         <action name="departamentoEditar" class="controladores.InstitucionControlador" method="verDepartamento">
-            <result>/vistas/departamento_editar.jsp</result>
+            <result type="tiles">editarDepartamento</result>
         </action>
+        
         <action name="departamentoActualizar" class="controladores.InstitucionControlador" method="actualizarDepartamento">
-            <result>/vistas/departamento_listado.jsp</result>
+            <result type="tiles">listadoDepartamento</result>
+        </action>
+        
+        <action name="prodInstitucionListado" class="controladores.InstitucionControlador" method="execute">
+            <result type="tiles">listadoProdInstitucion</result>
         </action>
         
         <action name="prodInstitucionNuevo" class="controladores.InstitucionControlador" method="nuevoProdInstitucion">
-            <result>/vistas/prod_institucion_nuevo.jsp</result>
+            <result type="tiles">nuevoProdInstitucion</result>
         </action>
-        <action name="prodInstitucionListado" class="controladores.InstitucionControlador" method="execute">
-            <result>/vistas/prod_institucion_listado.jsp</result>
-        </action>
+        
         <action name="prodInstitucionGuardar" class="controladores.InstitucionControlador" method="guardarProdInstitucion">
-            <result>/vistas/prod_institucion_listado.jsp</result>
+            <result type="tiles">listadoProdInstitucion</result>
         </action>
+        
         <action name="prodInstitucionVer" class="controladores.InstitucionControlador" method="verProdInstitucion">
-            <result>/vistas/prod_institucion_ver.jsp</result>
+            <result type="tiles">verProdInstitucion</result>
         </action>
         <action name="prodInstitucionEditar" class="controladores.InstitucionControlador" method="verProdInstitucion">
-            <result>/vistas/prod_institucion_editar.jsp</result>
+            <result type="tiles">editarProdInstitucion</result>
         </action>
+        
         <action name="prodInstitucionActualizar" class="controladores.InstitucionControlador" method="actualizarProdInstitucion">
-            <result>/vistas/prod_institucion_listado.jsp</result>
+            <result type="tiles">listadoProdInstitucion</result>
         </action>
         
         <!-- Módulo Proveedores -->
-        <action name="proveedorNuevo" class="controladores.ProveedorControlador" method="nuevoProveedor">
-            <result>/vistas/proveedor_nuevo.jsp</result>
-        </action>
         <action name="proveedorListado" class="controladores.ProveedorControlador" method="execute">
-            <result>/vistas/proveedor_listado.jsp</result>
+            <result type="tiles">listadoProveedor</result>
         </action>
-        <action name="proveedorGuardar" class="controladores.ProveedorControlador" method="guardarProveedor">
-            <result>/vistas/proveedor_listado.jsp</result>
+        <action name="proveedorNuevo" class="controladores.ProveedorControlador" method="nuevoProveedor">
+            <result type="tiles">nuevoProveedor</result>
         </action>
         <action name="proveedorVer" class="controladores.ProveedorControlador" method="verProveedor">
-            <result>/vistas/proveedor_ver.jsp</result>
-        </action>
-        <action name="proveedorEditar" class="controladores.ProveedorControlador" method="verProveedor">
-            <result>/vistas/proveedor_editar.jsp</result>
-        </action>
-        <action name="proveedorActualizar" class="controladores.ProveedorControlador" method="actualizarProveedor">
-            <result>/vistas/proveedor_listado.jsp</result>
+            <result type="tiles">verProveedor</result>
         </action>
         
-        <action name="prodProveedorNuevo" class="controladores.ProveedorControlador" method="nuevoProdProveedor">
-            <result>/vistas/prod_proveedor_nuevo.jsp</result>
-        </action>
+        
         <action name="prodProveedorListado" class="controladores.ProveedorControlador" method="execute">
-            <result>/vistas/prod_proveedor_listado.jsp</result>
+            <result type="tiles">listadoProdProveedor</result>
+        </action>
+        <action name="prodProveedorNuevo" class="controladores.ProveedorControlador" method="nuevoProdProveedor">
+            <result type="tiles">nuevoProdProveedor</result>
         </action>
         <action name="prodProveedorGuardar" class="controladores.ProveedorControlador" method="guardarProdProveedor">
-            <result>/vistas/prod_proveedor_listado.jsp</result>
+            <result type="tiles">listadoProdProveedor</result>
         </action>
         <action name="prodProveedorVer" class="controladores.ProveedorControlador" method="verProdProveedor">
-            <result>/vistas/prod_proveedor_ver.jsp</result>
+            <result type="tiles">verProdProveedor</result>
         </action>
         <action name="prodProveedorEditar" class="controladores.ProveedorControlador" method="verProdProveedor">
-            <result>/vistas/prod_proveedor_editar.jsp</result>
+            <result type="tiles">editarProdProveedor</result>
         </action>
         <action name="prodProveedorActualizar" class="controladores.ProveedorControlador" method="actualizarProdProveedor">
-            <result>/vistas/prod_proveedor_listado.jsp</result>
+            <result type="tiles">listadoProdProveedor</result>
         </action>
-        
-        <!-- Barra de menú -->
-        <action name="menu" class="controladores.InstitucionControlador" method="execute">
-            <result>/vistas/menu.jsp</result>
-        </action>
-        
     </package>
+    
 </struts>
