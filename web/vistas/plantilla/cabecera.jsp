@@ -47,9 +47,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white">Proveedores<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><s:a action="proveedorListado">Listado de proveedores</s:a>
-                        <li><s:a action="menu">Nuevo proveedor</s:a>
+                        <li><s:a action="proveedorNuevo">Nuevo proveedor</s:a>
                         <li><s:a action="prodProveedorListado">Lisatdo de productos</s:a>
-                        <li><s:a action="menu">Nuevo producto</s:a>
+                        <li><s:a action="prodProveedorNuevo">Nuevo producto</s:a>
                         </ul>
                     </li>
                 </ul>

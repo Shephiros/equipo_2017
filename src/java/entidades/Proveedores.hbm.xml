@@ -29,12 +29,6 @@
         <property name="proveedorNit" type="string">
             <column name="PROVEEDOR_NIT" length="20" />
         </property>
-        <property name="proveedorInstalacion" type="big_decimal">
-            <column name="PROVEEDOR_INSTALACION" precision="22" scale="0" not-null="true" />
-        </property>
-        <property name="proveedorLimite" type="double">
-            <column name="PROVEEDOR_LIMITE" precision="8" scale="0" not-null="true" />
-        </property>
         <property name="proveedorDescripcion" type="string">
             <column name="PROVEEDOR_DESCRIPCION" length="200" />
         </property>

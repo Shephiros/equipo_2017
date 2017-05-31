@@ -43,4 +43,13 @@ public class ProveedoresDao {
         return in;
     }
     
+    //Método que actualiza los proveedores.
+    public void actualizarProveedor(Proveedores proveedorId){
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        session.update(proveedorId);
+        tx.commit();
+        session.close();
+    }
 }

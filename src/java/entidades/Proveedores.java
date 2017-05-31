@@ -20,8 +20,6 @@ public class Proveedores  implements java.io.Serializable {
      private String proveedorTelefono2;
      private String proveedorCorreo;
      private String proveedorNit;
-     private BigDecimal proveedorInstalacion;
-     private double proveedorLimite;
      private String proveedorDescripcion;
      private String proveedorDireccion;
      private Set ofertases = new HashSet(0);
@@ -40,8 +38,6 @@ public class Proveedores  implements java.io.Serializable {
         this.municipios = municipios;
         this.proveedorEmpresa = proveedorEmpresa;
         this.proveedorContacto = proveedorContacto;
-        this.proveedorInstalacion = proveedorInstalacion;
-        this.proveedorLimite = proveedorLimite;
     }
     public Proveedores(BigDecimal proveedorId, Municipios municipios, String proveedorEmpresa, String proveedorContacto, String proveedorTelefono1, String proveedorTelefono2, String proveedorCorreo, String proveedorNit, BigDecimal proveedorInstalacion, double proveedorLimite, String proveedorDescripcion, String proveedorDireccion, Set ofertases, Set productosProveedors, Set comprases, Set mantenimientoses, Set instalacioneses, Set usuarioses) {
        this.proveedorId = proveedorId;
@@ -52,8 +48,6 @@ public class Proveedores  implements java.io.Serializable {
        this.proveedorTelefono2 = proveedorTelefono2;
        this.proveedorCorreo = proveedorCorreo;
        this.proveedorNit = proveedorNit;
-       this.proveedorInstalacion = proveedorInstalacion;
-       this.proveedorLimite = proveedorLimite;
        this.proveedorDescripcion = proveedorDescripcion;
        this.proveedorDireccion = proveedorDireccion;
        this.ofertases = ofertases;
@@ -119,20 +113,6 @@ public class Proveedores  implements java.io.Serializable {
     
     public void setProveedorNit(String proveedorNit) {
         this.proveedorNit = proveedorNit;
-    }
-    public BigDecimal getProveedorInstalacion() {
-        return this.proveedorInstalacion;
-    }
-    
-    public void setProveedorInstalacion(BigDecimal proveedorInstalacion) {
-        this.proveedorInstalacion = proveedorInstalacion;
-    }
-    public double getProveedorLimite() {
-        return this.proveedorLimite;
-    }
-    
-    public void setProveedorLimite(double proveedorLimite) {
-        this.proveedorLimite = proveedorLimite;
     }
     public String getProveedorDescripcion() {
         return this.proveedorDescripcion;

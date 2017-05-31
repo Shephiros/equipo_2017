@@ -124,6 +124,10 @@
         <put-attribute name="titulo" value="Información de Proveedor"/>
         <put-attribute name="cuerpo" value="/vistas/proveedores/proveedor_ver.jsp"/>
     </definition>
+    <definition name="editarProveedor" extends="plantilla">
+        <put-attribute name="titulo" value="Editar Proveedor"/>
+        <put-attribute name="cuerpo" value="/vistas/proveedores/proveedor_editar.jsp"/>
+    </definition>
     
     <definition name="listadoProdProveedor" extends="plantilla">
         <put-attribute name="titulo" value="Catálogo de Productos"/>

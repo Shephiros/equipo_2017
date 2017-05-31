@@ -25,6 +25,7 @@ public class ProveedorControlador extends ActionSupport{
     private ProductosProveedor nuevoProdProveedor = new ProductosProveedor();
     private BigDecimal proveedorId;
     private BigDecimal prodProveedorId;
+    private BigDecimal municipioId;
     
 //****************************************************************************//
 //                            Métodos para guardar                            //
@@ -56,6 +57,18 @@ public class ProveedorControlador extends ActionSupport{
         this.prodProveedorSeleccionado.setProveedores(proveedorU);
         /*Guardando y cargando el nuevo rol*/
         eProdProveedor.actualizarProdProveedor(prodProveedorSeleccionado);
+        execute();
+        return SUCCESS;
+    }
+    
+    public String actualizarProveedor() throws Exception{
+        this.todosMunicipios = new MunicipiosDao().todosMunicipios();
+        ProveedoresDao eProveedor = new ProveedoresDao();
+        Municipios municipioU = new Municipios(); 
+        municipioU.setMunicipioId(municipioId);
+        this.proveedorSeleccionado.setMunicipios(municipioU);
+        /*Guardando y cargando el nuevo rol*/
+        eProveedor.actualizarProveedor(proveedorSeleccionado);
         execute();
         return SUCCESS;
     }
@@ -159,6 +172,13 @@ public class ProveedorControlador extends ActionSupport{
     }
     public void setProdProveedorSeleccionado(ProductosProveedor prodProveedorSeleccionado) {
         this.prodProveedorSeleccionado = prodProveedorSeleccionado;
+    }
+
+    public BigDecimal getMunicipioId() {
+        return municipioId;
+    }
+    public void setMunicipioId(BigDecimal municipioId) {
+        this.municipioId = municipioId;
     }
 
 }

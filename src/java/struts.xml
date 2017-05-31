@@ -129,6 +129,12 @@
         <action name="proveedorVer" class="controladores.ProveedorControlador" method="verProveedor">
             <result type="tiles">verProveedor</result>
         </action>
+        <action name="proveedorEditar" class="controladores.ProveedorControlador" method="verProveedor">
+            <result type="tiles">editarProveedor</result>
+        </action>
+        <action name="proveedorActualizar" class="controladores.ProveedorControlador" method="actualizarProveedor">
+            <result type="tiles">listadoProveedor</result>
+        </action>
         
         
         <action name="prodProveedorListado" class="controladores.ProveedorControlador" method="execute">
