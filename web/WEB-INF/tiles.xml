@@ -117,7 +117,7 @@
         <put-attribute name="cuerpo" value="/vistas/proveedores/proveedor_listado.jsp"/>
     </definition>
     <definition name="nuevoProveedor" extends="plantilla">
-        <put-attribute name="titulo" value="Nuevo Producto"/>
+        <put-attribute name="titulo" value="Nuevo Proveedor"/>
         <put-attribute name="cuerpo" value="/vistas/proveedores/proveedor_nuevo.jsp"/>
     </definition>
     <definition name="verProveedor" extends="plantilla">

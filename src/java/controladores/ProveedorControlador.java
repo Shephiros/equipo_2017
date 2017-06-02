@@ -98,6 +98,11 @@ public class ProveedorControlador extends ActionSupport{
         return SUCCESS;
     }
     
+    public String nuevoProveedor(){
+        this.todosMunicipios = new MunicipiosDao().todosMunicipios();
+        return SUCCESS;
+    }
+    
     public String verProveedor(){
         this.todosMunicipios = new MunicipiosDao().todosMunicipios();
         ProveedoresDao vProveedor = new ProveedoresDao();
