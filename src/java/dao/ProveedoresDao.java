@@ -52,4 +52,15 @@ public class ProveedoresDao {
         tx.commit();
         session.close();
     }
+    
+    //Método que guarda los proveedores.
+    public void guardarProveedor(Proveedores proveedor){
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        session.save(proveedor);
+        tx.commit();
+        session.close();
+    }
+    
 }

@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <!-- Botón Inicio -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="#" style="color: white"><b>INICIO</b></a>
+            <a class="navbar-brand" href="inicio" style="color: white"><b>INICIO</b></a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -48,7 +48,7 @@
                         <ul class="dropdown-menu">
                             <li><s:a action="proveedorListado">Listado de proveedores</s:a>
                         <li><s:a action="proveedorNuevo">Nuevo proveedor</s:a>
-                        <li><s:a action="prodProveedorListado">Lisatdo de productos</s:a>
+                        <li><s:a action="prodProveedorListado">Listado de productos</s:a>
                         <li><s:a action="prodProveedorNuevo">Nuevo producto</s:a>
                         </ul>
                     </li>
@@ -64,7 +64,7 @@
                         <li><s:a action="menu">Contratos</s:a>
                         <li><s:a action="menu">Licitaciones</s:a>
                         <li><s:a action="menu">Garantías</s:a>
-                        <li><s:a action="menu">Solicitudes</s:a>
+                        <li><s:a action="solicitudListado">Solicitudes</s:a>
                         </ul>
                     </li>
                 </ul>

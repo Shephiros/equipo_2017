@@ -135,8 +135,10 @@
         <action name="proveedorActualizar" class="controladores.ProveedorControlador" method="actualizarProveedor">
             <result type="tiles">listadoProveedor</result>
         </action>
-        
-        
+        <action name="proveedorGuardar" class="controladores.ProveedorControlador" method="guardarProveedor">
+            <result type="tiles">listadoProveedor</result>
+        </action>
+                
         <action name="prodProveedorListado" class="controladores.ProveedorControlador" method="execute">
             <result type="tiles">listadoProdProveedor</result>
         </action>
@@ -155,6 +157,12 @@
         <action name="prodProveedorActualizar" class="controladores.ProveedorControlador" method="actualizarProdProveedor">
             <result type="tiles">listadoProdProveedor</result>
         </action>
+        
+        <!-- Módulo Compras -->
+        <action name="solicitudListado" class="controladores.ComprasControlador" method="execute">
+            <result type="tiles">listadoSolicitud</result>
+        </action>
+        
     </package>
     
 </struts>

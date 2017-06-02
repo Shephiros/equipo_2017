@@ -84,7 +84,7 @@ public class InstitucionControlador extends ActionSupport{
         execute();
         return SUCCESS;
     }
-    
+
 //****************************************************************************//
 //                           Métodos para actualizar                          //
 //****************************************************************************//

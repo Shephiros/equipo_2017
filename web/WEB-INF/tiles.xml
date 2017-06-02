@@ -145,4 +145,12 @@
         <put-attribute name="titulo" value="Editar Producto"/>
         <put-attribute name="cuerpo" value="/vistas/proveedores/prod_proveedor_editar.jsp"/>
     </definition>
+    
+    <!--*************************Modulo Institucion**************************-->
+    <definition name="listadoSolicitud" extends="plantilla">
+        <put-attribute name="titulo" value="Solicitudes"/>
+        <put-attribute name="cuerpo" value="/vistas/compras/solicitud_listado.jsp"/>
+    </definition>
+    
+    
 </tiles-definitions>

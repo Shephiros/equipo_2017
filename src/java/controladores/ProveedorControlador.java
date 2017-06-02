@@ -4,9 +4,12 @@ import com.opensymphony.xwork2.ActionSupport;
 import dao.MunicipiosDao;
 import dao.ProductosProveedorDao;
 import dao.ProveedoresDao;
+import dao.UsuariosDao;
 import entidades.Municipios;
 import entidades.ProductosProveedor;
 import entidades.Proveedores;
+import entidades.Roles;
+import entidades.Usuarios;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
@@ -21,6 +24,8 @@ public class ProveedorControlador extends ActionSupport{
     private ArrayList<ProductosProveedor> todosProductosProveedor;
     private Municipios municipioSeleccionado = new Municipios();
     private Proveedores proveedorSeleccionado = new Proveedores();
+    private Proveedores nuevoProveedor = new Proveedores();
+    private Usuarios nuevoUsuario = new Usuarios();
     private ProductosProveedor prodProveedorSeleccionado = new ProductosProveedor();
     private ProductosProveedor nuevoProdProveedor = new ProductosProveedor();
     private BigDecimal proveedorId;
@@ -41,6 +46,31 @@ public class ProveedorControlador extends ActionSupport{
         this.setProveedorId(BigDecimal.ZERO);
         nuevoProdProveedor = new ProductosProveedor();
         this.todosProveedores = new ProveedoresDao().todosProveedores();
+        execute();
+        return SUCCESS;
+    }
+    
+    public String guardarProveedor() throws Exception{
+        this.todosMunicipios = new MunicipiosDao().todosMunicipios();
+        ProveedoresDao gProveedor = new ProveedoresDao();
+        Municipios municipioU = new Municipios();
+        municipioU.setMunicipioId(municipioId);
+        this.nuevoProveedor.setMunicipios(municipioU);
+        gProveedor.guardarProveedor(nuevoProveedor);
+        
+        UsuariosDao gUsuario = new UsuariosDao();
+        Roles rolU = new Roles();
+        rolU.setRolId(BigDecimal.ONE);
+        this.nuevoUsuario.setProveedores(nuevoProveedor);
+        this.nuevoUsuario.setRoles(rolU);
+        this.nuevoUsuario.setUsuarioBloqueado(BigDecimal.ONE);
+        this.nuevoUsuario.setUsuarioEstado(BigDecimal.ONE);
+        gUsuario.guardarUsuario(nuevoUsuario);
+        
+        this.setMunicipioId(BigDecimal.ZERO);
+        nuevoProveedor = new Proveedores();
+        nuevoUsuario = new Usuarios();
+        this.todosMunicipios = new MunicipiosDao().todosMunicipios();
         execute();
         return SUCCESS;
     }
@@ -186,4 +216,19 @@ public class ProveedorControlador extends ActionSupport{
         this.municipioId = municipioId;
     }
 
+    public Proveedores getNuevoProveedor() {
+        return nuevoProveedor;
+    }
+    public void setNuevoProveedor(Proveedores nuevoProveedor) {
+        this.nuevoProveedor = nuevoProveedor;
+    }
+
+    public Usuarios getNuevoUsuario() {
+        return nuevoUsuario;
+    }
+    public void setNuevoUsuario(Usuarios nuevoUsuario) {
+        this.nuevoUsuario = nuevoUsuario;
+    }
+
+    
 }
