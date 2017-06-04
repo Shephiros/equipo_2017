@@ -59,10 +59,10 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white">Compras<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><s:a action="menu">Listado de compras</s:a>
+                            <li><s:a action="compraListado">Listado de compras</s:a>
                         <li><s:a action="menu">Nueva compra</s:a>
                         <li><s:a action="menu">Contratos</s:a>
-                        <li><s:a action="menu">Licitaciones</s:a>
+                        <li><s:a action="licitacionListado">Licitaciones</s:a>
                         <li><s:a action="menu">Garantías</s:a>
                         <li><s:a action="solicitudListado">Solicitudes</s:a>
                         </ul>

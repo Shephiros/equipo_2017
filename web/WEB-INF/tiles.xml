@@ -152,5 +152,14 @@
         <put-attribute name="cuerpo" value="/vistas/compras/solicitud_listado.jsp"/>
     </definition>
     
+    <definition name="listadoLicitacion" extends="plantilla">
+        <put-attribute name="titulo" value="Licitaciones"/>
+        <put-attribute name="cuerpo" value="/vistas/compras/licitacion_listado.jsp"/>
+    </definition>
+    
+    <definition name="listadoCompra" extends="plantilla">
+        <put-attribute name="titulo" value="Listado de Compras"/>
+        <put-attribute name="cuerpo" value="/vistas/compras/compra_listado.jsp"/>
+    </definition>
     
 </tiles-definitions>

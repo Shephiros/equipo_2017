@@ -163,6 +163,14 @@
             <result type="tiles">listadoSolicitud</result>
         </action>
         
+        <action name="licitacionListado" class="controladores.ComprasControlador" method="execute">
+            <result type="tiles">listadoLicitacion</result>
+        </action>
+        
+        <action name="compraListado" class="controladores.ComprasControlador" method="execute">
+            <result type="tiles">listadoCompra</result>
+        </action>
+        
     </package>
     
 </struts>
