@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 05-25-2017 11:34:01 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated 06-04-2017 06:18:48 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="entidades.Proveedores" table="PROVEEDORES" schema="EQUIPO" optimistic-lock="version">
         <id name="proveedorId" type="big_decimal">
@@ -64,6 +64,12 @@
                 <column name="PROVEEDOR_ID" precision="22" scale="0" not-null="true" />
             </key>
             <one-to-many class="entidades.Instalaciones" />
+        </set>
+        <set name="condicioneses" table="CONDICIONES" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PROVEEDOR_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entidades.Condiciones" />
         </set>
         <set name="usuarioses" table="USUARIOS" inverse="true" lazy="true" fetch="select">
             <key>

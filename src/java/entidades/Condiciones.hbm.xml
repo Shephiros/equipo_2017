@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-04-2017 06:18:48 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.Condiciones" table="CONDICIONES" schema="EQUIPO" optimistic-lock="version">
+        <composite-id name="id" class="entidades.CondicionesId">
+            <key-property name="proveedorId" type="big_decimal">
+                <column name="PROVEEDOR_ID" precision="22" scale="0" />
+            </key-property>
+            <key-property name="institucionId" type="big_decimal">
+                <column name="INSTITUCION_ID" precision="22" scale="0" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="instituciones" class="entidades.Instituciones" update="false" insert="false" fetch="select">
+            <column name="INSTITUCION_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="proveedores" class="entidades.Proveedores" update="false" insert="false" fetch="select">
+            <column name="PROVEEDOR_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="condicionLimite" type="java.lang.Double">
+            <column name="CONDICION_LIMITE" precision="8" scale="0" />
+        </property>
+        <property name="condicionInstalacion" type="big_decimal">
+            <column name="CONDICION_INSTALACION" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

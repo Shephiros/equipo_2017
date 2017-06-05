@@ -1,5 +1,5 @@
 package entidades;
-// Generated 05-25-2017 11:33:58 AM by Hibernate Tools 4.3.1
+// Generated 06-04-2017 06:18:44 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -16,8 +16,8 @@ public class DepartamentosInstitucion  implements java.io.Serializable {
      private Instituciones instituciones;
      private String deptoInstitucionNombre;
      private String deptoInstitucionJefe;
-     private String deptoInstitucionDescripcion;
      private String deptoInstitucionTelefono;
+     private String deptoInstitucionDescripcion;
      private Set solicitudeses = new HashSet(0);
 
     public DepartamentosInstitucion() {
@@ -30,13 +30,13 @@ public class DepartamentosInstitucion  implements java.io.Serializable {
         this.deptoInstitucionNombre = deptoInstitucionNombre;
         this.deptoInstitucionJefe = deptoInstitucionJefe;
     }
-    public DepartamentosInstitucion(BigDecimal deptoInstitucionId, Instituciones instituciones, String deptoInstitucionNombre, String deptoInstitucionJefe, String deptoInstitucionDescripcion, String deptoInstitucionTelefono, Set solicitudeses) {
+    public DepartamentosInstitucion(BigDecimal deptoInstitucionId, Instituciones instituciones, String deptoInstitucionNombre, String deptoInstitucionJefe, String deptoInstitucionTelefono, String deptoInstitucionDescripcion, Set solicitudeses) {
        this.deptoInstitucionId = deptoInstitucionId;
        this.instituciones = instituciones;
        this.deptoInstitucionNombre = deptoInstitucionNombre;
        this.deptoInstitucionJefe = deptoInstitucionJefe;
-       this.deptoInstitucionDescripcion = deptoInstitucionDescripcion;
        this.deptoInstitucionTelefono = deptoInstitucionTelefono;
+       this.deptoInstitucionDescripcion = deptoInstitucionDescripcion;
        this.solicitudeses = solicitudeses;
     }
    
@@ -68,19 +68,19 @@ public class DepartamentosInstitucion  implements java.io.Serializable {
     public void setDeptoInstitucionJefe(String deptoInstitucionJefe) {
         this.deptoInstitucionJefe = deptoInstitucionJefe;
     }
-    public String getDeptoInstitucionDescripcion() {
-        return this.deptoInstitucionDescripcion;
-    }
-    
-    public void setDeptoInstitucionDescripcion(String deptoInstitucionDescripcion) {
-        this.deptoInstitucionDescripcion = deptoInstitucionDescripcion;
-    }
     public String getDeptoInstitucionTelefono() {
         return this.deptoInstitucionTelefono;
     }
     
     public void setDeptoInstitucionTelefono(String deptoInstitucionTelefono) {
         this.deptoInstitucionTelefono = deptoInstitucionTelefono;
+    }
+    public String getDeptoInstitucionDescripcion() {
+        return this.deptoInstitucionDescripcion;
+    }
+    
+    public void setDeptoInstitucionDescripcion(String deptoInstitucionDescripcion) {
+        this.deptoInstitucionDescripcion = deptoInstitucionDescripcion;
     }
     public Set getSolicitudeses() {
         return this.solicitudeses;

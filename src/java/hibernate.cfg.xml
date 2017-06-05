@@ -20,8 +20,9 @@
     <mapping resource="entidades/Solicitudes.hbm.xml"/>
     <mapping resource="entidades/Pantallas.hbm.xml"/>
     <mapping resource="entidades/Contratos.hbm.xml"/>
-    <mapping resource="entidades/ProductosProveedor.hbm.xml"/>
+    <mapping resource="entidades/Condiciones.hbm.xml"/>
     <mapping resource="entidades/Instituciones.hbm.xml"/>
+    <mapping resource="entidades/ProductosProveedor.hbm.xml"/>
     <mapping resource="entidades/Mantenimientos.hbm.xml"/>
     <mapping resource="entidades/Departamentos.hbm.xml"/>
     <mapping resource="entidades/Proveedores.hbm.xml"/>

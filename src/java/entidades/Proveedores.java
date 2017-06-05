@@ -1,5 +1,5 @@
 package entidades;
-// Generated 05-25-2017 11:33:58 AM by Hibernate Tools 4.3.1
+// Generated 06-04-2017 06:18:44 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -27,19 +27,20 @@ public class Proveedores  implements java.io.Serializable {
      private Set comprases = new HashSet(0);
      private Set mantenimientoses = new HashSet(0);
      private Set instalacioneses = new HashSet(0);
+     private Set condicioneses = new HashSet(0);
      private Set usuarioses = new HashSet(0);
 
     public Proveedores() {
     }
 
 	
-    public Proveedores(BigDecimal proveedorId, Municipios municipios, String proveedorEmpresa, String proveedorContacto, BigDecimal proveedorInstalacion, double proveedorLimite) {
+    public Proveedores(BigDecimal proveedorId, Municipios municipios, String proveedorEmpresa, String proveedorContacto) {
         this.proveedorId = proveedorId;
         this.municipios = municipios;
         this.proveedorEmpresa = proveedorEmpresa;
         this.proveedorContacto = proveedorContacto;
     }
-    public Proveedores(BigDecimal proveedorId, Municipios municipios, String proveedorEmpresa, String proveedorContacto, String proveedorTelefono1, String proveedorTelefono2, String proveedorCorreo, String proveedorNit, BigDecimal proveedorInstalacion, double proveedorLimite, String proveedorDescripcion, String proveedorDireccion, Set ofertases, Set productosProveedors, Set comprases, Set mantenimientoses, Set instalacioneses, Set usuarioses) {
+    public Proveedores(BigDecimal proveedorId, Municipios municipios, String proveedorEmpresa, String proveedorContacto, String proveedorTelefono1, String proveedorTelefono2, String proveedorCorreo, String proveedorNit, String proveedorDescripcion, String proveedorDireccion, Set ofertases, Set productosProveedors, Set comprases, Set mantenimientoses, Set instalacioneses, Set condicioneses, Set usuarioses) {
        this.proveedorId = proveedorId;
        this.municipios = municipios;
        this.proveedorEmpresa = proveedorEmpresa;
@@ -55,6 +56,7 @@ public class Proveedores  implements java.io.Serializable {
        this.comprases = comprases;
        this.mantenimientoses = mantenimientoses;
        this.instalacioneses = instalacioneses;
+       this.condicioneses = condicioneses;
        this.usuarioses = usuarioses;
     }
    
@@ -162,6 +164,13 @@ public class Proveedores  implements java.io.Serializable {
     
     public void setInstalacioneses(Set instalacioneses) {
         this.instalacioneses = instalacioneses;
+    }
+    public Set getCondicioneses() {
+        return this.condicioneses;
+    }
+    
+    public void setCondicioneses(Set condicioneses) {
+        this.condicioneses = condicioneses;
     }
     public Set getUsuarioses() {
         return this.usuarioses;

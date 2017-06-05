@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 05-25-2017 11:34:01 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated 06-04-2017 06:18:48 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="entidades.ProductosInstitucion" table="PRODUCTOS_INSTITUCION" schema="EQUIPO" optimistic-lock="version">
         <id name="prodInstitucionId" type="big_decimal">
@@ -9,7 +9,7 @@
             <generator class="increment" />
         </id>
         <many-to-one name="instituciones" class="entidades.Instituciones" fetch="select">
-            <column name="INSTITUCION_ID" precision="38" scale="0" not-null="true" />
+            <column name="INSTITUCION_ID" precision="22" scale="0" not-null="true" />
         </many-to-one>
         <property name="prodInstitucionNombre" type="string">
             <column name="PROD_INSTITUCION_NOMBRE" length="100" not-null="true" />

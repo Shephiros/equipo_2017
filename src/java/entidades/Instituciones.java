@@ -1,5 +1,5 @@
 package entidades;
-// Generated 05-25-2017 11:33:58 AM by Hibernate Tools 4.3.1
+// Generated 06-04-2017 06:18:44 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -23,6 +23,7 @@ public class Instituciones  implements java.io.Serializable {
      private Set productosInstitucions = new HashSet(0);
      private Set comprases = new HashSet(0);
      private Set usuarioses = new HashSet(0);
+     private Set condicioneses = new HashSet(0);
 
     public Instituciones() {
     }
@@ -34,7 +35,7 @@ public class Instituciones  implements java.io.Serializable {
         this.institucionNombre = institucionNombre;
         this.institucionEncargado = institucionEncargado;
     }
-    public Instituciones(BigDecimal institucionId, Municipios municipios, String institucionNombre, String institucionEncargado, String institucionTelefono, String institucionDireccion, String institucionDescripcion, Set departamentosInstitucions, Set productosInstitucions, Set comprases, Set usuarioses) {
+    public Instituciones(BigDecimal institucionId, Municipios municipios, String institucionNombre, String institucionEncargado, String institucionTelefono, String institucionDireccion, String institucionDescripcion, Set departamentosInstitucions, Set productosInstitucions, Set comprases, Set usuarioses, Set condicioneses) {
        this.institucionId = institucionId;
        this.municipios = municipios;
        this.institucionNombre = institucionNombre;
@@ -46,6 +47,7 @@ public class Instituciones  implements java.io.Serializable {
        this.productosInstitucions = productosInstitucions;
        this.comprases = comprases;
        this.usuarioses = usuarioses;
+       this.condicioneses = condicioneses;
     }
    
     public BigDecimal getInstitucionId() {
@@ -124,6 +126,13 @@ public class Instituciones  implements java.io.Serializable {
     
     public void setUsuarioses(Set usuarioses) {
         this.usuarioses = usuarioses;
+    }
+    public Set getCondicioneses() {
+        return this.condicioneses;
+    }
+    
+    public void setCondicioneses(Set condicioneses) {
+        this.condicioneses = condicioneses;
     }
 
 
