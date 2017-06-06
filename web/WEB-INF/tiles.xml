@@ -4,6 +4,17 @@
  "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
  
 <tiles-definitions>
+    <!--******************************INDEX**********************************-->
+    <definition name="index" template="/vistas/index/plantilla_index.jsp">
+        <put-attribute name="titulo" value="Bienvenido"/>
+        <put-attribute name="cabecera" value="/vistas/index/logo.jsp"/>
+        <put-attribute name="cuerpo" value="/vistas/index/login.jsp"/>
+        <put-attribute name="pie" value="/vistas/plantilla/pie.jsp"/>
+    </definition>
+    <definition name="indexError" extends="index">
+        <put-attribute name="titulo" value="Error Bienvenido"/>
+    </definition>
+    
     <definition name="plantilla" template="/vistas/plantilla/plantilla.jsp">
         <put-attribute name="titulo" value="Bienvenido"/>
         <put-attribute name="cabecera" value="/vistas/plantilla/cabecera.jsp"/>

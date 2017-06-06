@@ -11,6 +11,47 @@
     </package>
     
     <package name="controladores" namespace="/" extends="tiles-default">
+        <!--********************FILTRO DE ACCESO**************************** -->
+        <!--
+        Tomar en cuenta:
+        -interceptor: crea un nuevo interceptor.
+        -interceptor-stack: crea una nueva pila.
+        -interceptor-ref: se agregan todos los interceptores que se utilizaran.
+        -param: crea un parametro para enviar a la clase,
+        -default-interceptor-ref: Aplica la nueva pila a las acciones.
+        
+         Nota: Si no se llama la referencia defaultStack no se aplicaran las pilas
+         basicas de Struts2,Solo las acciones que esten en el param actionsPublicos
+         no necesitaran una credencial para ser utilizados. Si no se pasa logra pasar
+         el interceptor manda un resultado por defecto login, por esose crea un 
+         global-results en este caso login, que es por defecto de Struts2, para 
+         saber qu hacer. 
+        -->
+        <interceptors>
+            <interceptor name="sesionAcceso" class="controladores.AccesoInterceptor"/>
+            <interceptor-stack name="pilaEquipo">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="sesionAcceso">
+                    <param name="actionsPublicos">index,Bienvenido</param>
+                </interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="pilaEquipo"></default-interceptor-ref>
+        <global-results><result name="login" type="tiles">index</result></global-results>
+        <!--***************************INDEX******************************** -->
+        <action name="index">
+            <result type="tiles">index</result>
+        </action>
+        <action name="Bienvenido" class="controladores.InicioControlador" method="acceso">
+            <result name="success" type="tiles">plantilla</result>
+            <result name="error" type="tiles">index</result>
+        </action>
+        
+        <action name="salir" class="controladores.InicioControlador" method="salir">
+            <result name="salir" type="tiles">index</result>
+        </action>
+        
+        
         <!-- Barra de menú -->
         <action name="inicio" class="controladores.InicioControlador" method="execute">
             <result type="tiles">plantilla</result>

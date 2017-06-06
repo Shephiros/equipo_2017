@@ -89,9 +89,13 @@
                         <li><a href="#">Mi perfil</a></li>
                         <li><a href="#">Cambiar contraseña</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">Cerrar sesión</a></li>
+                        <li><s:a action="salir">Cerrar sesión</s:a></li>
                     </ul>
                 </li>
+            </ul>
+            <!-- Nombre del Usuario -->
+            <ul class="nav navbar-nav navbar-right">
+                <a href="#" class="navbar-brand" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false" style="color: white"><s:property value="#session.nombre"/></a>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

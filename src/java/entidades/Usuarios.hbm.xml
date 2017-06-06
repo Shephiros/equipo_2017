@@ -6,7 +6,7 @@
     <class name="entidades.Usuarios" table="USUARIOS" schema="EQUIPO" optimistic-lock="version">
         <id name="usuarioUsuario" type="string">
             <column name="USUARIO_USUARIO" length="30" />
-            <generator class="increment" />
+            <generator class="assigned" />
         </id>
         <many-to-one name="instituciones" class="entidades.Instituciones" fetch="select">
             <column name="INSTITUCION_ID" precision="22" scale="0" />
@@ -27,7 +27,7 @@
             <column name="USUARIO_TELEFONO" length="10" />
         </property>
         <property name="usuarioContrasenia" type="string">
-            <column name="USUARIO_CONTRASENIA" length="30" not-null="true" />
+            <column name="USUARIO_CONTRASENIA" length="64" not-null="true" />
         </property>
         <property name="usuarioEstado" type="big_decimal">
             <column name="USUARIO_ESTADO" precision="22" scale="0" not-null="true" />

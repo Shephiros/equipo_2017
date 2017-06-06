@@ -90,7 +90,7 @@
                 <s:label value="Contraseña:"></s:label>
                 </div>
                 <div class="col-lg-5">
-                <s:textfield name="nuevoUsuario.usuarioContrasenia" cssClass="form-control" cssStyle="width: 20%"></s:textfield>
+                <s:textfield name="contra" cssClass="form-control" cssStyle="width: 20%"></s:textfield>
                 </div>
                 <div class="col-lg-3">
                 </div>

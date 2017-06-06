@@ -12,6 +12,7 @@ import entidades.Roles;
 import entidades.Usuarios;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import seguridad.Encryptado;
 
 /**
  *
@@ -30,6 +31,9 @@ public class AdministracionControlador extends ActionSupport{
     private BigDecimal pantallaId;
     private String usuarioUsuario;
     private String estadoUsuario;
+    private String contra;
+    private Encryptado ss= new Encryptado();
+    
     //para sacar rol
     private Roles rolSeleccionado=new Roles();
         
@@ -63,6 +67,7 @@ public class AdministracionControlador extends ActionSupport{
         this.nuevoUsuario.setRoles(rolU);
         this.nuevoUsuario.setUsuarioEstado(BigDecimal.ONE);
         this.nuevoUsuario.setUsuarioBloqueado(BigDecimal.ONE);
+        this.nuevoUsuario.setUsuarioContrasenia(ss.convertir(contra));
         gUsuario.guardarUsuario(nuevoUsuario);
         this.setRolId(BigDecimal.ZERO);
         nuevoUsuario = new Usuarios();
@@ -206,8 +211,11 @@ public class AdministracionControlador extends ActionSupport{
         this.todasBitacoras = todasBitacoras;
     }
 
-   
-
-  
+    public String getContra() {
+        return contra;
+    }
+    public void setContra(String contra) {
+        this.contra = contra;
+    }
     
 }
