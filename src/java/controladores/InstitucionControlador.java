@@ -14,6 +14,8 @@ import entidades.Municipios;
 import entidades.ProductosInstitucion;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
+import org.apache.struts2.ServletActionContext;
 
 public class InstitucionControlador extends ActionSupport{
     
@@ -42,20 +44,17 @@ public class InstitucionControlador extends ActionSupport{
 //                            Métodos para guardar                            //
 //****************************************************************************//
     
+    //Método que guarda un nuevo departamento de institución.
     public String guardarDepartamento() throws Exception{
-        this.todasInstituciones = new InstitucionesDao().todasInstituciones();
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
         DepartamentosInstitucionDao gDepartamento = new DepartamentosInstitucionDao();
-        Instituciones institucionU = new Instituciones();
-        institucionU.setInstitucionId(institucionId);
-        this.nuevoDeptoInstitucion.setInstituciones(institucionU);
+        this.nuevoDeptoInstitucion.setInstituciones((Instituciones)session.getAttribute("institucion"));
         gDepartamento.guardarDeptoInstitucion(nuevoDeptoInstitucion);
-        this.setInstitucionId(BigDecimal.ZERO);
-        nuevoDeptoInstitucion = new DepartamentosInstitucion();
-        this.todasInstituciones = new InstitucionesDao().todasInstituciones();
         execute();
         return SUCCESS;
     }
     
+    //Método que guarda una nueva institución.
     public String guardarInstitucion() throws Exception{
         this.todosMunicipios = new MunicipiosDao().todosMunicipios();
         InstitucionesDao gInstitucion = new InstitucionesDao();
@@ -63,24 +62,16 @@ public class InstitucionControlador extends ActionSupport{
         municipioU.setMunicipioId(municipioId);
         this.nuevaInstitucion.setMunicipios(municipioU);
         gInstitucion.guardarInstitucion(nuevaInstitucion);
-        this.setMunicipioId(BigDecimal.ZERO);
-        nuevaInstitucion = new Instituciones();
-        this.todosMunicipios = new MunicipiosDao().todosMunicipios();
-        this.todosDepartamentos = new DepartamentosDao().todosDepartamentos();
         execute();
         return SUCCESS;
     }
     
+    //Método que guarda un nuevo producto de institución.
     public String guardarProdInstitucion() throws Exception{
-        this.todasInstituciones = new InstitucionesDao().todasInstituciones();
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
         ProductosInstitucionDao gProdInstitucion = new ProductosInstitucionDao();
-        Instituciones institucionU = new Instituciones();
-        institucionU.setInstitucionId(institucionId);
-        this.nuevoProdInstitucion.setInstituciones(institucionU);
+        this.nuevoProdInstitucion.setInstituciones((Instituciones)session.getAttribute("institucion"));
         gProdInstitucion.guardarProductosInstitucion(nuevoProdInstitucion);
-        this.setInstitucionId(BigDecimal.ZERO);
-        nuevoProdInstitucion = new ProductosInstitucion();
-        this.todasInstituciones = new InstitucionesDao().todasInstituciones();
         execute();
         return SUCCESS;
     }
@@ -89,41 +80,33 @@ public class InstitucionControlador extends ActionSupport{
 //                           Métodos para actualizar                          //
 //****************************************************************************//
     
+    //Método que actualiza un departamento de institución.
     public String actualizarDepartamento() throws Exception{
-        this.todasInstituciones = new InstitucionesDao().todasInstituciones();
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
         DepartamentosInstitucionDao eDepartamento = new DepartamentosInstitucionDao();
-        Instituciones institucionU = new Instituciones(); 
-        institucionU.setInstitucionId(institucionId);
-        this.deptoInstitucionSeleccionado.setInstituciones(institucionU);
-        /*Guardando y cargando el nuevo rol*/
+        this.deptoInstitucionSeleccionado.setInstituciones((Instituciones)session.getAttribute("institucion"));
         eDepartamento.actualizarDeptoInstitucion(deptoInstitucionSeleccionado);
         execute();
         return SUCCESS;
     }
     
+    //Método que actualiza una institución.
     public String actualizarInstitucion() throws Exception{
         this.todosMunicipios = new MunicipiosDao().todosMunicipios();
         InstitucionesDao eInstitucion = new InstitucionesDao();
         Municipios municipioU = new Municipios(); 
         municipioU.setMunicipioId(municipioId);
         this.institucionSeleccionada.setMunicipios(municipioU);
-        System.out.println("Objeto: "+getInstitucionSeleccionada());
-        System.out.println("Nombre: "+getInstitucionSeleccionada().getInstitucionNombre());
-        System.out.println("IdBig: "+getInstitucionId());
-        System.out.println("Id: "+getInstitucionSeleccionada().getInstitucionId());
-        /*Guardando y cargando el nuevo rol*/
         eInstitucion.actualizarInstitucion(institucionSeleccionada);
         execute();
         return SUCCESS;
     }
     
+    //Método que actualiza un producto de institución.
     public String actualizarProdInstitucion() throws Exception{
-        this.todasInstituciones = new InstitucionesDao().todasInstituciones();
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
         ProductosInstitucionDao eProdInstitucion = new ProductosInstitucionDao();
-        Instituciones institucionU = new Instituciones(); 
-        institucionU.setInstitucionId(institucionId);
-        this.prodInstitucionSeleccionado.setInstituciones(institucionU);
-        /*Guardando y cargando el nuevo rol*/
+        this.prodInstitucionSeleccionado.setInstituciones((Instituciones)session.getAttribute("institucion"));
         eProdInstitucion.actualizarProdInstitucion(prodInstitucionSeleccionado);
         execute();
         return SUCCESS;
@@ -140,6 +123,15 @@ public class InstitucionControlador extends ActionSupport{
         this.todosProductosInstitucion = new ProductosInstitucionDao().todosProductosInstitucion();
         return SUCCESS;
     }
+    /*
+    public String verListadoInstituciones()throws Exception {
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
+        if(session.getAttribute("rol").equals("Administrador del Sistema")){
+            this.todasInstituciones = new InstitucionesDao().todasInstituciones();}
+        if(session.getAttribute("rol").equals("Administrador de Institución")){
+            this.todasInstituciones = null;}
+        return SUCCESS;
+    }*/
 
     public String nuevaInstitucion(){
         this.todosDepartamentos = new DepartamentosDao().todosDepartamentos();
@@ -148,12 +140,12 @@ public class InstitucionControlador extends ActionSupport{
     }
 
     public String nuevoDepartamento(){
-        this.todasInstituciones = new InstitucionesDao().todasInstituciones();
+        //this.todasInstituciones = new InstitucionesDao().todasInstituciones();
         return SUCCESS;
     }
     
     public String nuevoProdInstitucion(){
-        this.todasInstituciones = new InstitucionesDao().todasInstituciones();
+        //this.todasInstituciones = new InstitucionesDao().todasInstituciones();
         return SUCCESS;
     }
     

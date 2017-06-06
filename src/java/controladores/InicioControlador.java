@@ -1,12 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controladores;
 
 import com.opensymphony.xwork2.ActionSupport;
+import dao.InstitucionesDao;
+import dao.RolesDao;
 import dao.UsuariosDao;
+import entidades.Instituciones;
 import entidades.Roles;
 import entidades.Usuarios;
 import java.util.Map;
@@ -24,6 +22,7 @@ public class InicioControlador extends ActionSupport implements SessionAware{
     private SessionMap <String,Object> sessionMap;
     private Usuarios us;
     private Roles rol;
+    private Instituciones institucion;
     private Encryptado ss;
 
     @Override
@@ -34,10 +33,14 @@ public class InicioControlador extends ActionSupport implements SessionAware{
     public String acceso(){
         us= new UsuariosDao().usuarioPorUsuario(usuario);
         ss= new Encryptado();
+        rol = new RolesDao().rolPorId(us.getRoles().getRolId());
+        institucion = new InstitucionesDao().institucionPorId(us.getInstituciones().getInstitucionId());
         if(contrasenya.equals(us.getUsuarioContrasenia()) || ss.comparar(contrasenya, us.getUsuarioContrasenia())){
             
             sessionMap.put("nombre",us.getUsuarioNombre());
             sessionMap.put("usuario",us.getUsuarioUsuario());
+            sessionMap.put("rol",rol);
+            sessionMap.put("institucion",institucion);
             
             return SUCCESS;
         }
