@@ -32,6 +32,26 @@ public class ProductosInstitucionDao {
         return arreglo;
     }
     
+    //Método que obtiene una lista de todos los productos de institución por Id de institución.
+    public ArrayList<ProductosInstitucion> todosProductosPorInstitucion(BigDecimal institucionId)
+    {
+        SessionFactory sesion=HibernateUtil.getSessionFactory();
+        Session session =sesion.openSession();
+        Transaction tx=session.beginTransaction();
+        ArrayList<ProductosInstitucion> arreglo = new ArrayList<ProductosInstitucion>();
+        Query q=session.createQuery("from ProductosInstitucion where instituciones.institucionId = "+institucionId);
+        List<ProductosInstitucion> lista=q.list();
+        Iterator<ProductosInstitucion> iter=lista.iterator();
+        tx.commit();
+        session.close();
+        while(iter.hasNext())
+        {
+            ProductosInstitucion prodi = (ProductosInstitucion) iter.next();
+            arreglo.add(prodi);
+        }
+        return arreglo;
+    }
+    
     //Método que guarda los productos de instituciones.
     public void guardarProductosInstitucion(ProductosInstitucion prodInstitucion){
         SessionFactory factory = HibernateUtil.getSessionFactory();

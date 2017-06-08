@@ -39,8 +39,9 @@ public class InicioControlador extends ActionSupport implements SessionAware{
             
             sessionMap.put("nombre",us.getUsuarioNombre());
             sessionMap.put("usuario",us.getUsuarioUsuario());
-            sessionMap.put("rol",rol);
+            sessionMap.put("rol_Nombre",rol.getRolNombre());
             sessionMap.put("institucion",institucion);
+            sessionMap.put("institucion_Id",institucion.getInstitucionId());
             
             return SUCCESS;
         }

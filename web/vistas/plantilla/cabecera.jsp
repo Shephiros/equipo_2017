@@ -1,6 +1,5 @@
 <%@taglib  prefix="s" uri="/struts-tags" %>
 
-
 <nav class="navbar navbar-inverse" style="background-color: #122b40; font-size: 12pt;">
     <div class="container-fluid">
         <!-- Botón Inicio -->
@@ -26,21 +25,23 @@
                     </li>
                 </ul>
 
+                <s:if test="#session.rol_Nombre.equalsIgnoreCase('Administrador del Sistema')">
                 <!-- Módulo Institución -->
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white">Institución<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><s:a action="institucionListado">Listado de instituciones</s:a>
-                        <li><s:a action="institucionNuevo">Nueva institución</s:a>
-                        <li><s:a action="departamentoListado">Listado de departamentos</s:a>
-                        <li><s:a action="departamentoNuevo">Nuevo departamento</s:a>
-                        <li><s:a action="prodInstitucionListado">Catálogo de equipo</s:a>
-                        <li><s:a action="prodInstitucionNuevo">Nuevo equipo</s:a>
+                            <li><s:a action="institucionNuevo">Nueva institución</s:a>
+                            <li><s:a action="departamentoListado">Listado de departamentos</s:a>
+                            <li><s:a action="departamentoNuevo">Nuevo departamento</s:a>
+                            <li><s:a action="prodInstitucionListado">Catálogo de equipo</s:a>
+                            <li><s:a action="prodInstitucionNuevo">Nuevo equipo</s:a>
                         </ul>
                     </li>
                 </ul>
-
+                </s:if>
+                
                 <!-- Módulo Proveedores -->
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
@@ -84,7 +85,7 @@
             <!-- Módulo Perfil -->
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white">Mi Perfil<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white"><s:property value="#session.usuario"/> (<s:property value="#session.rol_Nombre"/>) <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Mi perfil</a></li>
                         <li><a href="#">Cambiar contraseña</a></li>
@@ -95,7 +96,7 @@
             </ul>
             <!-- Nombre del Usuario -->
             <ul class="nav navbar-nav navbar-right">
-                <a href="#" class="navbar-brand" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false" style="color: white"><s:property value="#session.nombre"/></a>
+                <a href="#" class="navbar-brand" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false" style="color: white"></a>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

@@ -50,7 +50,7 @@ public class InstitucionControlador extends ActionSupport{
         DepartamentosInstitucionDao gDepartamento = new DepartamentosInstitucionDao();
         this.nuevoDeptoInstitucion.setInstituciones((Instituciones)session.getAttribute("institucion"));
         gDepartamento.guardarDeptoInstitucion(nuevoDeptoInstitucion);
-        execute();
+        verListadoDepartamentos();
         return SUCCESS;
     }
     
@@ -62,7 +62,7 @@ public class InstitucionControlador extends ActionSupport{
         municipioU.setMunicipioId(municipioId);
         this.nuevaInstitucion.setMunicipios(municipioU);
         gInstitucion.guardarInstitucion(nuevaInstitucion);
-        execute();
+        verListadoInstituciones();
         return SUCCESS;
     }
     
@@ -72,7 +72,7 @@ public class InstitucionControlador extends ActionSupport{
         ProductosInstitucionDao gProdInstitucion = new ProductosInstitucionDao();
         this.nuevoProdInstitucion.setInstituciones((Instituciones)session.getAttribute("institucion"));
         gProdInstitucion.guardarProductosInstitucion(nuevoProdInstitucion);
-        execute();
+        verListadoProdInstitucion();
         return SUCCESS;
     }
 
@@ -86,7 +86,7 @@ public class InstitucionControlador extends ActionSupport{
         DepartamentosInstitucionDao eDepartamento = new DepartamentosInstitucionDao();
         this.deptoInstitucionSeleccionado.setInstituciones((Instituciones)session.getAttribute("institucion"));
         eDepartamento.actualizarDeptoInstitucion(deptoInstitucionSeleccionado);
-        execute();
+        verListadoDepartamentos();
         return SUCCESS;
     }
     
@@ -98,7 +98,7 @@ public class InstitucionControlador extends ActionSupport{
         municipioU.setMunicipioId(municipioId);
         this.institucionSeleccionada.setMunicipios(municipioU);
         eInstitucion.actualizarInstitucion(institucionSeleccionada);
-        execute();
+        verListadoInstituciones();
         return SUCCESS;
     }
     
@@ -108,7 +108,7 @@ public class InstitucionControlador extends ActionSupport{
         ProductosInstitucionDao eProdInstitucion = new ProductosInstitucionDao();
         this.prodInstitucionSeleccionado.setInstituciones((Instituciones)session.getAttribute("institucion"));
         eProdInstitucion.actualizarProdInstitucion(prodInstitucionSeleccionado);
-        execute();
+        verListadoProdInstitucion();
         return SUCCESS;
     }
         
@@ -118,20 +118,31 @@ public class InstitucionControlador extends ActionSupport{
     
     @Override
     public String execute() throws Exception {
-        this.todasInstituciones = new InstitucionesDao().todasInstituciones();
-        this.todosDeptosInstitucion = new DepartamentosInstitucionDao().todosDeptosInstitucion();
-        this.todosProductosInstitucion = new ProductosInstitucionDao().todosProductosInstitucion();
         return SUCCESS;
     }
-    /*
+    
     public String verListadoInstituciones()throws Exception {
-        HttpSession session = ServletActionContext.getRequest().getSession(false);
-        if(session.getAttribute("rol").equals("Administrador del Sistema")){
-            this.todasInstituciones = new InstitucionesDao().todasInstituciones();}
-        if(session.getAttribute("rol").equals("Administrador de Institución")){
-            this.todasInstituciones = null;}
+        this.todasInstituciones = new InstitucionesDao().todasInstituciones();
         return SUCCESS;
-    }*/
+    }
+
+    public String verListadoDepartamentos()throws Exception {
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
+        if(session.getAttribute("rol_Nombre").equals("Administrador del Sistema")){
+            this.todosDeptosInstitucion = new DepartamentosInstitucionDao().todosDeptosInstitucion();}
+        if(session.getAttribute("rol_Nombre").equals("Administrador de Institución") || session.getAttribute("rol_Nombre").equals("Jefe de Unidad")){
+            this.todosDeptosInstitucion = new DepartamentosInstitucionDao().todosDeptosPorInstitucion((BigDecimal)session.getAttribute("institucion_Id"));}
+        return SUCCESS;
+    }
+
+    public String verListadoProdInstitucion()throws Exception {
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
+        if(session.getAttribute("rol_Nombre").equals("Administrador del Sistema")){
+            this.todosProductosInstitucion = new ProductosInstitucionDao().todosProductosInstitucion();}
+        if(session.getAttribute("rol_Nombre").equals("Administrador de Institución") || session.getAttribute("rol_Nombre").equals("Jefe de Unidad")){
+            this.todosProductosInstitucion = new ProductosInstitucionDao().todosProductosPorInstitucion((BigDecimal)session.getAttribute("institucion_Id"));}
+        return SUCCESS;
+    }
 
     public String nuevaInstitucion(){
         this.todosDepartamentos = new DepartamentosDao().todosDepartamentos();

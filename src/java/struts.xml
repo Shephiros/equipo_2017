@@ -94,7 +94,7 @@
         </action>
         
         <!-- Módulo Institución -->
-        <action name="institucionListado" class="controladores.InstitucionControlador" method="execute">
+        <action name="institucionListado" class="controladores.InstitucionControlador" method="verListadoInstituciones">
             <result type="tiles">listadoInstitucion</result>
         </action>
         <action name="institucionNuevo" class="controladores.InstitucionControlador" method="nuevaInstitucion">
@@ -116,7 +116,7 @@
             <result type="tiles">listadoInstitucion</result>
         </action>
         
-        <action name="departamentoListado" class="controladores.InstitucionControlador" method="execute">
+        <action name="departamentoListado" class="controladores.InstitucionControlador" method="verListadoDepartamentos">
             <result type="tiles">listadoDepartamento</result>
         </action>
         
@@ -137,7 +137,7 @@
             <result type="tiles">listadoDepartamento</result>
         </action>
         
-        <action name="prodInstitucionListado" class="controladores.InstitucionControlador" method="execute">
+        <action name="prodInstitucionListado" class="controladores.InstitucionControlador" method="verListadoProdInstitucion">
             <result type="tiles">listadoProdInstitucion</result>
         </action>
         

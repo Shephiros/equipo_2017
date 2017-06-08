@@ -1,6 +1,7 @@
 package dao;
 
 import entidades.DepartamentosInstitucion;
+import entidades.Instituciones;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -20,6 +21,26 @@ public class DepartamentosInstitucionDao {
         Transaction tx=session.beginTransaction();
         ArrayList<DepartamentosInstitucion> arreglo = new ArrayList<DepartamentosInstitucion>();
         Query q=session.createQuery("from DepartamentosInstitucion");
+        List<DepartamentosInstitucion> lista=q.list();
+        Iterator<DepartamentosInstitucion> iter=lista.iterator();
+        tx.commit();
+        session.close();
+        while(iter.hasNext())
+        {
+            DepartamentosInstitucion deptoInstitucion = (DepartamentosInstitucion) iter.next();
+            arreglo.add(deptoInstitucion);
+        }
+        return arreglo;
+    }
+    
+    //Método que obtiene una lista de todos los departamentos de instituciones por Id de institución.
+    public ArrayList<DepartamentosInstitucion> todosDeptosPorInstitucion(BigDecimal institucionId)
+    {
+        SessionFactory sesion=HibernateUtil.getSessionFactory();
+        Session session =sesion.openSession();
+        Transaction tx=session.beginTransaction();
+        ArrayList<DepartamentosInstitucion> arreglo = new ArrayList<DepartamentosInstitucion>();
+        Query q=session.createQuery("from DepartamentosInstitucion where instituciones.institucionId = "+institucionId);
         List<DepartamentosInstitucion> lista=q.list();
         Iterator<DepartamentosInstitucion> iter=lista.iterator();
         tx.commit();
