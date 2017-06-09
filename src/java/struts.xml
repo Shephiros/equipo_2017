@@ -200,15 +200,24 @@
         </action>
         
         <!-- Módulo Compras -->
-        <action name="solicitudListado" class="controladores.ComprasControlador" method="execute">
+        <action name="solicitudListado" class="controladores.ComprasControlador" method="verListadoSolicitudes">
+            <result type="tiles">listadoSolicitud</result>
+        </action>
+        <action name="solicitudNuevo" class="controladores.ComprasControlador" method="nuevaSolicitud">
+            <result type="tiles">nuevoSolicitud</result>
+        </action>
+        <action name="solicitudVer" class="controladores.ComprasControlador" method="verSolicitud">
+            <result type="tiles">verSolicitud</result>
+        </action>
+        <action name="solicitudGuardar" class="controladores.ComprasControlador" method="guardarSolicitud">
             <result type="tiles">listadoSolicitud</result>
         </action>
         
-        <action name="licitacionListado" class="controladores.ComprasControlador" method="execute">
+        <action name="licitacionListado" class="controladores.ComprasControlador" method="verListadoLicitaciones">
             <result type="tiles">listadoLicitacion</result>
         </action>
         
-        <action name="compraListado" class="controladores.ComprasControlador" method="execute">
+        <action name="compraListado" class="controladores.ComprasControlador" method="verListadoCompras">
             <result type="tiles">listadoCompra</result>
         </action>
         

@@ -1,6 +1,7 @@
 package dao;
 
 import entidades.Compras;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -19,6 +20,26 @@ public class ComprasDao {
         Transaction tx=session.beginTransaction();
         ArrayList<Compras> arreglo = new ArrayList<Compras>();
         Query q=session.createQuery("from Compras");
+        List<Compras> lista=q.list();
+        Iterator<Compras> iter=lista.iterator();
+        tx.commit();
+        session.close();
+        while(iter.hasNext())
+        {
+            Compras comp = (Compras) iter.next();
+            arreglo.add(comp);
+        }
+        return arreglo;
+    }
+    
+    //Método que obtiene una lista de todas las compras por Id de institución.
+    public ArrayList<Compras> todasComprasPorInstitucion(BigDecimal institucionId)
+    {
+        SessionFactory sesion=HibernateUtil.getSessionFactory();
+        Session session =sesion.openSession();
+        Transaction tx=session.beginTransaction();
+        ArrayList<Compras> arreglo = new ArrayList<Compras>();
+        Query q=session.createQuery("from Compras where instituciones.institucionId = "+institucionId);
         List<Compras> lista=q.list();
         Iterator<Compras> iter=lista.iterator();
         tx.commit();

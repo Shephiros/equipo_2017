@@ -6,7 +6,7 @@
     <class name="entidades.Solicitudes" table="SOLICITUDES" schema="EQUIPO" optimistic-lock="version">
         <id name="solicitudId" type="big_decimal">
             <column name="SOLICITUD_ID" precision="22" scale="0" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <many-to-one name="departamentosInstitucion" class="entidades.DepartamentosInstitucion" fetch="select">
             <column name="DEPTO_INSTITUCION_ID" precision="22" scale="0" not-null="true" />

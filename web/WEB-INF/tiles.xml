@@ -162,6 +162,14 @@
         <put-attribute name="titulo" value="Solicitudes"/>
         <put-attribute name="cuerpo" value="/vistas/compras/solicitud_listado.jsp"/>
     </definition>
+    <definition name="nuevoSolicitud" extends="plantilla">
+        <put-attribute name="titulo" value="Nueva Solicitud"/>
+        <put-attribute name="cuerpo" value="/vistas/compras/solicitud_nuevo.jsp"/>
+    </definition>
+    <definition name="verSolicitud" extends="plantilla">
+        <put-attribute name="titulo" value="Información de Solicitud de Compra"/>
+        <put-attribute name="cuerpo" value="/vistas/compras/solicitud_ver.jsp"/>
+    </definition>
     
     <definition name="listadoLicitacion" extends="plantilla">
         <put-attribute name="titulo" value="Licitaciones"/>

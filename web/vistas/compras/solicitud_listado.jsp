@@ -21,10 +21,10 @@
                 <s:iterator value="todasSolicitudes" var="dato" status="estado">
                     <tr>
                         <td style="text-align: center"></td>
+                        <td><center><s:property value="solicitudCodigo"/></center></td>
                         <td><s:property value="solicitudCodigo"/></td>
-                        <td><s:property value="solicitudCodigo"/></td>
-                        <td><s:property value="solicitudResponsable"/></td>
-                        <td><s:property value="solicitudFecha"/></td>
+                        <td><s:property value="solicitudReponsable"/></td>
+                        <td><center><s:property value="solicitudFecha"/></center></td>
                         <td>
                 <center>
                     <s:a action="solicitudEditar" cssStyle="color: navy">

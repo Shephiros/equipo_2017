@@ -100,9 +100,9 @@
             <div class="form-row">
                 <div class="col-lg-12">
                     <center>
-                    <s:a action="institucionListado" cssClass="btn btn-default">Regresar</s:a>
-                </center>
-            </div>
+                        <s:a action="institucionListado" cssClass="btn btn-default">Regresar</s:a>
+                    </center>
+                </div>
         </div>
     </form>
 </div>

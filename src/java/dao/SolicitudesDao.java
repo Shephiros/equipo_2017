@@ -1,6 +1,7 @@
 package dao;
 
 import entidades.Solicitudes;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -29,6 +30,47 @@ public class SolicitudesDao {
             arreglo.add(soli);
         }
         return arreglo;
+    }
+    
+    //Método que obtiene una lista de todas Solicitudes por Id de institución.
+    public ArrayList<Solicitudes> todasSolicitudesPorInstitucion(BigDecimal institucionId)
+    {
+        SessionFactory sesion=HibernateUtil.getSessionFactory();
+        Session session =sesion.openSession();
+        Transaction tx=session.beginTransaction();
+        ArrayList<Solicitudes> arreglo = new ArrayList<Solicitudes>();
+        Query q=session.createQuery("from Solicitudes where departamentosInstitucion.instituciones.institucionId = "+institucionId);
+        List<Solicitudes> lista=q.list();
+        Iterator<Solicitudes> iter=lista.iterator();
+        tx.commit();
+        session.close();
+        while(iter.hasNext())
+        {
+            Solicitudes soli = (Solicitudes) iter.next();
+            arreglo.add(soli);
+        }
+        return arreglo;
+    }
+    
+    //Método que guarda las solicitudes.
+    public void guardarSolicitud(Solicitudes solicitud){
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        session.save(solicitud);
+        tx.commit();
+        session.close();
+    }
+    
+    //Método que obtiene una solicitud por Id.
+    public Solicitudes solicitudPorId(BigDecimal solicitudId){
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        Solicitudes soli = (Solicitudes)session.get(Solicitudes.class, solicitudId);
+        tx.commit();
+        session.close();
+        return soli;
     }
     
 }

@@ -1,13 +1,20 @@
 package controladores;
 
+import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.InstitucionesDao;
+import dao.PermisosDao;
 import dao.RolesDao;
 import dao.UsuariosDao;
 import entidades.Instituciones;
+import entidades.Permisos;
 import entidades.Roles;
 import entidades.Usuarios;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Map;
+import javax.servlet.http.HttpSession;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
 import seguridad.Encryptado;
@@ -17,6 +24,8 @@ import seguridad.Encryptado;
  * @author Usuario
  */
 public class InicioControlador extends ActionSupport implements SessionAware{
+    private ArrayList<Permisos> permisoMenu = new ArrayList<Permisos>();
+    private boolean permiso [] = new boolean [100];
     private String usuario;
     private String contrasenya;
     private SessionMap <String,Object> sessionMap;
@@ -39,15 +48,43 @@ public class InicioControlador extends ActionSupport implements SessionAware{
             
             sessionMap.put("nombre",us.getUsuarioNombre());
             sessionMap.put("usuario",us.getUsuarioUsuario());
+            sessionMap.put("rol_Id",rol.getRolId());
             sessionMap.put("rol_Nombre",rol.getRolNombre());
             sessionMap.put("institucion",institucion);
             sessionMap.put("institucion_Id",institucion.getInstitucionId());
-            
+            cargaMenu();
+            sessionMap.put("menu", permiso);
             return SUCCESS;
         }
         else{
             return ERROR;
         }
+    }
+    
+    public String cargaMenu(){
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
+        for(int i=1; i<41; i++){
+            BigDecimal pantallaId = new BigDecimal(i);
+            this.permisoMenu = new PermisosDao().buscaPermiso((BigDecimal)session.getAttribute("rol_Id"),pantallaId);
+            System.out.println("permisoMenú: "+permisoMenu);
+            if(permisoMenu.isEmpty()){
+                permiso[i] = false;
+                System.out.println("permiso["+i+"]= "+permiso[i]);
+            }
+            else{
+                permiso[i] = true;
+                System.out.println("permiso["+i+"]= "+permiso[i]);
+            }
+            this.permisoMenu.clear();
+        }
+        return SUCCESS;
+    }
+
+    public boolean[] getPermiso() {
+        return permiso;
+    }
+    public void setPermiso(boolean[] permiso) {
+        this.permiso = permiso;
     }
     
     public String salir() {
@@ -81,6 +118,14 @@ public class InicioControlador extends ActionSupport implements SessionAware{
     }
     public void setSessionMap(SessionMap<String, Object> sessionMap) {
         this.sessionMap = sessionMap;
+    }
+
+    public ArrayList<Permisos> getPermisoMenu() {
+        return permisoMenu;
+    }
+
+    public void setPermisoMenu(ArrayList<Permisos> permisoMenu) {
+        this.permisoMenu = permisoMenu;
     }
 
     
