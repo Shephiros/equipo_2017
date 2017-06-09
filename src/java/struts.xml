@@ -220,6 +220,15 @@
         <action name="compraListado" class="controladores.ComprasControlador" method="verListadoCompras">
             <result type="tiles">listadoCompra</result>
         </action>
+        <action name="compraNuevo" class="controladores.ComprasControlador" method="nuevaCompra">
+            <result type="tiles">nuevoCompra</result>
+        </action>
+        <action name="compraVer" class="controladores.ComprasControlador" method="verCompra">
+            <result type="tiles">verCompra</result>
+        </action>
+        <action name="compraGuardar" class="controladores.ComprasControlador" method="guardarCompra">
+            <result type="tiles">listadoCompra</result>
+        </action>
         
     </package>
     

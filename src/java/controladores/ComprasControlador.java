@@ -3,12 +3,18 @@ package controladores;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.ComprasDao;
 import dao.DepartamentosInstitucionDao;
+import dao.DetalleSolicitudDao;
+import dao.InstitucionesDao;
 import dao.LicitacionesDao;
+import dao.ProveedoresDao;
 import dao.SolicitudesDao;
 import dao.TipoSolicitudesDao;
 import entidades.Compras;
 import entidades.DepartamentosInstitucion;
+import entidades.DetalleSolicitud;
+import entidades.Instituciones;
 import entidades.Licitaciones;
+import entidades.Proveedores;
 import entidades.Solicitudes;
 import entidades.TipoSolicitudes;
 import java.math.BigDecimal;
@@ -23,15 +29,21 @@ public class ComprasControlador extends ActionSupport{
 //                                  Variables                                 //
 //****************************************************************************//
 
+    private ArrayList<DetalleSolicitud>todosDetalleSolicitudes;
     private ArrayList<Solicitudes>todasSolicitudes;
     private ArrayList<Licitaciones>todasLicitaciones;
     private ArrayList<TipoSolicitudes>todosTipoSolicitudes;
     private ArrayList<DepartamentosInstitucion> todosDeptosInstitucion;
     private ArrayList<Compras>todasCompras;
+    private ArrayList<Proveedores>todosProveedores;
+    private ArrayList<Instituciones>todasInstituciones;
     private DepartamentosInstitucion deptoInstitucionSeleccionado = new DepartamentosInstitucion();
     private TipoSolicitudes tipoSolicitudesSeleccionado = new TipoSolicitudes();
     private Solicitudes solicitudSeleccionada = new Solicitudes();
     private Solicitudes nuevaSolicitud = new Solicitudes();
+    private Compras nuevaCompra = new Compras();
+    private BigDecimal proveedorId;
+    private BigDecimal institucionId;
     private BigDecimal solicitudId;
     private BigDecimal deptoInstitucionId;
     private BigDecimal tipoSolicitudId;
@@ -59,6 +71,30 @@ public class ComprasControlador extends ActionSupport{
         return SUCCESS;
     }
 
+    //Método que guarda una nueva compra.
+    public String guardarCompra() throws Exception{
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
+        if(session.getAttribute("rol_Nombre").equals("Administrador del Sistema")){
+            Instituciones institucionU = new Instituciones();
+            institucionU.setInstitucionId(institucionId);
+            this.nuevaCompra.setInstituciones(institucionU);
+        }
+        if(session.getAttribute("rol_Nombre").equals("Administrador de Institución") || session.getAttribute("rol_Nombre").equals("Jefe de Unidad")){
+            
+        }
+        
+        
+        this.todosProveedores = new ProveedoresDao().todosProveedores();
+        this.todasInstituciones = new InstitucionesDao().todasInstituciones();
+        ComprasDao gCompra = new ComprasDao();
+        Instituciones institucionU = new Instituciones();
+        institucionU.setInstitucionId(institucionId);
+        this.nuevaCompra.setInstituciones(institucionU);
+        gCompra.guardarCompra(nuevaCompra);
+        verListadoCompras();
+        return SUCCESS;
+    }
+    
 //****************************************************************************//
 //                           Métodos para actualizar                          //
 //****************************************************************************//
@@ -107,6 +143,12 @@ public class ComprasControlador extends ActionSupport{
         return SUCCESS;
     }
     
+    public String nuevaCompra(){
+        this.todosProveedores = new ProveedoresDao().todosProveedores();
+        this.todasInstituciones = new InstitucionesDao().todasInstituciones();
+        return SUCCESS;
+    }
+    
     public String verSolicitud(){
         this.todosDeptosInstitucion = new DepartamentosInstitucionDao().todosDeptosInstitucion();
         this.todosTipoSolicitudes = new TipoSolicitudesDao().todosTipoSolicitudes();
@@ -116,6 +158,20 @@ public class ComprasControlador extends ActionSupport{
         TipoSolicitudesDao tipoSolicitudesDao = new TipoSolicitudesDao();
         this.deptoInstitucionSeleccionado = deptosInstitucionDao.deptoInstitucionPorId(solicitudSeleccionada.getDepartamentosInstitucion().getDeptoInstitucionId());
         this.tipoSolicitudesSeleccionado = tipoSolicitudesDao.tipoSolicitudPorId(solicitudSeleccionada.getTipoSolicitudes().getTipoSolicitudId());
+        this.todosDetalleSolicitudes = new DetalleSolicitudDao().todosDetallePorSolicitud(solicitudSeleccionada.getSolicitudId());
+        return SUCCESS;
+    }
+    
+    public String verCompra(){
+        this.todosDeptosInstitucion = new DepartamentosInstitucionDao().todosDeptosInstitucion();
+        this.todosTipoSolicitudes = new TipoSolicitudesDao().todosTipoSolicitudes();
+        SolicitudesDao vSolicitud = new SolicitudesDao();
+        this.solicitudSeleccionada = vSolicitud.solicitudPorId(solicitudId);
+        DepartamentosInstitucionDao deptosInstitucionDao = new DepartamentosInstitucionDao();
+        TipoSolicitudesDao tipoSolicitudesDao = new TipoSolicitudesDao();
+        this.deptoInstitucionSeleccionado = deptosInstitucionDao.deptoInstitucionPorId(solicitudSeleccionada.getDepartamentosInstitucion().getDeptoInstitucionId());
+        this.tipoSolicitudesSeleccionado = tipoSolicitudesDao.tipoSolicitudPorId(solicitudSeleccionada.getTipoSolicitudes().getTipoSolicitudId());
+        this.todosDetalleSolicitudes = new DetalleSolicitudDao().todosDetallePorSolicitud(solicitudSeleccionada.getSolicitudId());
         return SUCCESS;
     }
     
@@ -205,6 +261,48 @@ public class ComprasControlador extends ActionSupport{
     }
     public void setTipoSolicitudId(BigDecimal tipoSolicitudId) {
         this.tipoSolicitudId = tipoSolicitudId;
+    }
+
+    public ArrayList<DetalleSolicitud> getTodosDetalleSolicitudes() {
+        return todosDetalleSolicitudes;
+    }
+    public void setTodosDetalleSolicitudes(ArrayList<DetalleSolicitud> todosDetalleSolicitudes) {
+        this.todosDetalleSolicitudes = todosDetalleSolicitudes;
+    }
+
+    public ArrayList<Proveedores> getTodosProveedores() {
+        return todosProveedores;
+    }
+    public void setTodosProveedores(ArrayList<Proveedores> todosProveedores) {
+        this.todosProveedores = todosProveedores;
+    }
+
+    public ArrayList<Instituciones> getTodasInstituciones() {
+        return todasInstituciones;
+    }
+    public void setTodasInstituciones(ArrayList<Instituciones> todasInstituciones) {
+        this.todasInstituciones = todasInstituciones;
+    }
+
+    public Compras getNuevaCompra() {
+        return nuevaCompra;
+    }
+    public void setNuevaCompra(Compras nuevaCompra) {
+        this.nuevaCompra = nuevaCompra;
+    }
+
+    public BigDecimal getProveedorId() {
+        return proveedorId;
+    }
+    public void setProveedorId(BigDecimal proveedorId) {
+        this.proveedorId = proveedorId;
+    }
+
+    public BigDecimal getInstitucionId() {
+        return institucionId;
+    }
+    public void setInstitucionId(BigDecimal institucionId) {
+        this.institucionId = institucionId;
     }
     
 }

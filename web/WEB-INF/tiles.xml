@@ -180,5 +180,13 @@
         <put-attribute name="titulo" value="Listado de Compras"/>
         <put-attribute name="cuerpo" value="/vistas/compras/compra_listado.jsp"/>
     </definition>
+    <definition name="nuevoCompra" extends="plantilla">
+        <put-attribute name="titulo" value="Nueva Compra"/>
+        <put-attribute name="cuerpo" value="/vistas/compras/compra_nuevo.jsp"/>
+    </definition>
+    <definition name="verCompra" extends="plantilla">
+        <put-attribute name="titulo" value="Información de Compra"/>
+        <put-attribute name="cuerpo" value="/vistas/compras/compra_ver.jsp"/>
+    </definition>
     
 </tiles-definitions>

@@ -61,7 +61,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white">Compras<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <s:if test="#session.menu[39]"><li><s:a action="compraListado">Listado de compras</s:a></s:if>
-                            <s:if test="#session.menu[40]"><li><s:a action="menu">Nueva compra</s:a></s:if>
+                            <s:if test="#session.menu[40]"><li><s:a action="compraNuevo">Nueva compra</s:a></s:if>
                             <li><s:a action="menu">Contratos</s:a>
                             <s:if test="#session.menu[36]"><li><s:a action="licitacionListado">Listado de Licitaciones</s:a></s:if>
                             <s:if test="#session.menu[37]"><li><s:a action="menu">Nueva Licitación</s:a></s:if>

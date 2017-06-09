@@ -2,7 +2,7 @@
 <%@taglib  prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 
-<h2 style="color: navy"><b><center>INFORMACIÓN DE SOLICITUD DE COMPRA</center></b></h2><br>
+<h2 style="color: navy"><b><center>INFORMACIÓN DE COMPRA</center></b></h2><br>
 
 <div class="tab-content">
 

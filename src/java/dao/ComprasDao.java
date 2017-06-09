@@ -52,4 +52,25 @@ public class ComprasDao {
         return arreglo;
     }
     
+    //Método que guarda las compras.
+    public void guardarCompra(Compras compra){
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        session.save(compra);
+        tx.commit();
+        session.close();
+    }
+    
+    //Método que obtiene una compra por Id.
+    public Compras compraPorId(BigDecimal compraId){
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        Compras comp = (Compras)session.get(Compras.class, compraId);
+        tx.commit();
+        session.close();
+        return comp;
+    }
+    
 }
