@@ -13,18 +13,16 @@
             <th><center>No.</center></th>
             <th><center>Fecha</center></th>
             <th><center>Factura</center></th>
-            <th><center>Vendedor</center></th>
-            <th><center>Institución</center></th>
+            <th><center>Responsable</center></th>
             <th><center>Opciones</center></th>
             </thead>
             <tbody>
                 <s:iterator value="todasCompras" var="dato" status="estado">
                     <tr>
                         <td style="text-align: center"></td>
-                        <td><s:property value="compraFecha"/></td>
-                        <td><s:property value="compraFactura"/></td>
-                        <td><s:property value="compraVendedor"/></td>
-                        <td><s:property value="compraVendedor"/></td>
+                        <td><center><s:property value="compraFecha"/></center></td>
+                        <td><center><s:property value="compraFactura"/></center></td>
+                        <td><s:property value="compraResponsable"/></td>
                         <td>
                 <center>
                     <s:a action="compraEditar" cssStyle="color: navy">

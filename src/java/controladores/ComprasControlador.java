@@ -41,10 +41,13 @@ public class ComprasControlador extends ActionSupport{
     private TipoSolicitudes tipoSolicitudesSeleccionado = new TipoSolicitudes();
     private Solicitudes solicitudSeleccionada = new Solicitudes();
     private Solicitudes nuevaSolicitud = new Solicitudes();
+    private Licitaciones nuevaLicitacion = new Licitaciones();
+    private Licitaciones licitacionSeleccionada = new Licitaciones();
     private Compras nuevaCompra = new Compras();
     private BigDecimal proveedorId;
     private BigDecimal institucionId;
     private BigDecimal solicitudId;
+    private BigDecimal licitacionId;
     private BigDecimal deptoInstitucionId;
     private BigDecimal tipoSolicitudId;
     
@@ -71,25 +74,39 @@ public class ComprasControlador extends ActionSupport{
         return SUCCESS;
     }
 
+    //Método que guarda una nueva licitación de compra.
+    public String guardarLicitacion() throws Exception{
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
+        if(session.getAttribute("rol_Nombre").equals("Administrador del Sistema")){
+            this.todasSolicitudes = new SolicitudesDao().todasSolicitudes();}
+        if(session.getAttribute("rol_Nombre").equals("Administrador de Institución") || session.getAttribute("rol_Nombre").equals("Jefe de Unidad")){
+            this.todasSolicitudes = new SolicitudesDao().todasSolicitudesPorInstitucion((BigDecimal)session.getAttribute("institucion_Id"));}
+        LicitacionesDao gLicitacion = new LicitacionesDao();
+        Solicitudes solicitudU = new Solicitudes();
+        solicitudU.setSolicitudId(solicitudId);
+        this.nuevaLicitacion.setSolicitudes(solicitudU);
+        gLicitacion.guardarLicitacion(nuevaLicitacion);
+        verListadoLicitaciones();
+        return SUCCESS;
+    }
+
     //Método que guarda una nueva compra.
     public String guardarCompra() throws Exception{
         HttpSession session = ServletActionContext.getRequest().getSession(false);
+        this.todosProveedores = new ProveedoresDao().todosProveedores();
+        this.todasInstituciones = new InstitucionesDao().todasInstituciones();
         if(session.getAttribute("rol_Nombre").equals("Administrador del Sistema")){
             Instituciones institucionU = new Instituciones();
             institucionU.setInstitucionId(institucionId);
             this.nuevaCompra.setInstituciones(institucionU);
         }
         if(session.getAttribute("rol_Nombre").equals("Administrador de Institución") || session.getAttribute("rol_Nombre").equals("Jefe de Unidad")){
-            
+            this.nuevaCompra.setInstituciones((Instituciones)session.getAttribute("institucion"));
         }
-        
-        
-        this.todosProveedores = new ProveedoresDao().todosProveedores();
-        this.todasInstituciones = new InstitucionesDao().todasInstituciones();
+        Proveedores proveedorU = new Proveedores();
+        proveedorU.setProveedorId(proveedorId);
+        this.nuevaCompra.setProveedores(proveedorU);
         ComprasDao gCompra = new ComprasDao();
-        Instituciones institucionU = new Instituciones();
-        institucionU.setInstitucionId(institucionId);
-        this.nuevaCompra.setInstituciones(institucionU);
         gCompra.guardarCompra(nuevaCompra);
         verListadoCompras();
         return SUCCESS;
@@ -109,6 +126,7 @@ public class ComprasControlador extends ActionSupport{
         return SUCCESS;
     }
     
+    //Método para mostrar listado de solicitudes de compras.
     public String verListadoSolicitudes() throws Exception {
         HttpSession session = ServletActionContext.getRequest().getSession(false);
         if(session.getAttribute("rol_Nombre").equals("Administrador del Sistema")){
@@ -118,6 +136,7 @@ public class ComprasControlador extends ActionSupport{
         return SUCCESS;
     }
     
+    //Método para mostrar listado de licitaciones de compras.
     public String verListadoLicitaciones() throws Exception {
         HttpSession session = ServletActionContext.getRequest().getSession(false);
         if(session.getAttribute("rol_Nombre").equals("Administrador del Sistema") || session.getAttribute("rol_Nombre").equals("Proveedor")){
@@ -127,6 +146,7 @@ public class ComprasControlador extends ActionSupport{
         return SUCCESS;
     }
     
+    //Método para mostrar listado de compras.
     public String verListadoCompras() throws Exception {
         HttpSession session = ServletActionContext.getRequest().getSession(false);
         if(session.getAttribute("rol_Nombre").equals("Administrador del Sistema")){
@@ -136,19 +156,35 @@ public class ComprasControlador extends ActionSupport{
         return SUCCESS;
     }
     
+    //Método para mostrar pantalla de nueva solicitud de compra.
     public String nuevaSolicitud(){
         HttpSession session = ServletActionContext.getRequest().getSession(false);
-        this.todosDeptosInstitucion = new DepartamentosInstitucionDao().todosDeptosPorInstitucion((BigDecimal)session.getAttribute("institucion_Id"));
+        if(session.getAttribute("rol_Nombre").equals("Administrador del Sistema")){
+            this.todosDeptosInstitucion = new DepartamentosInstitucionDao().todosDeptosInstitucion();}
+        if(session.getAttribute("rol_Nombre").equals("Administrador de Institución") || session.getAttribute("rol_Nombre").equals("Jefe de Unidad")){
+            this.todosDeptosInstitucion = new DepartamentosInstitucionDao().todosDeptosPorInstitucion((BigDecimal)session.getAttribute("institucion_Id"));}
         this.todosTipoSolicitudes = new TipoSolicitudesDao().todosTipoSolicitudes();
         return SUCCESS;
     }
     
+    //Método para mostrar pantalla de nueva licitación de compra.
+    public String nuevaLicitacion(){
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
+        if(session.getAttribute("rol_Nombre").equals("Administrador del Sistema")){
+            this.todasSolicitudes = new SolicitudesDao().todasSolicitudes();}
+        if(session.getAttribute("rol_Nombre").equals("Administrador de Institución") || session.getAttribute("rol_Nombre").equals("Jefe de Unidad")){
+            this.todasSolicitudes = new SolicitudesDao().todasSolicitudesPorInstitucion((BigDecimal)session.getAttribute("institucion_Id"));}
+        return SUCCESS;
+    }
+    
+    //Método para mostrar pantalla de nueva compra.
     public String nuevaCompra(){
         this.todosProveedores = new ProveedoresDao().todosProveedores();
         this.todasInstituciones = new InstitucionesDao().todasInstituciones();
         return SUCCESS;
     }
     
+    //Método para mostrar pantalla de ver solicitud de compra.
     public String verSolicitud(){
         this.todosDeptosInstitucion = new DepartamentosInstitucionDao().todosDeptosInstitucion();
         this.todosTipoSolicitudes = new TipoSolicitudesDao().todosTipoSolicitudes();
@@ -162,6 +198,17 @@ public class ComprasControlador extends ActionSupport{
         return SUCCESS;
     }
     
+    //Método para mostrar pantalla de ver licitación de compra.
+    public String verLicitacion(){
+        this.todasLicitaciones = new LicitacionesDao().todasLicitaciones();
+        LicitacionesDao vLicitacion = new LicitacionesDao();
+        this.licitacionSeleccionada = vLicitacion.licitacionPorId(licitacionId);
+        SolicitudesDao solicitudDao = new SolicitudesDao();        
+        this.solicitudSeleccionada = solicitudDao.solicitudPorId(licitacionSeleccionada.getSolicitudes().getSolicitudId());
+        return SUCCESS;
+    }
+    
+    //Método para mostrar pantalla de ver compra.
     public String verCompra(){
         this.todosDeptosInstitucion = new DepartamentosInstitucionDao().todosDeptosInstitucion();
         this.todosTipoSolicitudes = new TipoSolicitudesDao().todosTipoSolicitudes();
@@ -298,11 +345,32 @@ public class ComprasControlador extends ActionSupport{
         this.proveedorId = proveedorId;
     }
 
+    public Licitaciones getNuevaLicitacion() {
+        return nuevaLicitacion;
+    }
+    public void setNuevaLicitacion(Licitaciones nuevaLicitacion) {
+        this.nuevaLicitacion = nuevaLicitacion;
+    }
+
     public BigDecimal getInstitucionId() {
         return institucionId;
     }
     public void setInstitucionId(BigDecimal institucionId) {
         this.institucionId = institucionId;
+    }
+
+    public BigDecimal getLicitacionId() {
+        return licitacionId;
+    }
+    public void setLicitacionId(BigDecimal licitacionId) {
+        this.licitacionId = licitacionId;
+    }
+
+    public Licitaciones getLicitacionSeleccionada() {
+        return licitacionSeleccionada;
+    }
+    public void setLicitacionSeleccionada(Licitaciones licitacionSeleccionada) {
+        this.licitacionSeleccionada = licitacionSeleccionada;
     }
     
 }

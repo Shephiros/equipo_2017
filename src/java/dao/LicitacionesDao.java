@@ -51,4 +51,26 @@ public class LicitacionesDao {
         }
         return arreglo;
     }
+    
+    //Método que guarda las licitaciones.
+    public void guardarLicitacion(Licitaciones licitacion){
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        session.save(licitacion);
+        tx.commit();
+        session.close();
+    }
+    
+    //Método que obtiene una licitación por Id.
+    public Licitaciones licitacionPorId(BigDecimal licitacionId){
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        Licitaciones lici = (Licitaciones)session.get(Licitaciones.class, licitacionId);
+        tx.commit();
+        session.close();
+        return lici;
+    }
+    
 }

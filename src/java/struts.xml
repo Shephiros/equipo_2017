@@ -216,6 +216,15 @@
         <action name="licitacionListado" class="controladores.ComprasControlador" method="verListadoLicitaciones">
             <result type="tiles">listadoLicitacion</result>
         </action>
+        <action name="licitacionNuevo" class="controladores.ComprasControlador" method="nuevaLicitacion">
+            <result type="tiles">nuevoLicitacion</result>
+        </action>
+        <action name="licitacionVer" class="controladores.ComprasControlador" method="verLicitacion">
+            <result type="tiles">verLicitacion</result>
+        </action>
+        <action name="licitacionGuardar" class="controladores.ComprasControlador" method="guardarLicitacion">
+            <result type="tiles">listadoLicitacion</result>
+        </action>
         
         <action name="compraListado" class="controladores.ComprasControlador" method="verListadoCompras">
             <result type="tiles">listadoCompra</result>
