@@ -6,7 +6,7 @@
     <class name="entidades.Aprobados" table="APROBADOS" schema="EQUIPO" optimistic-lock="version">
         <id name="aprobadoId" type="big_decimal">
             <column name="APROBADO_ID" precision="22" scale="0" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <many-to-one name="solicitudes" class="entidades.Solicitudes" fetch="select">
             <column name="SOLICITUD_ID" precision="22" scale="0" not-null="true" />

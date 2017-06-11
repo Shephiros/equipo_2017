@@ -31,10 +31,16 @@
             <div class="col-lg-2">
                 <s:textfield name="tipoSolicitudesSeleccionado.tipoSolicitudNombre" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textfield>
             </div>
+            <div class="col-lg-1" style="text-align: right">
+                <s:label value="Estado:"></s:label>
+            </div>
+            <div class="col-lg-2">
+                <s:textfield name="(solicitudSeleccionada.solicitudEstado == 0) ?'En proceso de aprobación':((solicitudSeleccionada.solicitudEstado == 1) ?'Denegado':'Aprobado')" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textfield>
+            </div>
             <div class="col-lg-6">
             </div>
         </div>
-
+        
         <br/><br/><br/>
 
         <div class="form-row">
@@ -113,7 +119,7 @@
         
         <br/><br/><br/>
         
-        <s:if test="!(#session.rol_Nombre.equalsIgnoreCase('Administrador de Institución'))">
+        <s:if test="!(#session.rol_Nombre.equalsIgnoreCase('Administrador de Institución') && solicitudSeleccionada.solicitudEstado == 0)">
         <div class="form-row">
             <div class="col-lg-12">
                 <center>
@@ -123,15 +129,19 @@
             </div>
         </div>
         </s:if>   
-        <s:if test="(#session.rol_Nombre.equalsIgnoreCase('Administrador de Institución') && solicitudSeleccionada.solicitudEstado==0)">
+        <s:if test="(#session.rol_Nombre.equalsIgnoreCase('Administrador de Institución') && solicitudSeleccionada.solicitudEstado == 0)">
         <div class="form-row">
             <div class="col-lg-12">
                 <center>
                     <s:a action="solicitudListado" cssClass="btn btn-default">Regresar</s:a>
                     <s:label> </s:label>
-                    <s:a action="aprobacionNuevo" cssClass="btn btn-default">Aprobar</s:a>
+                    <s:a action="aprobacionNuevo" cssClass="btn btn-default">
+                        <s:param name="solicitudId" value="solicitudSeleccionada.solicitudId"/>Aprobar
+                    </s:a>
                     <s:label> </s:label>
-                    <s:a action="solicitudDenegar" cssClass="btn btn-default">Denegar</s:a>
+                    <s:a action="solicitudDenegar" cssClass="btn btn-default">
+                        <s:param name="solicitudId" value="solicitudSeleccionada.solicitudId"/>Denegar
+                    </s:a>
                 </center>
                 <br/><br/><br/>
             </div>

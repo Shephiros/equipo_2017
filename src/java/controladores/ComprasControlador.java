@@ -1,6 +1,7 @@
 package controladores;
 
 import com.opensymphony.xwork2.ActionSupport;
+import dao.AprobadosDao;
 import dao.ComprasDao;
 import dao.DepartamentosInstitucionDao;
 import dao.DetalleComprasDao;
@@ -10,6 +11,7 @@ import dao.LicitacionesDao;
 import dao.ProveedoresDao;
 import dao.SolicitudesDao;
 import dao.TipoSolicitudesDao;
+import entidades.Aprobados;
 import entidades.Compras;
 import entidades.DepartamentosInstitucion;
 import entidades.DetalleCompras;
@@ -40,6 +42,7 @@ public class ComprasControlador extends ActionSupport{
     private ArrayList<Compras>todasCompras;
     private ArrayList<Proveedores>todosProveedores;
     private ArrayList<Instituciones>todasInstituciones;
+    private Aprobados nuevoAprobado = new Aprobados();
     private Instituciones institucionSeleccionada = new Instituciones();
     private DepartamentosInstitucion deptoInstitucionSeleccionado = new DepartamentosInstitucion();
     private Proveedores proveedorSeleccionado = new Proveedores();
@@ -77,6 +80,34 @@ public class ComprasControlador extends ActionSupport{
         this.nuevaSolicitud.setSolicitudEstado(BigDecimal.ZERO);
         //this.nuevaSolicitud.setSolicitudFecha(new Date());
         gSolicitud.guardarSolicitud(nuevaSolicitud);
+        verListadoSolicitudes();
+        return SUCCESS;
+    }
+
+    //Método que guarda una nueva aporbación de solicitud de compra.
+    public String guardarAprobacion() throws Exception{
+        AprobadosDao gAprobado = new AprobadosDao();
+        Solicitudes solicitudU = new Solicitudes();
+        solicitudU.setSolicitudId(solicitudId);
+        this.nuevoAprobado.setSolicitudes(solicitudU);
+        gAprobado.guardarAprobado(nuevoAprobado);
+        
+        SolicitudesDao gSolicitud = new SolicitudesDao();
+        SolicitudesDao vSolicitud = new SolicitudesDao();
+        this.solicitudSeleccionada = vSolicitud.solicitudPorId(solicitudId);
+        this.solicitudSeleccionada.setSolicitudEstado(BigDecimal.ONE);
+        gSolicitud.actualizarSolicitud(solicitudSeleccionada);
+        verListadoSolicitudes();
+        return SUCCESS;
+    }
+
+    //Método que cabia estado de solicitud de compra.
+    public String denegarSolicitud() throws Exception{
+        SolicitudesDao vSolicitud = new SolicitudesDao();
+        this.solicitudSeleccionada = vSolicitud.solicitudPorId(solicitudId);
+        this.solicitudSeleccionada.setSolicitudEstado(BigDecimal.ONE);
+        SolicitudesDao gSolicitud = new SolicitudesDao();
+        gSolicitud.actualizarSolicitud(solicitudSeleccionada);
         verListadoSolicitudes();
         return SUCCESS;
     }
@@ -227,11 +258,10 @@ public class ComprasControlador extends ActionSupport{
     //Método para mostrar pantalla de aprobación de solicitud de compra.
     public String nuevaAprobacion(){
         this.todosDeptosInstitucion = new DepartamentosInstitucionDao().todosDeptosInstitucion();
+        this.todosTipoSolicitudes = new TipoSolicitudesDao().todosTipoSolicitudes();
         SolicitudesDao vSolicitud = new SolicitudesDao();
-        this.solicitudSeleccionada = vSolicitud.solicitudPorId(solicitudSeleccionada.getSolicitudId());
-        DepartamentosInstitucionDao deptosInstitucionDao = new DepartamentosInstitucionDao();
-        
-        this.deptoInstitucionSeleccionado = deptosInstitucionDao.deptoInstitucionPorId(solicitudSeleccionada.getDepartamentosInstitucion().getDeptoInstitucionId());
+        this.solicitudSeleccionada = vSolicitud.solicitudPorId(solicitudId);
+        this.deptoInstitucionSeleccionado = new DepartamentosInstitucionDao().deptoInstitucionPorId(solicitudSeleccionada.getDepartamentosInstitucion().getDeptoInstitucionId());
         this.todosDetalleSolicitudes = new DetalleSolicitudDao().todosDetallePorSolicitud(solicitudSeleccionada.getSolicitudId());
         return SUCCESS;
     }
@@ -420,6 +450,13 @@ public class ComprasControlador extends ActionSupport{
     }
     public void setTodosDetalleCompras(ArrayList<DetalleCompras> todosDetalleCompras) {
         this.todosDetalleCompras = todosDetalleCompras;
+    }
+
+    public Aprobados getNuevoAprobado() {
+        return nuevoAprobado;
+    }
+    public void setNuevoAprobado(Aprobados nuevoAprobado) {
+        this.nuevoAprobado = nuevoAprobado;
     }
     
 }

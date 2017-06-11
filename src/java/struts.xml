@@ -212,6 +212,9 @@
         <action name="solicitudGuardar" class="controladores.ComprasControlador" method="guardarSolicitud">
             <result type="tiles">listadoSolicitud</result>
         </action>
+        <action name="solicitudDenegar" class="controladores.ComprasControlador" method="denegarSolicitud">
+            <result type="tiles">listadoSolicitud</result>
+        </action>
         
         <action name="licitacionListado" class="controladores.ComprasControlador" method="verListadoLicitaciones">
             <result type="tiles">listadoLicitacion</result>
@@ -237,6 +240,13 @@
         </action>
         <action name="compraGuardar" class="controladores.ComprasControlador" method="guardarCompra">
             <result type="tiles">listadoCompra</result>
+        </action>
+        
+        <action name="aprobacionNuevo" class="controladores.ComprasControlador" method="nuevaAprobacion">
+            <result type="tiles">nuevoAprobacion</result>
+        </action>
+        <action name="aprobacionGuardar" class="controladores.ComprasControlador" method="guardarAprobacion">
+            <result type="tiles">listadoSolicitudes</result>
         </action>
         
     </package>

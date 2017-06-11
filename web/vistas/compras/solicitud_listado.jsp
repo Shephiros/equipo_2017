@@ -12,7 +12,7 @@
             <thead>
             <th><center>No.</center></th>
             <th><center>Codigo</center></th>
-            <th><center>Departamento</center></th>
+            <th><center>Estado</center></th>
             <th><center>Responsable</center></th>
             <th><center>Fecha</center></th>
             <th><center>Opciones</center></th>
@@ -22,7 +22,7 @@
                     <tr>
                         <td style="text-align: center"></td>
                         <td><center><s:property value="solicitudCodigo"/></center></td>
-                        <td><s:property value="solicitudCodigo"/></td>
+                        <td><s:property value="(solicitudEstado == 0) ?'En proceso de aprobación':((solicitudEstado == 1) ?'Denegado':'Aprobado')"/></td>
                         <td><s:property value="solicitudReponsable"/></td>
                         <td><center><s:property value="solicitudFecha"/></center></td>
                         <td>

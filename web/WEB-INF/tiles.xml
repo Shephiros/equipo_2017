@@ -197,4 +197,9 @@
         <put-attribute name="cuerpo" value="/vistas/compras/compra_ver.jsp"/>
     </definition>
     
+    <definition name="nuevoAprobacion" extends="plantilla">
+        <put-attribute name="titulo" value="Nueva Aprobación"/>
+        <put-attribute name="cuerpo" value="/vistas/compras/aprobacion_nuevo.jsp"/>
+    </definition>
+    
 </tiles-definitions>
