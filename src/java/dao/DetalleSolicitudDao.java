@@ -12,7 +12,7 @@ import org.hibernate.Transaction;
 
 public class DetalleSolicitudDao {
     
-    //Método que obtiene una lista de todas detalles por solicitud.
+    //Método que obtiene una lista de todos detalles por solicitud.
     public ArrayList<DetalleSolicitud> todosDetallePorSolicitud(BigDecimal solicitudId)
     {
         SessionFactory sesion=HibernateUtil.getSessionFactory();

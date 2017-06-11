@@ -11,50 +11,67 @@
             <div class="col-lg-3">
             </div>
             <div class="col-lg-1">
-                <s:label value="Unidad Solicitante:"></s:label>
-            </div>
-            <div class="col-lg-5">
-                <s:textfield name="deptoInstitucionSeleccionado.deptoInstitucionNombre" cssClass="form-control" cssStyle="width: 100%"></s:textfield>
-            </div>
-            <div class="col-lg-3">
-            </div>
-        </div>
-
-        <br/><br/><br/>
-
-        <div class="form-row">
-            <div class="col-lg-3">
-            </div>
-            <div class="col-lg-1">
-                <s:label value="Tipo:"></s:label>
+                <s:label value="Factura:"></s:label>
             </div>
             <div class="col-lg-2">
-                <s:textfield name="tipoSolicitudesSeleccionado.tipoSolicitudNombre" cssClass="form-control" cssStyle="width: 100%"></s:textfield>
-            </div>
-            <div class="col-lg-6">
-            </div>
-        </div>
-
-        <br/><br/><br/>
-
-        <div class="form-row">
-            <div class="col-lg-3">
-            </div>
-            <div class="col-lg-1">
-                <s:label value="Código:"></s:label>
-            </div>
-            <div class="col-lg-2">
-                <s:textfield name="solicitudSeleccionada.solicitudCodigo" cssClass="form-control" cssStyle="width: 100%"></s:textfield>
+                <s:textfield name="compraSeleccionada.compraFactura" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textfield>
             </div>
             <div class="col-lg-1" style="text-align: right">
                 <s:label value="Fecha:"></s:label>
             </div>
             <div class="col-lg-2">
-                <s:textfield name="solicitudSeleccionada.solicitudFecha" cssClass="form-control" cssStyle="width: 100%"></s:textfield>
+                <s:textfield name="compraSeleccionada.compraFecha" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textfield>
             </div>
             <div class="col-lg-3">
             </div>
         </div>
+
+        <br/><br/><br/>
+
+        <div class="form-row">
+            <div class="col-lg-3">
+            </div>
+            <div class="col-lg-1">
+                <s:label value="Proveedor:"></s:label>
+            </div>
+            <div class="col-lg-5">
+                <s:textfield name="proveedorSeleccionado.proveedorEmpresa" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textfield>
+            </div>
+            <div class="col-lg-3">
+            </div>
+        </div>
+
+        <br/><br/><br/>
+
+        <div class="form-row">
+            <div class="col-lg-3">
+            </div>
+            <div class="col-lg-1">
+                <s:label value="Vendedor:"></s:label>
+            </div>
+            <div class="col-lg-5">
+                <s:textfield name="compraSeleccionada.compraVendedor" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textfield>
+            </div>
+            <div class="col-lg-3">
+            </div>
+        </div>
+            
+        <s:if test="#session.rol_Nombre.equalsIgnoreCase('Administrador del Sistema')">
+        <br/><br/><br/>
+
+        <div class="form-row">
+            <div class="col-lg-3">
+            </div>
+            <div class="col-lg-1">
+                <s:label value="Institución:"></s:label>
+            </div>
+            <div class="col-lg-5">
+                <s:textfield name="institucionSeleccionada.institucionNombre" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textfield>
+            </div>
+            <div class="col-lg-3">
+            </div>
+        </div>
+        </s:if>
 
         <br/><br/><br/>
 
@@ -65,7 +82,7 @@
                 <s:label value="Responsable:"></s:label>
             </div>
             <div class="col-lg-5">
-                <s:textfield name="solicitudSeleccionada.solicitudReponsable" cssClass="form-control" cssStyle="width: 100%"></s:textfield>
+                <s:textfield name="compraSeleccionada.compraResponsable" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textfield>
             </div>
             <div class="col-lg-3">
             </div>
@@ -77,17 +94,17 @@
             <div class="col-lg-3">
             </div>
             <div class="col-lg-1">
-                <s:label value="Observación:"></s:label>
+                <s:label value="Solicitud:"></s:label>
             </div>
             <div class="col-lg-5">
-                <s:textarea name="solicitudSeleccionada.solicitudObservacion" rows="3" cssClass="form-control" cssStyle="width: 100%"></s:textarea>
+                <s:textfield name="compraSeleccionada.compraSolicitudCodigo" cssClass="form-control" disabled="true" cssStyle="width: 20%"></s:textfield>
             </div>
             <div class="col-lg-3">
             </div>
         </div>
-
-        <br/><br/><br/><br/><br/>
-
+        
+        <br/><br/><br/>
+        
         <div class="form-row">
             <div class="col-lg-3">
             </div>
@@ -96,12 +113,14 @@
                     <thead>
                         <th><center>Cant.</center></th>
                         <th><center>Descripción</center></th>
+                        <th><center>Precio</center></th>
                     </thead>
                     <tbody>
-                        <s:iterator value="todosDetalleSolicitudes" var="dato" status="estado">
+                        <s:iterator value="todosDetalleCompras" var="dato" status="estado">
                             <tr>
-                                <td><center><s:property value="detSolicitudCantidad"/></center></td>
-                                <td><s:property value="detSolicitudDescripcion"/></td>
+                                <td><center><s:property value="detCompraCantidad"/></center></td>
+                                <td><s:property value="detCompraDescripcion"/></td>
+                                <td><s:property value="detCompraPrecio"/></td>
                             </tr>
                         </s:iterator>
                     </tbody>
@@ -114,7 +133,7 @@
         <div class="form-row">
             <div class="col-lg-12">
                 <center>
-                    <s:a action="solicitudListado" cssClass="btn btn-default">Regresar</s:a>
+                    <s:a action="compraListado" cssClass="btn btn-default">Regresar</s:a>
                 </center>
                 <br/><br/><br/>
             </div>
