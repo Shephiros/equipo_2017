@@ -18,6 +18,7 @@ import entidades.DetalleCompras;
 import entidades.DetalleSolicitud;
 import entidades.Instituciones;
 import entidades.Licitaciones;
+import entidades.Ofertas;
 import entidades.Proveedores;
 import entidades.Solicitudes;
 import entidades.TipoSolicitudes;
@@ -54,6 +55,7 @@ public class ComprasControlador extends ActionSupport{
     private Licitaciones licitacionSeleccionada = new Licitaciones();
     private Compras nuevaCompra = new Compras();
     private Compras compraSeleccionada = new Compras();
+    private Ofertas nuevaOferta = new Ofertas();
     private BigDecimal proveedorId;
     private BigDecimal institucionId;
     private BigDecimal solicitudId;
@@ -286,6 +288,8 @@ public class ComprasControlador extends ActionSupport{
     
     //Método para mostrar pantalla de nueva oferta de licitación.
     public String nuevaOferta(){
+        LicitacionesDao vLicitacion = new LicitacionesDao();
+        this.licitacionSeleccionada = vLicitacion.licitacionPorId(licitacionId);
         return SUCCESS;
     }
     
@@ -488,5 +492,12 @@ public class ComprasControlador extends ActionSupport{
     public void setAprobadoSeleccionado(Aprobados aprobadoSeleccionado) {
         this.aprobadoSeleccionado = aprobadoSeleccionado;
     }
-    
+
+    public Ofertas getNuevaOferta() {
+        return nuevaOferta;
+    }
+    public void setNuevaOferta(Ofertas nuevaOferta) {
+        this.nuevaOferta = nuevaOferta;
+    }
+        
 }

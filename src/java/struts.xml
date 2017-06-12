@@ -255,6 +255,9 @@
         <action name="ofertaNuevo" class="controladores.ComprasControlador" method="nuevaOferta">
             <result type="tiles">nuevoOferta</result>
         </action>
+        <action name="ofertaGuardar" class="controladores.ComprasControlador" method="guardarOferta">
+            <result type="tiles">verLicitacion</result>
+        </action>
         
     </package>
     

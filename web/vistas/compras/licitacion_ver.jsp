@@ -16,7 +16,8 @@
             <div class="col-lg-2">
                 <s:textfield name="solicitudSeleccionada.solicitudCodigo" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textfield>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6" align="right">
+                <s:textfield name="licitacionSeleccionada.licitacionId" cssClass="form-control" cssStyle="color:white; border-color: white; width:0%"></s:textfield>
             </div>
         </div>
 
@@ -86,7 +87,7 @@
                     <s:if test="(#session.rol_Nombre.equalsIgnoreCase('Proveedor'))">
                     <s:label> </s:label>
                     <s:a action="ofertaNuevo" cssClass="btn btn-default">Ofertar
-                        <s:param name="solicitudId" value="solicitudSeleccionada.solicitudId"/>
+                        <s:param name="licitacionId" value="licitacionSeleccionada.licitacionId"/>
                     </s:a>
                     </s:if>
                 </center>
