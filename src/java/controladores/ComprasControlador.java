@@ -43,6 +43,7 @@ public class ComprasControlador extends ActionSupport{
     private ArrayList<Proveedores>todosProveedores;
     private ArrayList<Instituciones>todasInstituciones;
     private Aprobados nuevoAprobado = new Aprobados();
+    private Aprobados aprobadoSeleccionado = new Aprobados();
     private Instituciones institucionSeleccionada = new Instituciones();
     private DepartamentosInstitucion deptoInstitucionSeleccionado = new DepartamentosInstitucion();
     private Proveedores proveedorSeleccionado = new Proveedores();
@@ -87,20 +88,20 @@ public class ComprasControlador extends ActionSupport{
     //Método que guarda una nueva aporbación de solicitud de compra.
     public String guardarAprobacion() throws Exception{
         AprobadosDao gAprobado = new AprobadosDao();
-        Solicitudes solicitudU = new Solicitudes();
-        solicitudU.setSolicitudId(solicitudId);
-        this.nuevoAprobado.setSolicitudes(solicitudU);
+        this.nuevoAprobado.setSolicitudes(solicitudSeleccionada);
         gAprobado.guardarAprobado(nuevoAprobado);
         
+        Solicitudes solicitudActualizar;
+        SolicitudesDao solicitudU = new SolicitudesDao();
+        solicitudActualizar = solicitudU.solicitudPorId(solicitudSeleccionada.getSolicitudId());
+        
         SolicitudesDao gSolicitud = new SolicitudesDao();
-        SolicitudesDao vSolicitud = new SolicitudesDao();
-        this.solicitudSeleccionada = vSolicitud.solicitudPorId(solicitudId);
-        this.solicitudSeleccionada.setSolicitudEstado(BigDecimal.ONE);
-        gSolicitud.actualizarSolicitud(solicitudSeleccionada);
+        solicitudActualizar.setSolicitudEstado(BigDecimal.TEN);
+        gSolicitud.actualizarSolicitud(solicitudActualizar);
         verListadoSolicitudes();
         return SUCCESS;
     }
-
+        
     //Método que cabia estado de solicitud de compra.
     public String denegarSolicitud() throws Exception{
         SolicitudesDao vSolicitud = new SolicitudesDao();
@@ -231,6 +232,22 @@ public class ComprasControlador extends ActionSupport{
         return SUCCESS;
     }
     
+    //Método para mostrar pantalla de ver aprobación de solicitud de compra.
+    public String verAprobacion(){
+        this.todosDeptosInstitucion = new DepartamentosInstitucionDao().todosDeptosInstitucion();
+        this.todosTipoSolicitudes = new TipoSolicitudesDao().todosTipoSolicitudes();
+        SolicitudesDao vSolicitud = new SolicitudesDao();
+        this.solicitudSeleccionada = vSolicitud.solicitudPorId(solicitudId);
+        AprobadosDao vAprobado = new AprobadosDao();
+        this.aprobadoSeleccionado = vAprobado.aprobadoPorSolicitudId(solicitudId);
+        DepartamentosInstitucionDao deptosInstitucionDao = new DepartamentosInstitucionDao();
+        TipoSolicitudesDao tipoSolicitudesDao = new TipoSolicitudesDao();
+        this.deptoInstitucionSeleccionado = deptosInstitucionDao.deptoInstitucionPorId(solicitudSeleccionada.getDepartamentosInstitucion().getDeptoInstitucionId());
+        this.tipoSolicitudesSeleccionado = tipoSolicitudesDao.tipoSolicitudPorId(solicitudSeleccionada.getTipoSolicitudes().getTipoSolicitudId());
+        this.todosDetalleSolicitudes = new DetalleSolicitudDao().todosDetallePorSolicitud(solicitudSeleccionada.getSolicitudId());
+        return SUCCESS;
+    }
+    
     //Método para mostrar pantalla de ver licitación de compra.
     public String verLicitacion(){
         this.todasLicitaciones = new LicitacionesDao().todasLicitaciones();
@@ -262,7 +279,13 @@ public class ComprasControlador extends ActionSupport{
         SolicitudesDao vSolicitud = new SolicitudesDao();
         this.solicitudSeleccionada = vSolicitud.solicitudPorId(solicitudId);
         this.deptoInstitucionSeleccionado = new DepartamentosInstitucionDao().deptoInstitucionPorId(solicitudSeleccionada.getDepartamentosInstitucion().getDeptoInstitucionId());
+        this.tipoSolicitudesSeleccionado = new TipoSolicitudesDao().tipoSolicitudPorId(solicitudSeleccionada.getTipoSolicitudes().getTipoSolicitudId());
         this.todosDetalleSolicitudes = new DetalleSolicitudDao().todosDetallePorSolicitud(solicitudSeleccionada.getSolicitudId());
+        return SUCCESS;
+    }
+    
+    //Método para mostrar pantalla de nueva oferta de licitación.
+    public String nuevaOferta(){
         return SUCCESS;
     }
     
@@ -457,6 +480,13 @@ public class ComprasControlador extends ActionSupport{
     }
     public void setNuevoAprobado(Aprobados nuevoAprobado) {
         this.nuevoAprobado = nuevoAprobado;
+    }
+
+    public Aprobados getAprobadoSeleccionado() {
+        return aprobadoSeleccionado;
+    }
+    public void setAprobadoSeleccionado(Aprobados aprobadoSeleccionado) {
+        this.aprobadoSeleccionado = aprobadoSeleccionado;
     }
     
 }

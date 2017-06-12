@@ -119,33 +119,31 @@
         
         <br/><br/><br/>
         
-        <s:if test="!(#session.rol_Nombre.equalsIgnoreCase('Administrador de Institución') && solicitudSeleccionada.solicitudEstado == 0)">
         <div class="form-row">
             <div class="col-lg-12">
                 <center>
                     <s:a action="solicitudListado" cssClass="btn btn-default">Regresar</s:a>
-                </center>
-                <br/><br/><br/>
-            </div>
-        </div>
-        </s:if>   
-        <s:if test="(#session.rol_Nombre.equalsIgnoreCase('Administrador de Institución') && solicitudSeleccionada.solicitudEstado == 0)">
-        <div class="form-row">
-            <div class="col-lg-12">
-                <center>
-                    <s:a action="solicitudListado" cssClass="btn btn-default">Regresar</s:a>
+                    <s:if test="(#session.rol_Nombre.equalsIgnoreCase('Administrador de Institución') && solicitudSeleccionada.solicitudEstado == 0)">
                     <s:label> </s:label>
                     <s:a action="aprobacionNuevo" cssClass="btn btn-default">
                         <s:param name="solicitudId" value="solicitudSeleccionada.solicitudId"/>Aprobar
                     </s:a>
+                    </s:if>
+                    <s:if test="(#session.rol_Nombre.equalsIgnoreCase('Administrador de Institución') && solicitudSeleccionada.solicitudEstado == 0)">
                     <s:label> </s:label>
                     <s:a action="solicitudDenegar" cssClass="btn btn-default">
                         <s:param name="solicitudId" value="solicitudSeleccionada.solicitudId"/>Denegar
                     </s:a>
+                    </s:if>
+                    <s:if test="(solicitudSeleccionada.solicitudEstado == 10)">
+                    <s:label> </s:label>
+                    <s:a action="aprobacionVer" cssClass="btn btn-default">
+                        <s:param name="solicitudId" value="solicitudSeleccionada.solicitudId"/>Ver Aprobación
+                    </s:a>
+                    </s:if>
                 </center>
                 <br/><br/><br/>
             </div>
         </div>
-        </s:if>
     </form>
 </div>

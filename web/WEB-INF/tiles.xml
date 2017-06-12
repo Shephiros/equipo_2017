@@ -201,5 +201,14 @@
         <put-attribute name="titulo" value="Nueva Aprobación"/>
         <put-attribute name="cuerpo" value="/vistas/compras/aprobacion_nuevo.jsp"/>
     </definition>
+    <definition name="verAprobacion" extends="plantilla">
+        <put-attribute name="titulo" value="Información de Aprobación"/>
+        <put-attribute name="cuerpo" value="/vistas/compras/aprobacion_ver.jsp"/>
+    </definition>
+    
+    <definition name="nuevoOferta" extends="plantilla">
+        <put-attribute name="titulo" value="Nueva Oferta"/>
+        <put-attribute name="cuerpo" value="/vistas/compras/oferta_nuevo.jsp"/>
+    </definition>
     
 </tiles-definitions>

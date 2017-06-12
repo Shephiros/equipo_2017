@@ -79,25 +79,19 @@
 
         <br/><br/><br/><br/><br/><br/>
                 
-        <s:if test="!(#session.rol_Nombre.equalsIgnoreCase('Proveedor'))">
         <div class="form-row">
             <div class="col-lg-12">
                 <center>
                     <s:a action="licitacionListado" cssClass="btn btn-default">Regresar</s:a>
+                    <s:if test="(#session.rol_Nombre.equalsIgnoreCase('Proveedor'))">
+                    <s:label> </s:label>
+                    <s:a action="ofertaNuevo" cssClass="btn btn-default">Ofertar
+                        <s:param name="solicitudId" value="solicitudSeleccionada.solicitudId"/>
+                    </s:a>
+                    </s:if>
                 </center>
                 <br/><br/><br/>
             </div>
         </div>
-        </s:if>
-        <s:if test="#session.rol_Nombre.equalsIgnoreCase('Proveedor')">
-        <div class="form-group">
-            <div class="col-lg-6" align="right">
-                <s:a action="licitacionListado" cssClass="btn btn-default">Cancelar</s:a>
-            </div>
-            <div class="col-lg-6">
-                <s:a action="ofertaNuevo" cssClass="btn btn-default">Ofertar</s:a>
-            </div>
-        </div>
-        </s:if>
     </form>
 </div>

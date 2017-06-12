@@ -245,8 +245,15 @@
         <action name="aprobacionNuevo" class="controladores.ComprasControlador" method="nuevaAprobacion">
             <result type="tiles">nuevoAprobacion</result>
         </action>
+        <action name="aprobacionVer" class="controladores.ComprasControlador" method="verAprobacion">
+            <result type="tiles">verAprobacion</result>
+        </action>
         <action name="aprobacionGuardar" class="controladores.ComprasControlador" method="guardarAprobacion">
-            <result type="tiles">listadoSolicitudes</result>
+            <result type="tiles">listadoSolicitud</result>
+        </action>
+        
+        <action name="ofertaNuevo" class="controladores.ComprasControlador" method="nuevaOferta">
+            <result type="tiles">nuevoOferta</result>
         </action>
         
     </package>

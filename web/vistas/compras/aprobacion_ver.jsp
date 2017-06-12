@@ -2,11 +2,11 @@
 <%@taglib  prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 
-<h2 style="color: navy"><b><center>APROBACIÓN DE SOLICITUD DE COMPRA</center></b></h2><br>
+<h2 style="color: navy"><b><center>INFORMACIÓN DE APROBACIÓN DE SOLICITUD DE COMPRA</center></b></h2><br>
 
 <div class="tab-content">
 
-    <form action="aprobacionGuardar" method="post">
+    <form>
 
         <div class="form-row">
             <div class="col-lg-3">
@@ -55,7 +55,7 @@
                 <s:label value="Fecha:"></s:label>
             </div>
             <div class="col-lg-5">
-                <s:textfield name="nuevoAprobado.aprobadoFecha" cssClass="form-control" cssStyle="width: 20%"></s:textfield>
+                <s:textfield name="aprobadoSeleccionado.aprobadoFecha" cssClass="form-control" disabled="true" cssStyle="width: 20%"></s:textfield>
             </div>
             <div class="col-lg-3" align="right">
                 <s:textfield name="solicitudSeleccionada.solicitudId" cssClass="form-control" cssStyle="color:white; border-color: white; width:0%"></s:textfield>
@@ -71,7 +71,7 @@
                 <s:label value="Responsable:"></s:label>
             </div>
             <div class="col-lg-5">
-                <s:textfield name="nuevoAprobado.aprobadoResponsable" cssClass="form-control" cssStyle="width: 100%"></s:textfield>
+                <s:textfield name="aprobadoSeleccionado.aprobadoResponsable" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textfield>
             </div>
             <div class="col-lg-3">
             </div>
@@ -86,7 +86,7 @@
                 <s:label value="Observaciones:"></s:label>
             </div>
             <div class="col-lg-5">
-            <s:textarea name="nuevoAprobado.aprobadoObservaciones" rows="4" cssClass="form-control" cssStyle="width: 100%"></s:textarea>
+            <s:textarea name="aprobadoSeleccionado.aprobadoObservaciones" rows="4" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textarea>
             </div>
             <div class="col-lg-3">
             </div>
@@ -95,13 +95,10 @@
         <br/><br/><br/><br/><br/><br/>
         
         <div class="form-group">
-            <div class="col-lg-6" align="right">
-                <s:a action="solicitudVer" cssClass="btn btn-default">
-                    <s:param name="solicitudId" value="solicitudSeleccionada.solicitudId"/>Cancelar
+            <div class="col-lg-12" align="center">
+                <s:a action="solicitudVer" cssClass="btn btn-default">Regresar
+                    <s:param name="solicitudId" value="solicitudSeleccionada.solicitudId"/>
                 </s:a>
-            </div>
-            <div class="col-lg-6">
-                <s:submit value="Guardar" align="left" cssClass="btn btn-default"></s:submit>
             </div>
         </div>
     </form>
