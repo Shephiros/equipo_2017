@@ -84,9 +84,15 @@
             <div class="col-lg-12">
                 <center>
                     <s:a action="licitacionListado" cssClass="btn btn-default">Regresar</s:a>
-                    <s:if test="(#session.rol_Nombre.equalsIgnoreCase('Proveedor'))">
+                    <s:if test="(#session.rol_Nombre.equalsIgnoreCase('Proveedor')) && (ofertaSeleccionada == null)">
                     <s:label> </s:label>
                     <s:a action="ofertaNuevo" cssClass="btn btn-default">Ofertar
+                        <s:param name="licitacionId" value="licitacionSeleccionada.licitacionId"/>
+                    </s:a>
+                    </s:if>
+                    <s:if test="(#session.rol_Nombre.equalsIgnoreCase('Proveedor')) && (ofertaSeleccionada != null)">
+                    <s:label> </s:label>
+                    <s:a action="ofertaVer" cssClass="btn btn-default">Ver Oferta
                         <s:param name="licitacionId" value="licitacionSeleccionada.licitacionId"/>
                     </s:a>
                     </s:if>

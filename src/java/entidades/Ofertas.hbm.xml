@@ -6,7 +6,7 @@
     <class name="entidades.Ofertas" table="OFERTAS" schema="EQUIPO" optimistic-lock="version">
         <id name="ofertaId" type="big_decimal">
             <column name="OFERTA_ID" precision="22" scale="0" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <many-to-one name="licitaciones" class="entidades.Licitaciones" fetch="select">
             <column name="LICITACION_ID" precision="22" scale="0" not-null="true" />

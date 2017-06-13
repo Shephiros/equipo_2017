@@ -35,6 +35,12 @@
                         <s:param name="licitacionId" value="licitacionId"/>
                         <i class="glyphicon glyphicon-eye-open"></i>
                     </s:a>
+                    <s:if test="!(#session.rol_Nombre.equalsIgnoreCase('Proveedor'))">
+                    <s:a  action="ofertaListado" cssStyle="color: navy">
+                        <s:param name="licitacionId" value="licitacionId"/>
+                        <i class="glyphicon glyphicon-folder-open"></i>
+                    </s:a>
+                    </s:if>
                 </center>
                 </td>
                 </tr>

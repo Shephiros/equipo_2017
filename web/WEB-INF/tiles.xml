@@ -206,9 +206,17 @@
         <put-attribute name="cuerpo" value="/vistas/compras/aprobacion_ver.jsp"/>
     </definition>
     
+    <definition name="listadoOferta" extends="plantilla">
+        <put-attribute name="titulo" value="Listado de Ofertas"/>
+        <put-attribute name="cuerpo" value="/vistas/compras/oferta_listado.jsp"/>
+    </definition>
     <definition name="nuevoOferta" extends="plantilla">
         <put-attribute name="titulo" value="Nueva Oferta"/>
         <put-attribute name="cuerpo" value="/vistas/compras/oferta_nuevo.jsp"/>
+    </definition>
+    <definition name="verOferta" extends="plantilla">
+        <put-attribute name="titulo" value="Información de Oferta"/>
+        <put-attribute name="cuerpo" value="/vistas/compras/oferta_ver.jsp"/>
     </definition>
     
 </tiles-definitions>

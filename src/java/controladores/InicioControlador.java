@@ -4,10 +4,12 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.InstitucionesDao;
 import dao.PermisosDao;
+import dao.ProveedoresDao;
 import dao.RolesDao;
 import dao.UsuariosDao;
 import entidades.Instituciones;
 import entidades.Permisos;
+import entidades.Proveedores;
 import entidades.Roles;
 import entidades.Usuarios;
 import java.math.BigDecimal;
@@ -19,10 +21,6 @@ import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
 import seguridad.Encryptado;
 
-/**
- *
- * @author Usuario
- */
 public class InicioControlador extends ActionSupport implements SessionAware{
     private ArrayList<Permisos> permisoMenu = new ArrayList<Permisos>();
     private boolean permiso [] = new boolean [100];
@@ -32,6 +30,7 @@ public class InicioControlador extends ActionSupport implements SessionAware{
     private Usuarios us;
     private Roles rol;
     private Instituciones institucion;
+    private Proveedores proveedor;
     private Encryptado ss;
 
     @Override
@@ -43,15 +42,27 @@ public class InicioControlador extends ActionSupport implements SessionAware{
         us= new UsuariosDao().usuarioPorUsuario(usuario);
         ss= new Encryptado();
         rol = new RolesDao().rolPorId(us.getRoles().getRolId());
-        institucion = new InstitucionesDao().institucionPorId(us.getInstituciones().getInstitucionId());
+        if(rol.getRolNombre().equals("Proveedor")){
+            proveedor = new ProveedoresDao().proveedorPorId(us.getProveedores().getProveedorId());}
+        if(rol.getRolNombre().equals("Administrador de Institución") || rol.getRolNombre().equals("Jefe de Unidad")){
+            institucion = new InstitucionesDao().institucionPorId(us.getInstituciones().getInstitucionId());}
+        
         if(contrasenya.equals(us.getUsuarioContrasenia()) || ss.comparar(contrasenya, us.getUsuarioContrasenia())){
             
             sessionMap.put("nombre",us.getUsuarioNombre());
             sessionMap.put("usuario",us.getUsuarioUsuario());
             sessionMap.put("rol_Id",rol.getRolId());
             sessionMap.put("rol_Nombre",rol.getRolNombre());
-            sessionMap.put("institucion",institucion);
-            sessionMap.put("institucion_Id",institucion.getInstitucionId());
+        
+            if (rol.getRolNombre().equals("Proveedor")) {
+                sessionMap.put("proveedor",proveedor);
+                sessionMap.put("proveedor_Id",proveedor.getProveedorId());
+            }
+            if (rol.getRolNombre().equals("Administrador de Institución") || rol.getRolNombre().equals("Jefe de Unidad")) {
+                sessionMap.put("institucion",institucion);
+                sessionMap.put("institucion_Id",institucion.getInstitucionId());
+            }
+
             cargaMenu();
             sessionMap.put("menu", permiso);
             return SUCCESS;

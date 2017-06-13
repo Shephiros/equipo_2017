@@ -8,6 +8,7 @@ import dao.DetalleComprasDao;
 import dao.DetalleSolicitudDao;
 import dao.InstitucionesDao;
 import dao.LicitacionesDao;
+import dao.OfertasDao;
 import dao.ProveedoresDao;
 import dao.SolicitudesDao;
 import dao.TipoSolicitudesDao;
@@ -40,6 +41,7 @@ public class ComprasControlador extends ActionSupport{
     private ArrayList<Licitaciones>todasLicitaciones;
     private ArrayList<TipoSolicitudes>todosTipoSolicitudes;
     private ArrayList<DepartamentosInstitucion> todosDeptosInstitucion;
+    private ArrayList<Ofertas>todasOfertas;
     private ArrayList<Compras>todasCompras;
     private ArrayList<Proveedores>todosProveedores;
     private ArrayList<Instituciones>todasInstituciones;
@@ -56,10 +58,12 @@ public class ComprasControlador extends ActionSupport{
     private Compras nuevaCompra = new Compras();
     private Compras compraSeleccionada = new Compras();
     private Ofertas nuevaOferta = new Ofertas();
+    private Ofertas ofertaSeleccionada = new Ofertas();
     private BigDecimal proveedorId;
     private BigDecimal institucionId;
     private BigDecimal solicitudId;
     private BigDecimal compraId;
+    private BigDecimal ofertaId;
     private BigDecimal licitacionId;
     private BigDecimal deptoInstitucionId;
     private BigDecimal tipoSolicitudId;
@@ -153,6 +157,19 @@ public class ComprasControlador extends ActionSupport{
         return SUCCESS;
     }
     
+    //Método que guarda una nueva oferta.
+    public String guardarOferta() throws Exception{
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
+        Proveedores proveedorU = new Proveedores();
+        proveedorU.setProveedorId((BigDecimal)session.getAttribute("proveedor_Id"));
+        this.nuevaOferta.setProveedores(proveedorU);
+        this.nuevaOferta.setLicitaciones(licitacionSeleccionada);
+        OfertasDao gOferta = new OfertasDao();
+        gOferta.guardarOferta(nuevaOferta);
+        verListadoLicitaciones();
+        return SUCCESS;
+    }
+
 //****************************************************************************//
 //                                Otros métodos                               //
 //****************************************************************************//
@@ -189,6 +206,12 @@ public class ComprasControlador extends ActionSupport{
             this.todasCompras = new ComprasDao().todasCompras();}
         if(session.getAttribute("rol_Nombre").equals("Administrador de Institución") || session.getAttribute("rol_Nombre").equals("Jefe de Unidad")){
             this.todasCompras = new ComprasDao().todasComprasPorInstitucion((BigDecimal)session.getAttribute("institucion_Id"));}
+        return SUCCESS;
+    }
+    
+    //Método para mostrar listado de ofertas por licitación.
+    public String verListadoOfertas() throws Exception {
+        this.todasOfertas = new OfertasDao().todasOfertasPorLicitacionId(licitacionId);
         return SUCCESS;
     }
     
@@ -252,7 +275,10 @@ public class ComprasControlador extends ActionSupport{
     
     //Método para mostrar pantalla de ver licitación de compra.
     public String verLicitacion(){
-        this.todasLicitaciones = new LicitacionesDao().todasLicitaciones();
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
+        //this.todasLicitaciones = new LicitacionesDao().todasLicitaciones();No lo ocupo
+        OfertasDao vOferta = new OfertasDao();
+        this.ofertaSeleccionada = vOferta.ofertaPorProveedorId(licitacionId, (BigDecimal)session.getAttribute("proveedor_Id"));
         LicitacionesDao vLicitacion = new LicitacionesDao();
         this.licitacionSeleccionada = vLicitacion.licitacionPorId(licitacionId);
         SolicitudesDao solicitudDao = new SolicitudesDao();        
@@ -269,7 +295,7 @@ public class ComprasControlador extends ActionSupport{
         InstitucionesDao institucionDao = new InstitucionesDao();
         ProveedoresDao proveedorDao = new ProveedoresDao();
         this.institucionSeleccionada = institucionDao.institucionPorId(compraSeleccionada.getInstituciones().getInstitucionId());
-        this.proveedorSeleccionado = proveedorDao.proveedorPorId(compraSeleccionada.getInstituciones().getInstitucionId());
+        this.proveedorSeleccionado = proveedorDao.proveedorPorId(compraSeleccionada.getProveedores().getProveedorId());
         this.todosDetalleCompras = new DetalleComprasDao().todosDetallePorCompra(compraSeleccionada.getCompraId());
         return SUCCESS;
     }
@@ -290,6 +316,29 @@ public class ComprasControlador extends ActionSupport{
     public String nuevaOferta(){
         LicitacionesDao vLicitacion = new LicitacionesDao();
         this.licitacionSeleccionada = vLicitacion.licitacionPorId(licitacionId);
+        return SUCCESS;
+    }
+    
+    //Método para mostrar pantalla de ver oferta.
+    public String verOferta(){
+        if(licitacionId != null){
+            HttpSession session = ServletActionContext.getRequest().getSession(false);
+            OfertasDao vOferta = new OfertasDao();
+            this.ofertaSeleccionada = vOferta.ofertaPorProveedorId(licitacionId, (BigDecimal)session.getAttribute("proveedor_Id"));
+            LicitacionesDao licitacionDao = new LicitacionesDao();
+            this.licitacionSeleccionada = licitacionDao.licitacionPorId(licitacionId);
+            ProveedoresDao proveedorDao = new ProveedoresDao();
+            this.proveedorSeleccionado = proveedorDao.proveedorPorId((BigDecimal)session.getAttribute("proveedor_Id"));
+        }
+        //Si entro desde listas de ofertas ocupo este bloque if.
+        if(ofertaId != null){
+            OfertasDao vOfertas = new OfertasDao();
+            this.ofertaSeleccionada = vOfertas.ofertaPorId(ofertaId);
+            ProveedoresDao proveedorDao = new ProveedoresDao();
+            this.proveedorSeleccionado = proveedorDao.proveedorPorId(ofertaSeleccionada.getProveedores().getProveedorId());
+            LicitacionesDao licitacionDao = new LicitacionesDao();
+            this.licitacionSeleccionada = licitacionDao.licitacionPorId(ofertaSeleccionada.getLicitaciones().getLicitacionId());
+        }
         return SUCCESS;
     }
     
@@ -498,6 +547,27 @@ public class ComprasControlador extends ActionSupport{
     }
     public void setNuevaOferta(Ofertas nuevaOferta) {
         this.nuevaOferta = nuevaOferta;
+    }
+
+    public Ofertas getOfertaSeleccionada() {
+        return ofertaSeleccionada;
+    }
+    public void setOfertaSeleccionada(Ofertas ofertaSeleccionada) {
+        this.ofertaSeleccionada = ofertaSeleccionada;
+    }
+
+    public ArrayList<Ofertas> getTodasOfertas() {
+        return todasOfertas;
+    }
+    public void setTodasOfertas(ArrayList<Ofertas> todasOfertas) {
+        this.todasOfertas = todasOfertas;
+    }
+
+    public BigDecimal getOfertaId() {
+        return ofertaId;
+    }
+    public void setOfertaId(BigDecimal ofertaId) {
+        this.ofertaId = ofertaId;
     }
         
 }

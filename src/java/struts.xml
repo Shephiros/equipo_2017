@@ -252,11 +252,17 @@
             <result type="tiles">listadoSolicitud</result>
         </action>
         
+        <action name="ofertaListado" class="controladores.ComprasControlador" method="verListadoOfertas">
+            <result type="tiles">listadoOferta</result>
+        </action>
         <action name="ofertaNuevo" class="controladores.ComprasControlador" method="nuevaOferta">
             <result type="tiles">nuevoOferta</result>
         </action>
         <action name="ofertaGuardar" class="controladores.ComprasControlador" method="guardarOferta">
-            <result type="tiles">verLicitacion</result>
+            <result type="tiles">listadoLicitacion</result>
+        </action>
+        <action name="ofertaVer" class="controladores.ComprasControlador" method="verOferta">
+            <result type="tiles">verOferta</result>
         </action>
         
     </package>
