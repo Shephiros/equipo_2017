@@ -76,9 +76,10 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white">Equipo<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><s:a action="menu">Catálogo de equipo</s:a>
-                        <li><s:a action="menu">Mantenimientos</s:a>
-                        <li><s:a action="menu">Alertas</s:a>
+                            <li><s:a action="equipoListado">Catálogo de equipos</s:a>
+                            <li><s:a action="equipoNuevo">Nuevo equipo</s:a>
+                            <li><s:a action="menu">Mantenimientos</s:a>
+                            <li><s:a action="menu">Alertas</s:a>
                     </ul>
                 </li>
             </ul>

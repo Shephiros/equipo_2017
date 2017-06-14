@@ -48,12 +48,12 @@ public class ComprasControlador extends ActionSupport{
     private ArrayList<Contratos>todosContratos;
     private ArrayList<Proveedores>todosProveedores;
     private ArrayList<Instituciones>todasInstituciones;
-    private Aprobados nuevoAprobado = new Aprobados();
-    private Aprobados aprobadoSeleccionado = new Aprobados();
     private Instituciones institucionSeleccionada = new Instituciones();
     private DepartamentosInstitucion deptoInstitucionSeleccionado = new DepartamentosInstitucion();
     private Proveedores proveedorSeleccionado = new Proveedores();
     private TipoSolicitudes tipoSolicitudesSeleccionado = new TipoSolicitudes();
+    private Aprobados nuevoAprobado = new Aprobados();
+    private Aprobados aprobadoSeleccionado = new Aprobados();
     private Solicitudes solicitudSeleccionada = new Solicitudes();
     private Solicitudes nuevaSolicitud = new Solicitudes();
     private Licitaciones nuevaLicitacion = new Licitaciones();
@@ -428,55 +428,6 @@ public class ComprasControlador extends ActionSupport{
         this.todosTipoSolicitudes = todosTipoSolicitudes;
     }
 
-    public Solicitudes getSolicitudSeleccionada() {
-        return solicitudSeleccionada;
-    }
-    public void setSolicitudSeleccionada(Solicitudes solicitudSeleccionada) {
-        this.solicitudSeleccionada = solicitudSeleccionada;
-    }
-
-    public BigDecimal getSolicitudId() {
-        return solicitudId;
-    }
-    public void setSolicitudId(BigDecimal solicitudId) {
-        this.solicitudId = solicitudId;
-    }
-
-    public DepartamentosInstitucion getDeptoInstitucionSeleccionado() {
-        return deptoInstitucionSeleccionado;
-    }
-    public void setDeptoInstitucionSeleccionado(DepartamentosInstitucion deptoInstitucionSeleccionado) {
-        this.deptoInstitucionSeleccionado = deptoInstitucionSeleccionado;
-    }
-
-    public TipoSolicitudes getTipoSolicitudesSeleccionado() {
-        return tipoSolicitudesSeleccionado;
-    }
-    public void setTipoSolicitudesSeleccionado(TipoSolicitudes tipoSolicitudesSeleccionado) {
-        this.tipoSolicitudesSeleccionado = tipoSolicitudesSeleccionado;
-    }
-
-    public BigDecimal getDeptoInstitucionId() {
-        return deptoInstitucionId;
-    }
-    public void setDeptoInstitucionId(BigDecimal deptoInstitucionId) {
-        this.deptoInstitucionId = deptoInstitucionId;
-    }
-
-    public Solicitudes getNuevaSolicitud() {
-        return nuevaSolicitud;
-    }
-    public void setNuevaSolicitud(Solicitudes nuevaSolicitud) {
-        this.nuevaSolicitud = nuevaSolicitud;
-    }
-
-    public BigDecimal getTipoSolicitudId() {
-        return tipoSolicitudId;
-    }
-    public void setTipoSolicitudId(BigDecimal tipoSolicitudId) {
-        this.tipoSolicitudId = tipoSolicitudId;
-    }
-
     public ArrayList<DetalleSolicitud> getTodosDetalleSolicitudes() {
         return todosDetalleSolicitudes;
     }
@@ -498,6 +449,55 @@ public class ComprasControlador extends ActionSupport{
         this.todasInstituciones = todasInstituciones;
     }
 
+    public ArrayList<DetalleCompras> getTodosDetalleCompras() {
+        return todosDetalleCompras;
+    }
+    public void setTodosDetalleCompras(ArrayList<DetalleCompras> todosDetalleCompras) {
+        this.todosDetalleCompras = todosDetalleCompras;
+    }
+
+    public ArrayList<Ofertas> getTodasOfertas() {
+        return todasOfertas;
+    }
+    public void setTodasOfertas(ArrayList<Ofertas> todasOfertas) {
+        this.todasOfertas = todasOfertas;
+    }
+
+    public ArrayList<Contratos> getTodosContratos() {
+        return todosContratos;
+    }
+    public void setTodosContratos(ArrayList<Contratos> todosContratos) {
+        this.todosContratos = todosContratos;
+    }
+   
+    public Solicitudes getSolicitudSeleccionada() {
+        return solicitudSeleccionada;
+    }
+    public void setSolicitudSeleccionada(Solicitudes solicitudSeleccionada) {
+        this.solicitudSeleccionada = solicitudSeleccionada;
+    }
+
+    public DepartamentosInstitucion getDeptoInstitucionSeleccionado() {
+        return deptoInstitucionSeleccionado;
+    }
+    public void setDeptoInstitucionSeleccionado(DepartamentosInstitucion deptoInstitucionSeleccionado) {
+        this.deptoInstitucionSeleccionado = deptoInstitucionSeleccionado;
+    }
+
+    public TipoSolicitudes getTipoSolicitudesSeleccionado() {
+        return tipoSolicitudesSeleccionado;
+    }
+    public void setTipoSolicitudesSeleccionado(TipoSolicitudes tipoSolicitudesSeleccionado) {
+        this.tipoSolicitudesSeleccionado = tipoSolicitudesSeleccionado;
+    }
+
+    public Solicitudes getNuevaSolicitud() {
+        return nuevaSolicitud;
+    }
+    public void setNuevaSolicitud(Solicitudes nuevaSolicitud) {
+        this.nuevaSolicitud = nuevaSolicitud;
+    }
+
     public Compras getNuevaCompra() {
         return nuevaCompra;
     }
@@ -505,32 +505,11 @@ public class ComprasControlador extends ActionSupport{
         this.nuevaCompra = nuevaCompra;
     }
 
-    public BigDecimal getProveedorId() {
-        return proveedorId;
-    }
-    public void setProveedorId(BigDecimal proveedorId) {
-        this.proveedorId = proveedorId;
-    }
-
     public Licitaciones getNuevaLicitacion() {
         return nuevaLicitacion;
     }
     public void setNuevaLicitacion(Licitaciones nuevaLicitacion) {
         this.nuevaLicitacion = nuevaLicitacion;
-    }
-
-    public BigDecimal getInstitucionId() {
-        return institucionId;
-    }
-    public void setInstitucionId(BigDecimal institucionId) {
-        this.institucionId = institucionId;
-    }
-
-    public BigDecimal getLicitacionId() {
-        return licitacionId;
-    }
-    public void setLicitacionId(BigDecimal licitacionId) {
-        this.licitacionId = licitacionId;
     }
 
     public Licitaciones getLicitacionSeleccionada() {
@@ -547,13 +526,6 @@ public class ComprasControlador extends ActionSupport{
         this.compraSeleccionada = compraSeleccionada;
     }
 
-    public BigDecimal getCompraId() {
-        return compraId;
-    }
-    public void setCompraId(BigDecimal compraId) {
-        this.compraId = compraId;
-    }
-
     public Proveedores getProveedorSeleccionado() {
         return proveedorSeleccionado;
     }
@@ -566,13 +538,6 @@ public class ComprasControlador extends ActionSupport{
     }
     public void setInstitucionSeleccionada(Instituciones institucionSeleccionada) {
         this.institucionSeleccionada = institucionSeleccionada;
-    }
-
-    public ArrayList<DetalleCompras> getTodosDetalleCompras() {
-        return todosDetalleCompras;
-    }
-    public void setTodosDetalleCompras(ArrayList<DetalleCompras> todosDetalleCompras) {
-        this.todosDetalleCompras = todosDetalleCompras;
     }
 
     public Aprobados getNuevoAprobado() {
@@ -603,34 +568,6 @@ public class ComprasControlador extends ActionSupport{
         this.ofertaSeleccionada = ofertaSeleccionada;
     }
 
-    public ArrayList<Ofertas> getTodasOfertas() {
-        return todasOfertas;
-    }
-    public void setTodasOfertas(ArrayList<Ofertas> todasOfertas) {
-        this.todasOfertas = todasOfertas;
-    }
-
-    public BigDecimal getOfertaId() {
-        return ofertaId;
-    }
-    public void setOfertaId(BigDecimal ofertaId) {
-        this.ofertaId = ofertaId;
-    }
-
-    public ArrayList<Contratos> getTodosContratos() {
-        return todosContratos;
-    }
-    public void setTodosContratos(ArrayList<Contratos> todosContratos) {
-        this.todosContratos = todosContratos;
-    }
-
-    public BigDecimal getContratoId() {
-        return contratoId;
-    }
-    public void setContratoId(BigDecimal contratoId) {
-        this.contratoId = contratoId;
-    }
-
     public Contratos getNuevoContrato() {
         return nuevoContrato;
     }
@@ -643,6 +580,69 @@ public class ComprasControlador extends ActionSupport{
     }
     public void setContratoSeleccionado(Contratos contratoSeleccionado) {
         this.contratoSeleccionado = contratoSeleccionado;
+    }
+    
+    public BigDecimal getDeptoInstitucionId() {
+        return deptoInstitucionId;
+    }
+    public void setDeptoInstitucionId(BigDecimal deptoInstitucionId) {
+        this.deptoInstitucionId = deptoInstitucionId;
+    }
+
+    public BigDecimal getTipoSolicitudId() {
+        return tipoSolicitudId;
+    }
+    public void setTipoSolicitudId(BigDecimal tipoSolicitudId) {
+        this.tipoSolicitudId = tipoSolicitudId;
+    }
+
+    public BigDecimal getProveedorId() {
+        return proveedorId;
+    }
+    public void setProveedorId(BigDecimal proveedorId) {
+        this.proveedorId = proveedorId;
+    }
+
+    public BigDecimal getInstitucionId() {
+        return institucionId;
+    }
+    public void setInstitucionId(BigDecimal institucionId) {
+        this.institucionId = institucionId;
+    }
+
+    public BigDecimal getLicitacionId() {
+        return licitacionId;
+    }
+    public void setLicitacionId(BigDecimal licitacionId) {
+        this.licitacionId = licitacionId;
+    }
+
+    public BigDecimal getCompraId() {
+        return compraId;
+    }
+    public void setCompraId(BigDecimal compraId) {
+        this.compraId = compraId;
+    }
+
+    public BigDecimal getOfertaId() {
+        return ofertaId;
+    }
+    public void setOfertaId(BigDecimal ofertaId) {
+        this.ofertaId = ofertaId;
+    }
+
+    public BigDecimal getContratoId() {
+        return contratoId;
+    }
+    public void setContratoId(BigDecimal contratoId) {
+        this.contratoId = contratoId;
+    }
+
+    public BigDecimal getSolicitudId() {
+        return solicitudId;
+    }
+    public void setSolicitudId(BigDecimal solicitudId) {
+        this.solicitudId = solicitudId;
     }
     
 }

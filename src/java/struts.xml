@@ -278,6 +278,11 @@
             <result type="tiles">verContrato</result>
         </action>
         
+        <!-- Módulo Equipo -->
+        <action name="equipoListado" class="controladores.EquipoControlador" method="verListadoEquipos">
+            <result type="tiles">listadoEquipo</result>
+        </action>
+        
     </package>
     
 </struts>

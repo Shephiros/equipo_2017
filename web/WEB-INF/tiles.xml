@@ -61,7 +61,7 @@
         <put-attribute name="cuerpo" value="/vistas/administracion/bitacora_listado.jsp"/>
     </definition>
     
-    <!--*************************Modulo Institucion**************************-->
+    <!--*************************Modulo Institución**************************-->
     <definition name="listadoInstitucion" extends="plantilla">
         <put-attribute name="titulo" value="Listado Instituciones"/>
         <put-attribute name="cuerpo" value="/vistas/institucion/institucion_listado.jsp"/>
@@ -157,7 +157,7 @@
         <put-attribute name="cuerpo" value="/vistas/proveedores/prod_proveedor_editar.jsp"/>
     </definition>
     
-    <!--*************************Modulo Institucion**************************-->
+    <!--*************************Modulo Compra**************************-->
     <definition name="listadoSolicitud" extends="plantilla">
         <put-attribute name="titulo" value="Solicitudes"/>
         <put-attribute name="cuerpo" value="/vistas/compras/solicitud_listado.jsp"/>
@@ -230,6 +230,12 @@
     <definition name="verContrato" extends="plantilla">
         <put-attribute name="titulo" value="Información de Contrato de Compra"/>
         <put-attribute name="cuerpo" value="/vistas/compras/contrato_ver.jsp"/>
+    </definition>
+    
+    <!--*************************Modulo Equipo**************************-->
+    <definition name="listadoEquipo" extends="plantilla">
+        <put-attribute name="titulo" value="Catálogo de Equipos"/>
+        <put-attribute name="cuerpo" value="/vistas/equipo/equipo_listado.jsp"/>
     </definition>
     
 </tiles-definitions>
