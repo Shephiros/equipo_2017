@@ -15,7 +15,7 @@
             <column name="BITACORA_FECHA" length="7" not-null="true" />
         </property>
         <property name="bitacoraMovimiento" type="string">
-            <column name="BITACORA_MOVIMIENTO" length="100" not-null="true" />
+            <column name="BITACORA_MOVIMIENTO" length="400" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

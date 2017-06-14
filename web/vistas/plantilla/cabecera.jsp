@@ -51,6 +51,7 @@
                             <s:if test="#session.menu[24]"><li><s:a action="proveedorNuevo">Nuevo proveedor</s:a></s:if>
                             <s:if test="#session.menu[29]"><li><s:a action="prodProveedorListado">Listado de productos</s:a></s:if>
                             <s:if test="#session.menu[30]"><li><s:a action="prodProveedorNuevo">Nuevo producto</s:a></s:if>
+                            <li><s:a action="procedProveedorNuevo">Nuevo Proveedor Procedimiento</s:a>
                         </ul>
                     </li>
                 </ul>

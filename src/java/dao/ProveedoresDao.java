@@ -63,4 +63,23 @@ public class ProveedoresDao {
         session.close();
     }
     
+    //Metodo guardando usuario y proveedor utilizando un procedimiento almacenado.
+    public void pro_proveedor_usuario(BigDecimal municipioId, String proveedor_Empresa, String proveedor_Contacto, String usuario, String nombre, String correo, String contra){
+        SessionFactory sesion=HibernateUtil.getSessionFactory();
+        Session session =sesion.openSession();
+        Transaction tx=session.beginTransaction();
+        Query q = session.getNamedQuery("pro_proveedor_usuario");
+        q.setParameter("P_MUNICIPIO_ID", municipioId.intValue());
+        q.setParameter("P_PROVEEDOR_EMPRESA", proveedor_Empresa);
+        q.setParameter("P_PROVEEDOR_CONTACTO", proveedor_Contacto);
+        q.setParameter("P_USUARIO_USUARIO", usuario);
+        q.setParameter("P_USUARIO_NOMBRE", nombre);
+        q.setParameter("P_USUARIO_CORREO", correo);
+        q.setParameter("P_USUARIO_CONTRASENIA", contra);
+        System.out.println(q);
+        System.out.println("Que sale"+ q.list().toString());
+        tx.commit();
+       // sesion.close();
+    }
+    
 }

@@ -75,6 +75,17 @@ public class ProveedorControlador extends ActionSupport{
         return SUCCESS;
     }
     
+    public String guardarProveedorProced() throws Exception{
+        ProveedoresDao guardar= new ProveedoresDao();
+        guardar.pro_proveedor_usuario(municipioId, nuevoProveedor.getProveedorEmpresa(), 
+                                      nuevoProveedor.getProveedorContacto(),
+                                      nuevoUsuario.getUsuarioUsuario(),
+                                      nuevoUsuario.getUsuarioNombre(), 
+                                      nuevoUsuario.getUsuarioCorreo(),
+                                      nuevoUsuario.getUsuarioContrasenia());
+        execute();
+        return SUCCESS;
+    }
 //****************************************************************************//
 //                           Métodos para actualizar                          //
 //****************************************************************************//

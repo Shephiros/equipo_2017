@@ -78,4 +78,10 @@
             <one-to-many class="entidades.Usuarios" />
         </set>
     </class>
+    
+    <sql-query name="pro_proveedor_usuario" callable="true">
+        <return-scalar column="MENSAJE" type="string"/>
+        
+        {  call pro_proveedor_usuario(?, :P_MUNICIPIO_ID, :P_PROVEEDOR_EMPRESA, :P_PROVEEDOR_CONTACTO, :P_USUARIO_USUARIO, :P_USUARIO_NOMBRE, :P_USUARIO_CORREO, :P_USUARIO_CONTRASENIA)}
+    </sql-query>
 </hibernate-mapping>

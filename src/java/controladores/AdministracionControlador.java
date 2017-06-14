@@ -53,7 +53,7 @@ public class AdministracionControlador extends ActionSupport{
         this.todasPantallas = new PantallasDao().todasPantallas();
         return SUCCESS;
     }
-
+    
     public String mostrarNuevoUsuario(){
         this.todosRoles = new RolesDao().todosRoles();
         return SUCCESS;

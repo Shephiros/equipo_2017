@@ -238,4 +238,10 @@
         <put-attribute name="cuerpo" value="/vistas/equipo/equipo_listado.jsp"/>
     </definition>
     
+    <!--************************* UTILIZANDO PROCEDIMEINTOS*****************-->
+    <definition name="nuevoProveedorProced" extends="plantilla">
+        <put-attribute name="titulo" value="Nuevo Proveedor"/>
+        <put-attribute name="cuerpo" value="/vistas/proveedores/pro_proveedor_nuevo_proced.jsp"/>
+    </definition>
+    
 </tiles-definitions>

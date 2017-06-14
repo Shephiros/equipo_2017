@@ -283,6 +283,14 @@
             <result type="tiles">listadoEquipo</result>
         </action>
         
+        <!--*********************** UTILIZANDO PROCEDIMIENTOS****************-->
+        <action name="procedProveedorNuevo" class="controladores.ProveedorControlador" method="nuevoProveedor">
+            <result type="tiles">nuevoProveedorProced</result>
+        </action>
+        <action name="procedProveedorGuardar" class="controladores.ProveedorControlador" method="guardarProveedorProced">
+            <result type="tiles">listadoProveedor</result>
+        </action>
+        
     </package>
     
 </struts>
