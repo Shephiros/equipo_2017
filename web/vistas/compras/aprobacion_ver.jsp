@@ -86,7 +86,7 @@
                 <s:label value="Observaciones:"></s:label>
             </div>
             <div class="col-lg-5">
-            <s:textarea name="aprobadoSeleccionado.aprobadoObservaciones" rows="4" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textarea>
+                <s:textarea name="aprobadoSeleccionado.aprobadoObservaciones" rows="4" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textarea>
             </div>
             <div class="col-lg-3">
             </div>
@@ -101,5 +101,6 @@
                 </s:a>
             </div>
         </div>
+        <br/><br/><br/><br/>
     </form>
 </div>

@@ -66,8 +66,7 @@
                             <s:if test="#session.menu[37]"><li><s:a action="licitacionNuevo">Nueva Licitación</s:a></s:if>
                             <s:if test="#session.menu[39]"><li><s:a action="compraListado">Listado de compras</s:a></s:if>
                             <s:if test="#session.menu[40]"><li><s:a action="compraNuevo">Nueva compra</s:a></s:if>
-                            <li><s:a action="menu">Contratos</s:a>
-                            <li><s:a action="menu">Garantías</s:a>
+                            <li><s:a action="contratoListado">Contratos de compras</s:a>
                         </ul>
                     </li>
                 </ul>

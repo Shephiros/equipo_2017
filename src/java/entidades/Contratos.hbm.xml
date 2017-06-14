@@ -6,7 +6,7 @@
     <class name="entidades.Contratos" table="CONTRATOS" schema="EQUIPO" optimistic-lock="version">
         <id name="contratoId" type="big_decimal">
             <column name="CONTRATO_ID" precision="22" scale="0" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <many-to-one name="compras" class="entidades.Compras" fetch="select">
             <column name="COMPRA_ID" precision="22" scale="0" not-null="true" />

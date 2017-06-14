@@ -265,6 +265,19 @@
             <result type="tiles">verOferta</result>
         </action>
         
+        <action name="contratoListado" class="controladores.ComprasControlador" method="verListadoContratos">
+            <result type="tiles">listadoContrato</result>
+        </action>
+        <action name="contratoNuevo" class="controladores.ComprasControlador" method="nuevoContrato">
+            <result type="tiles">nuevoContrato</result>
+        </action>
+        <action name="contratoGuardar" class="controladores.ComprasControlador" method="guardarContrato">
+            <result type="tiles">listadoContrato</result>
+        </action>
+        <action name="contratoVer" class="controladores.ComprasControlador" method="verContrato">
+            <result type="tiles">verContrato</result>
+        </action>
+        
     </package>
     
 </struts>

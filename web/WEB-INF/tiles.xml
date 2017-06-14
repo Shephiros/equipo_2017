@@ -219,4 +219,17 @@
         <put-attribute name="cuerpo" value="/vistas/compras/oferta_ver.jsp"/>
     </definition>
     
+    <definition name="listadoContrato" extends="plantilla">
+        <put-attribute name="titulo" value="Listado de Contratos de Compra"/>
+        <put-attribute name="cuerpo" value="/vistas/compras/contrato_listado.jsp"/>
+    </definition>
+    <definition name="nuevoContrato" extends="plantilla">
+        <put-attribute name="titulo" value="Nuevo Contrato de Compra"/>
+        <put-attribute name="cuerpo" value="/vistas/compras/contrato_nuevo.jsp"/>
+    </definition>
+    <definition name="verContrato" extends="plantilla">
+        <put-attribute name="titulo" value="Información de Contrato de Compra"/>
+        <put-attribute name="cuerpo" value="/vistas/compras/contrato_ver.jsp"/>
+    </definition>
+    
 </tiles-definitions>

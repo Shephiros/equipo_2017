@@ -54,7 +54,7 @@
 
 <div class="form-group">
     <div class="col-lg-12" style="text-align: center">
-        <s:a action="licitacionNuevo" cssClass="btn btn-default" >Nueva licitación</s:a>
+        <s:a action="licitacionNuevo" cssClass="btn btn-default" >Nueva Licitación</s:a>
     </div>
 </div>
 

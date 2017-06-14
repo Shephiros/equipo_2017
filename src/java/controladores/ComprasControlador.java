@@ -3,6 +3,7 @@ package controladores;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.AprobadosDao;
 import dao.ComprasDao;
+import dao.ContratosDao;
 import dao.DepartamentosInstitucionDao;
 import dao.DetalleComprasDao;
 import dao.DetalleSolicitudDao;
@@ -14,6 +15,7 @@ import dao.SolicitudesDao;
 import dao.TipoSolicitudesDao;
 import entidades.Aprobados;
 import entidades.Compras;
+import entidades.Contratos;
 import entidades.DepartamentosInstitucion;
 import entidades.DetalleCompras;
 import entidades.DetalleSolicitud;
@@ -43,6 +45,7 @@ public class ComprasControlador extends ActionSupport{
     private ArrayList<DepartamentosInstitucion> todosDeptosInstitucion;
     private ArrayList<Ofertas>todasOfertas;
     private ArrayList<Compras>todasCompras;
+    private ArrayList<Contratos>todosContratos;
     private ArrayList<Proveedores>todosProveedores;
     private ArrayList<Instituciones>todasInstituciones;
     private Aprobados nuevoAprobado = new Aprobados();
@@ -55,6 +58,8 @@ public class ComprasControlador extends ActionSupport{
     private Solicitudes nuevaSolicitud = new Solicitudes();
     private Licitaciones nuevaLicitacion = new Licitaciones();
     private Licitaciones licitacionSeleccionada = new Licitaciones();
+    private Contratos nuevoContrato = new Contratos();
+    private Contratos contratoSeleccionado = new Contratos();
     private Compras nuevaCompra = new Compras();
     private Compras compraSeleccionada = new Compras();
     private Ofertas nuevaOferta = new Ofertas();
@@ -63,6 +68,7 @@ public class ComprasControlador extends ActionSupport{
     private BigDecimal institucionId;
     private BigDecimal solicitudId;
     private BigDecimal compraId;
+    private BigDecimal contratoId;
     private BigDecimal ofertaId;
     private BigDecimal licitacionId;
     private BigDecimal deptoInstitucionId;
@@ -170,6 +176,17 @@ public class ComprasControlador extends ActionSupport{
         return SUCCESS;
     }
 
+    //Método que guarda un contrato de compra.
+    public String guardarContrato() throws Exception{
+        Compras compraU = new Compras();
+        compraU.setCompraId(compraId);
+        this.nuevoContrato.setCompras(compraU);
+        ContratosDao gContrato = new ContratosDao();
+        gContrato.guardarContrato(nuevoContrato);
+        verListadoContratos();
+        return SUCCESS;
+    }
+
 //****************************************************************************//
 //                                Otros métodos                               //
 //****************************************************************************//
@@ -209,6 +226,16 @@ public class ComprasControlador extends ActionSupport{
         return SUCCESS;
     }
     
+    //Método para mostrar listado de contratos.
+    public String verListadoContratos() throws Exception {
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
+        if(session.getAttribute("rol_Nombre").equals("Administrador del Sistema")){
+            this.todosContratos = new ContratosDao().todosContratos();}
+        if(session.getAttribute("rol_Nombre").equals("Administrador de Institución") || session.getAttribute("rol_Nombre").equals("Jefe de Unidad")){
+            this.todosContratos = new ContratosDao().todosContratosPorInstitucion((BigDecimal)session.getAttribute("institucion_Id"));}
+        return SUCCESS;
+    }
+    
     //Método para mostrar listado de ofertas por licitación.
     public String verListadoOfertas() throws Exception {
         this.todasOfertas = new OfertasDao().todasOfertasPorLicitacionId(licitacionId);
@@ -233,6 +260,16 @@ public class ComprasControlador extends ActionSupport{
             this.todasSolicitudes = new SolicitudesDao().todasSolicitudes();}
         if(session.getAttribute("rol_Nombre").equals("Administrador de Institución") || session.getAttribute("rol_Nombre").equals("Jefe de Unidad")){
             this.todasSolicitudes = new SolicitudesDao().todasSolicitudesPorInstitucion((BigDecimal)session.getAttribute("institucion_Id"));}
+        return SUCCESS;
+    }
+    
+    //Método para mostrar pantalla de nuevo contrato de compra.
+    public String nuevoContrato(){
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
+        if(session.getAttribute("rol_Nombre").equals("Administrador del Sistema")){
+            this.todasCompras = new ComprasDao().todasCompras();}
+        if(session.getAttribute("rol_Nombre").equals("Administrador de Institución") || session.getAttribute("rol_Nombre").equals("Jefe de Unidad")){
+            this.todasCompras = new ComprasDao().todasComprasPorInstitucion((BigDecimal)session.getAttribute("institucion_Id"));}
         return SUCCESS;
     }
     
@@ -297,6 +334,16 @@ public class ComprasControlador extends ActionSupport{
         this.institucionSeleccionada = institucionDao.institucionPorId(compraSeleccionada.getInstituciones().getInstitucionId());
         this.proveedorSeleccionado = proveedorDao.proveedorPorId(compraSeleccionada.getProveedores().getProveedorId());
         this.todosDetalleCompras = new DetalleComprasDao().todosDetallePorCompra(compraSeleccionada.getCompraId());
+        return SUCCESS;
+    }
+    
+    //Método para mostrar pantalla de ver contrato.
+    public String verContrato(){
+        this.todasCompras = new ComprasDao().todasCompras();
+        ContratosDao vContrato = new ContratosDao();
+        this.contratoSeleccionado = vContrato.contratoPorId(contratoId);
+        ComprasDao compraDao = new ComprasDao();
+        this.compraSeleccionada = compraDao.compraPorId(contratoSeleccionado.getCompras().getCompraId());
         return SUCCESS;
     }
     
@@ -569,5 +616,33 @@ public class ComprasControlador extends ActionSupport{
     public void setOfertaId(BigDecimal ofertaId) {
         this.ofertaId = ofertaId;
     }
-        
+
+    public ArrayList<Contratos> getTodosContratos() {
+        return todosContratos;
+    }
+    public void setTodosContratos(ArrayList<Contratos> todosContratos) {
+        this.todosContratos = todosContratos;
+    }
+
+    public BigDecimal getContratoId() {
+        return contratoId;
+    }
+    public void setContratoId(BigDecimal contratoId) {
+        this.contratoId = contratoId;
+    }
+
+    public Contratos getNuevoContrato() {
+        return nuevoContrato;
+    }
+    public void setNuevoContrato(Contratos nuevoContrato) {
+        this.nuevoContrato = nuevoContrato;
+    }
+
+    public Contratos getContratoSeleccionado() {
+        return contratoSeleccionado;
+    }
+    public void setContratoSeleccionado(Contratos contratoSeleccionado) {
+        this.contratoSeleccionado = contratoSeleccionado;
+    }
+    
 }

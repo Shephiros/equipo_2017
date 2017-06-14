@@ -90,5 +90,6 @@
                 <s:submit value="Guardar" align="left" cssClass="btn btn-default"></s:submit>
             </div>
         </div>
+        <br/><br/><br/><br/>
     </form>
 </div>
