@@ -8,8 +8,8 @@
             <column name="EQUIPO_ID" precision="22" scale="0" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="detalleCompras" class="entidades.DetalleCompras" fetch="select">
-            <column name="DET_COMPRA_ID" precision="22" scale="0" not-null="true" />
+        <many-to-one name="compras" class="entidades.Compras" fetch="select">
+            <column name="COMPRA_ID" precision="22" scale="0" not-null="true" />
         </many-to-one>
         <property name="equipoNombre" type="string">
             <column name="EQUIPO_NOMBRE" length="50" not-null="true" />

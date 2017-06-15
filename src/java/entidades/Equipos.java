@@ -14,7 +14,7 @@ public class Equipos  implements java.io.Serializable {
 
 
      private BigDecimal equipoId;
-     private DetalleCompras detalleCompras;
+     private Compras compras;
      private String equipoNombre;
      private String equipoMarca;
      private String equipoModelo;
@@ -33,17 +33,17 @@ public class Equipos  implements java.io.Serializable {
     }
 
 	
-    public Equipos(BigDecimal equipoId, DetalleCompras detalleCompras, String equipoNombre, String equipoMarca, Date equipoFechaCompra, BigDecimal equipoEstado) {
+    public Equipos(BigDecimal equipoId, Compras compras, String equipoNombre, String equipoMarca, Date equipoFechaCompra, BigDecimal equipoEstado) {
         this.equipoId = equipoId;
-        this.detalleCompras = detalleCompras;
+        this.compras = compras;
         this.equipoNombre = equipoNombre;
         this.equipoMarca = equipoMarca;
         this.equipoFechaCompra = equipoFechaCompra;
         this.equipoEstado = equipoEstado;
     }
-    public Equipos(BigDecimal equipoId, DetalleCompras detalleCompras, String equipoNombre, String equipoMarca, String equipoModelo, Date equipoFechaCompra, BigDecimal equipoAnioFabricacion, Double equipoBtu, Double equipoPotencia, Date equipoMantenimiento, BigDecimal equipoEstado, Set detalleInstalacions, Set documentoses, Set alertases, Set detalleMantenimientos) {
+    public Equipos(BigDecimal equipoId, Compras compras, String equipoNombre, String equipoMarca, String equipoModelo, Date equipoFechaCompra, BigDecimal equipoAnioFabricacion, Double equipoBtu, Double equipoPotencia, Date equipoMantenimiento, BigDecimal equipoEstado, Set detalleInstalacions, Set documentoses, Set alertases, Set detalleMantenimientos) {
        this.equipoId = equipoId;
-       this.detalleCompras = detalleCompras;
+       this.compras = compras;
        this.equipoNombre = equipoNombre;
        this.equipoMarca = equipoMarca;
        this.equipoModelo = equipoModelo;
@@ -66,12 +66,12 @@ public class Equipos  implements java.io.Serializable {
     public void setEquipoId(BigDecimal equipoId) {
         this.equipoId = equipoId;
     }
-    public DetalleCompras getDetalleCompras() {
-        return this.detalleCompras;
+    public Compras getCompras() {
+        return this.compras;
     }
     
-    public void setDetalleCompras(DetalleCompras detalleCompras) {
-        this.detalleCompras = detalleCompras;
+    public void setCompras(Compras compras) {
+        this.compras = compras;
     }
     public String getEquipoNombre() {
         return this.equipoNombre;
