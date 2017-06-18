@@ -161,7 +161,7 @@
         </action>
         
         <!-- Módulo Proveedores -->
-        <action name="proveedorListado" class="controladores.ProveedorControlador" method="execute">
+        <action name="proveedorListado" class="controladores.ProveedorControlador" method="verListadoProveedores">
             <result type="tiles">listadoProveedor</result>
         </action>
         <action name="proveedorNuevo" class="controladores.ProveedorControlador" method="nuevoProveedor">
@@ -180,7 +180,7 @@
             <result type="tiles">listadoProveedor</result>
         </action>
                 
-        <action name="prodProveedorListado" class="controladores.ProveedorControlador" method="execute">
+        <action name="prodProveedorListado" class="controladores.ProveedorControlador" method="verListadoProdProveedor">
             <result type="tiles">listadoProdProveedor</result>
         </action>
         <action name="prodProveedorNuevo" class="controladores.ProveedorControlador" method="nuevoProdProveedor">
@@ -210,7 +210,13 @@
             <result type="tiles">verSolicitud</result>
         </action>
         <action name="solicitudGuardar" class="controladores.ComprasControlador" method="guardarSolicitud">
-            <result type="tiles">listadoSolicitud</result>
+            <result type="tiles">editarSolicitud</result>
+        </action>
+        <action name="solicitudEditar" class="controladores.ComprasControlador" method="verSolicitud">
+            <result type="tiles">editarSolicitud</result>
+        </action>
+        <action name="solicitudActualizar" class="controladores.ComprasControlador" method="actualizarSolicitud">
+            <result type="tiles">editarSolicitud</result>
         </action>
         <action name="solicitudDenegar" class="controladores.ComprasControlador" method="denegarSolicitud">
             <result type="tiles">listadoSolicitud</result>
@@ -239,7 +245,13 @@
             <result type="tiles">verCompra</result>
         </action>
         <action name="compraGuardar" class="controladores.ComprasControlador" method="guardarCompra">
-            <result type="tiles">listadoCompra</result>
+            <result type="tiles">editarCompra</result>
+        </action>
+        <action name="compraEditar" class="controladores.ComprasControlador" method="verCompra">
+            <result type="tiles">editarCompra</result>
+        </action>
+        <action name="compraActualizar" class="controladores.ComprasControlador" method="actualizarCompra">
+            <result type="tiles">editarCompra</result>
         </action>
         
         <action name="aprobacionNuevo" class="controladores.ComprasControlador" method="nuevaAprobacion">

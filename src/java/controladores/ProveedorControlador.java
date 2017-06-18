@@ -1,5 +1,6 @@
 package controladores;
 
+import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.MunicipiosDao;
 import dao.ProductosProveedorDao;
@@ -12,6 +13,8 @@ import entidades.Roles;
 import entidades.Usuarios;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
+import org.apache.struts2.ServletActionContext;
 
 public class ProveedorControlador extends ActionSupport{
 
@@ -32,24 +35,28 @@ public class ProveedorControlador extends ActionSupport{
     private BigDecimal prodProveedorId;
     private BigDecimal municipioId;
     
-//****************************************************************************//
-//                            Métodos para guardar                            //
-//****************************************************************************//
-
-    public String guardarProdProveedor() throws Exception{
-        this.todosProveedores = new ProveedoresDao().todosProveedores();
-        ProductosProveedorDao gProdProveedor = new ProductosProveedorDao();
-        Proveedores proveedorU = new Proveedores();
-        proveedorU.setProveedorId(proveedorId);
-        this.nuevoProdProveedor.setProveedores(proveedorU);
-        gProdProveedor.guardarProductosProveedor(nuevoProdProveedor);
-        this.setProveedorId(BigDecimal.ZERO);
-        nuevoProdProveedor = new ProductosProveedor();
-        this.todosProveedores = new ProveedoresDao().todosProveedores();
-        execute();
+    @Override
+    public String execute() throws Exception {
         return SUCCESS;
     }
     
+//****************************************************************************//
+//                         Métodos para CRUD Proveedores                      //
+//****************************************************************************//
+    
+    //Método para mostrar listado de proveedores.
+    public String verListadoProveedores()throws Exception {
+        this.todosProveedores = new ProveedoresDao().todosProveedores();
+        return SUCCESS;
+    }
+
+    //Método para mostrar pantalla de nuevo proveedor.
+    public String nuevoProveedor(){
+        this.todosMunicipios = new MunicipiosDao().todosMunicipios();
+        return SUCCESS;
+    }
+
+    //Método que guarda un proveedor y crea su respectivo usuario.
     public String guardarProveedor() throws Exception{
         this.todosMunicipios = new MunicipiosDao().todosMunicipios();
         ProveedoresDao gProveedor = new ProveedoresDao();
@@ -57,7 +64,6 @@ public class ProveedorControlador extends ActionSupport{
         municipioU.setMunicipioId(municipioId);
         this.nuevoProveedor.setMunicipios(municipioU);
         gProveedor.guardarProveedor(nuevoProveedor);
-        
         UsuariosDao gUsuario = new UsuariosDao();
         Roles rolU = new Roles();
         rolU.setRolId(BigDecimal.ONE);
@@ -66,12 +72,64 @@ public class ProveedorControlador extends ActionSupport{
         this.nuevoUsuario.setUsuarioBloqueado(BigDecimal.ONE);
         this.nuevoUsuario.setUsuarioEstado(BigDecimal.ONE);
         gUsuario.guardarUsuario(nuevoUsuario);
-        
-        this.setMunicipioId(BigDecimal.ZERO);
-        nuevoProveedor = new Proveedores();
-        nuevoUsuario = new Usuarios();
+        verListadoProveedores();
+        return SUCCESS;
+    }
+    
+    //Método que actualiza un proveedor.
+    public String actualizarProveedor() throws Exception{
         this.todosMunicipios = new MunicipiosDao().todosMunicipios();
-        execute();
+        ProveedoresDao eProveedor = new ProveedoresDao();
+        Municipios municipioU = new Municipios(); 
+        municipioU.setMunicipioId(municipioId);
+        this.proveedorSeleccionado.setMunicipios(municipioU);
+        eProveedor.actualizarProveedor(proveedorSeleccionado);
+        verListadoProveedores();
+        return SUCCESS;
+    }
+    
+    //Método que muestra un proveedor.
+    public String verProveedor(){
+        this.todosMunicipios = new MunicipiosDao().todosMunicipios();
+        ProveedoresDao vProveedor = new ProveedoresDao();
+        this.proveedorSeleccionado = vProveedor.proveedorPorId(proveedorId);
+        MunicipiosDao municipioDao = new MunicipiosDao();
+        this.municipioSeleccionado = municipioDao.municipionPorId(proveedorSeleccionado.getMunicipios().getMunicipioId());
+        return SUCCESS;
+    }
+    
+//****************************************************************************//
+//                      Métodos para CRUD ProductosProveedor                  //
+//****************************************************************************//
+    
+    //Método para mostrar listado de proveedores.
+    public String verListadoProdProveedor()throws Exception {
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
+        if(session.getAttribute("rol_Nombre").equals("Proveedor")){
+            this.todosProductosProveedor = new ProductosProveedorDao().todosProductosPorProveedor((BigDecimal)session.getAttribute("proveedor_Id"));}
+        if(session.getAttribute("rol_Nombre").equals("Administrador del Sistema") || session.getAttribute("rol_Nombre").equals("Administrador de Institución") || session.getAttribute("rol_Nombre").equals("Jefe de Unidad")){
+            this.todosProductosProveedor = new ProductosProveedorDao().todosProductosProveedor();}
+        return SUCCESS;
+    }
+
+    //Método para mostrar pantalla de nuevo producto de proveedor.
+    public String nuevoProdProveedor(){
+        this.todosProveedores = new ProveedoresDao().todosProveedores();
+        return SUCCESS;
+    }
+    
+    //Método que guarda un nuevo producto de proveedor.
+    public String guardarProdProveedor() throws Exception{
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
+        if(session.getAttribute("rol_Nombre").equals("Administrador del Sistema") || session.getAttribute("rol_Nombre").equals("Administrador de Institución") || session.getAttribute("rol_Nombre").equals("Jefe de Unidad")){
+            Proveedores proveedorU = new Proveedores();
+            proveedorU.setProveedorId(proveedorId);
+            this.nuevoProdProveedor.setProveedores(proveedorU);}
+        if(session.getAttribute("rol_Nombre").equals("Proveedor")){
+            this.nuevoProdProveedor.setProveedores((Proveedores)session.getAttribute("proveedor"));}
+        ProductosProveedorDao gProdProveedor = new ProductosProveedorDao();
+        gProdProveedor.guardarProductosProveedor(nuevoProdProveedor);
+        verListadoProdProveedor();
         return SUCCESS;
     }
     
@@ -86,70 +144,29 @@ public class ProveedorControlador extends ActionSupport{
         execute();
         return SUCCESS;
     }
-//****************************************************************************//
-//                           Métodos para actualizar                          //
-//****************************************************************************//
-
+    
+    //Método que actualiza un producto de proveedor.
     public String actualizarProdProveedor() throws Exception{
-        this.todosProveedores = new ProveedoresDao().todosProveedores();
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
+        if(session.getAttribute("rol_Nombre").equals("Administrador del Sistema") || session.getAttribute("rol_Nombre").equals("Administrador de Institución") || session.getAttribute("rol_Nombre").equals("Jefe de Unidad")){
+            Proveedores proveedorU = new Proveedores();
+            proveedorU.setProveedorId(proveedorId);
+            this.prodProveedorSeleccionado.setProveedores(proveedorU);}
+        if(session.getAttribute("rol_Nombre").equals("Proveedor")){
+            this.prodProveedorSeleccionado.setProveedores((Proveedores)session.getAttribute("proveedor"));}
         ProductosProveedorDao eProdProveedor = new ProductosProveedorDao();
-        Proveedores proveedorU = new Proveedores(); 
-        proveedorU.setProveedorId(proveedorId);
-        this.prodProveedorSeleccionado.setProveedores(proveedorU);
-        /*Guardando y cargando el nuevo rol*/
         eProdProveedor.actualizarProdProveedor(prodProveedorSeleccionado);
-        execute();
+        verListadoProdProveedor();
         return SUCCESS;
     }
     
-    public String actualizarProveedor() throws Exception{
-        this.todosMunicipios = new MunicipiosDao().todosMunicipios();
-        ProveedoresDao eProveedor = new ProveedoresDao();
-        Municipios municipioU = new Municipios(); 
-        municipioU.setMunicipioId(municipioId);
-        this.proveedorSeleccionado.setMunicipios(municipioU);
-        /*Guardando y cargando el nuevo rol*/
-        eProveedor.actualizarProveedor(proveedorSeleccionado);
-        execute();
-        return SUCCESS;
-    }
-    
-//****************************************************************************//
-//                                Otros métodos                               //
-//****************************************************************************//
-
-    @Override
-    public String execute() throws Exception {
-        this.todosProveedores = new ProveedoresDao().todosProveedores();
-        this.todosProductosProveedor = new ProductosProveedorDao().todosProductosProveedor();
-        return SUCCESS;
-    }
-    
-    public String nuevoProdProveedor(){
-        this.todosProveedores = new ProveedoresDao().todosProveedores();
-        return SUCCESS;
-    }
-    
+    //Método que muestra un producto de proveedor.
     public String verProdProveedor(){
         this.todosProveedores = new ProveedoresDao().todosProveedores();
         ProductosProveedorDao vProdProveedor = new ProductosProveedorDao();
         this.prodProveedorSeleccionado = vProdProveedor.prodProveedorPorId(prodProveedorId);
         ProveedoresDao proveedorDao = new ProveedoresDao();
         this.proveedorSeleccionado = proveedorDao.proveedorPorId(prodProveedorSeleccionado.getProveedores().getProveedorId());
-        return SUCCESS;
-    }
-    
-    public String nuevoProveedor(){
-        this.todosMunicipios = new MunicipiosDao().todosMunicipios();
-        return SUCCESS;
-    }
-    
-    public String verProveedor(){
-        this.todosMunicipios = new MunicipiosDao().todosMunicipios();
-        ProveedoresDao vProveedor = new ProveedoresDao();
-        this.proveedorSeleccionado = vProveedor.proveedorPorId(proveedorId);
-        MunicipiosDao municipioDao = new MunicipiosDao();
-        this.municipioSeleccionado = municipioDao.municipionPorId(proveedorSeleccionado.getMunicipios().getMunicipioId());
         return SUCCESS;
     }
     
@@ -240,6 +257,5 @@ public class ProveedorControlador extends ActionSupport{
     public void setNuevoUsuario(Usuarios nuevoUsuario) {
         this.nuevoUsuario = nuevoUsuario;
     }
-
     
 }

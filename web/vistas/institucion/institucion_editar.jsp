@@ -12,27 +12,13 @@
             <div class="col-lg-3">
             </div>
             <div class="col-lg-1">
-                <s:label value="Id:"></s:label>
-            </div>
-            <div class="col-lg-5">
-                <s:textfield name="institucionSeleccionada.institucionId" cssClass="form-control" cssStyle="width: 10%"></s:textfield>
-            </div>
-            <div class="col-lg-3">
-            </div>
-        </div>
-
-        <br/><br/><br/>
-
-        <div class="form-row">
-            <div class="col-lg-3">
-            </div>
-            <div class="col-lg-1">
                 <s:label value="Nombre:"></s:label>
             </div>
             <div class="col-lg-5">
                 <s:textfield name="institucionSeleccionada.institucionNombre" cssClass="form-control" cssStyle="width: 100%"></s:textfield>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3" align="right">
+                <s:textfield name="institucionSeleccionada.institucionId" cssClass="form-control" cssStyle="color:white; border-color: white; width:0%"></s:textfield>
             </div>
         </div>
 

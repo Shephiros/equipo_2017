@@ -15,7 +15,7 @@
                 <s:label value="Unidad Solicitante:"></s:label>
             </div>
             <div class="col-lg-5">
-                <s:textfield name="deptoInstitucionSeleccionado.deptoInstitucionNombre" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textfield>
+                <s:textfield name="deptoInstitucionSeleccionado.deptoInstitucionNombre" cssClass="form-control" readonly="true" cssStyle="width: 100%"></s:textfield>
             </div>
             <div class="col-lg-3">
             </div>
@@ -23,7 +23,7 @@
         
         <br/><br/><br/>
 
-        <div class="form-row">
+        <div class="container" style="width: 100%">
             <div class="col-lg-3">
             </div>
             <div class="col-lg-6">
@@ -45,8 +45,6 @@
             <div class="col-lg-3">
             </div>
         </div>
-        
-        <br/><br/><br/>
         
         <div class="form-row">
             <div class="col-lg-3">

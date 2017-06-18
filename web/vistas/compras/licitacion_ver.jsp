@@ -14,7 +14,7 @@
                 <s:label value="Solicitud:"></s:label>
             </div>
             <div class="col-lg-2">
-                <s:textfield name="solicitudSeleccionada.solicitudCodigo" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textfield>
+                <s:textfield name="solicitudSeleccionada.solicitudCodigo" cssClass="form-control" readonly="true" cssStyle="width: 100%"></s:textfield>
             </div>
             <div class="col-lg-6" align="right">
                 <s:textfield name="licitacionSeleccionada.licitacionId" cssClass="form-control" cssStyle="color:white; border-color: white; width:0%"></s:textfield>
@@ -30,13 +30,13 @@
                 <s:label value="Número:"></s:label>
             </div>
             <div class="col-lg-2">
-                <s:textfield name="licitacionSeleccionada.licitacionNumero" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textfield>
+                <s:textfield name="licitacionSeleccionada.licitacionNumero" cssClass="form-control" readonly="true" cssStyle="width: 100%"></s:textfield>
             </div>
             <div class="col-lg-1" style="text-align: right">
                 <s:label value="Año:"></s:label>
             </div>
             <div class="col-lg-2">
-                <s:textfield name="licitacionSeleccionada.licitacionAnio" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textfield>
+                <s:textfield name="licitacionSeleccionada.licitacionAnio" cssClass="form-control" readonly="true" cssStyle="width: 100%"></s:textfield>
             </div>
             <div class="col-lg-3">
             </div>
@@ -51,13 +51,13 @@
                 <s:label value="Inicio:"></s:label>
             </div>
             <div class="col-lg-2">
-                <s:textfield name="licitacionSeleccionada.licitacionInicio" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textfield>
+                <s:textfield name="licitacionSeleccionada.licitacionInicio" cssClass="form-control" readonly="true" cssStyle="width: 100%"></s:textfield>
             </div>
             <div class="col-lg-1" style="text-align: right">
                 <s:label value="Finalización:"></s:label>
             </div>
             <div class="col-lg-2">
-                <s:textfield name="licitacionSeleccionada.licitacionFinalizacion" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textfield>
+                <s:textfield name="licitacionSeleccionada.licitacionFinalizacion" cssClass="form-control" readonly="true" cssStyle="width: 100%"></s:textfield>
             </div>
             <div class="col-lg-3">
             </div>
@@ -72,7 +72,7 @@
                 <s:label value="Descripción:"></s:label>
             </div>
             <div class="col-lg-5">
-                <s:textarea name="licitacionSeleccionada.licitacionDescripcion" rows="4" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textarea>
+                <s:textarea name="licitacionSeleccionada.licitacionDescripcion" rows="4" cssClass="form-control" readonly="true" cssStyle="width: 100%"></s:textarea>
             </div>
             <div class="col-lg-3">
             </div>

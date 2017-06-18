@@ -74,11 +74,11 @@ public class SolicitudesDao {
     }
     
     //Método que actualiza las solicitudes de compras.
-    public void actualizarSolicitud(Solicitudes solicitudId){
+    public void actualizarSolicitud(Solicitudes solicitud){
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
-        session.update(solicitudId);
+        session.update(solicitud);
         tx.commit();
         session.close();
     }

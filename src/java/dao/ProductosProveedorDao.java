@@ -32,6 +32,26 @@ public class ProductosProveedorDao {
         return arreglo;
     }
     
+    //Método que obtiene una lista de todos los productos de proveedor por Id de proveedor.
+    public ArrayList<ProductosProveedor> todosProductosPorProveedor(BigDecimal proveedorId)
+    {
+        SessionFactory sesion=HibernateUtil.getSessionFactory();
+        Session session =sesion.openSession();
+        Transaction tx=session.beginTransaction();
+        ArrayList<ProductosProveedor> arreglo = new ArrayList<ProductosProveedor>();
+        Query q=session.createQuery("from ProductosProveedor where proveedores.proveedorId = "+proveedorId);
+        List<ProductosProveedor> lista=q.list();
+        Iterator<ProductosProveedor> iter=lista.iterator();
+        tx.commit();
+        session.close();
+        while(iter.hasNext())
+        {
+            ProductosProveedor prodp = (ProductosProveedor) iter.next();
+            arreglo.add(prodp);
+        }
+        return arreglo;
+    }
+
     //Método que guarda los productos de prveedores.
     public void guardarProductosProveedor(ProductosProveedor prodProveedor){
         SessionFactory factory = HibernateUtil.getSessionFactory();

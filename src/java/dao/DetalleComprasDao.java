@@ -32,4 +32,14 @@ public class DetalleComprasDao {
         return arreglo;
     }
     
+    //Método que guarda los detalles de compra.
+    public void guardarDetalleCompra(DetalleCompras detalleCompra){
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        session.save(detalleCompra);
+        tx.commit();
+        session.close();
+    }
+    
 }

@@ -73,4 +73,14 @@ public class ComprasDao {
         return comp;
     }
     
+    //Método que actualiza las compras.
+    public void actualizarCompra(Compras compra){
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        session.update(compra);
+        tx.commit();
+        session.close();
+    }
+    
 }

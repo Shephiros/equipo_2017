@@ -14,7 +14,7 @@
                 <s:label value="Unidad Solicitante:"></s:label>
             </div>
             <div class="col-lg-5">
-                <s:textfield name="deptoInstitucionSeleccionado.deptoInstitucionNombre" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textfield>
+                <s:textfield name="deptoInstitucionSeleccionado.deptoInstitucionNombre" cssClass="form-control" readonly="true" cssStyle="width: 100%"></s:textfield>
             </div>
             <div class="col-lg-3">
             </div>
@@ -29,13 +29,13 @@
                 <s:label value="Tipo:"></s:label>
             </div>
             <div class="col-lg-2">
-                <s:textfield name="tipoSolicitudesSeleccionado.tipoSolicitudNombre" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textfield>
+                <s:textfield name="tipoSolicitudesSeleccionado.tipoSolicitudNombre" cssClass="form-control" readonly="true" cssStyle="width: 100%"></s:textfield>
             </div>
             <div class="col-lg-1" style="text-align: right">
                 <s:label value="Estado:"></s:label>
             </div>
             <div class="col-lg-2">
-                <s:textfield name="(solicitudSeleccionada.solicitudEstado == 0) ?'En proceso de aprobación':((solicitudSeleccionada.solicitudEstado == 1) ?'Denegado':'Aprobado')" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textfield>
+                <s:textfield name="(solicitudSeleccionada.solicitudEstado == 0) ?'En proceso de aprobación':((solicitudSeleccionada.solicitudEstado == 1) ?'Denegado':'Aprobado')" cssClass="form-control" readonly="true" cssStyle="width: 100%"></s:textfield>
             </div>
             <div class="col-lg-6">
             </div>
@@ -50,13 +50,13 @@
                 <s:label value="Código:"></s:label>
             </div>
             <div class="col-lg-2">
-                <s:textfield name="solicitudSeleccionada.solicitudCodigo" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textfield>
+                <s:textfield name="solicitudSeleccionada.solicitudCodigo" cssClass="form-control" readonly="true" cssStyle="width: 100%"></s:textfield>
             </div>
             <div class="col-lg-1" style="text-align: right">
                 <s:label value="Fecha:"></s:label>
             </div>
             <div class="col-lg-2">
-                <s:textfield name="solicitudSeleccionada.solicitudFecha" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textfield>
+                <s:textfield name="solicitudSeleccionada.solicitudFecha" cssClass="form-control" readonly="true" cssStyle="width: 100%"></s:textfield>
             </div>
             <div class="col-lg-3">
             </div>
@@ -71,7 +71,7 @@
                 <s:label value="Responsable:"></s:label>
             </div>
             <div class="col-lg-5">
-                <s:textfield name="solicitudSeleccionada.solicitudReponsable" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textfield>
+                <s:textfield name="solicitudSeleccionada.solicitudReponsable" cssClass="form-control" readonly="true" cssStyle="width: 100%"></s:textfield>
             </div>
             <div class="col-lg-3">
             </div>
@@ -86,7 +86,7 @@
                 <s:label value="Observación:"></s:label>
             </div>
             <div class="col-lg-5">
-                <s:textarea name="solicitudSeleccionada.solicitudObservacion" rows="3" cssClass="form-control" disabled="true" cssStyle="width: 100%"></s:textarea>
+                <s:textarea name="solicitudSeleccionada.solicitudObservacion" rows="3" cssClass="form-control" readonly="true" cssStyle="width: 100%"></s:textarea>
             </div>
             <div class="col-lg-3">
             </div>

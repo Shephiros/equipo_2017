@@ -31,4 +31,15 @@ public class DetalleSolicitudDao {
         }
         return arreglo;
     }
+    
+    //Método que guarda los detalles de solicitud.
+    public void guardarDetalleSolicitud(DetalleSolicitud detalleSolicitud){
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        session.save(detalleSolicitud);
+        tx.commit();
+        session.close();
+    }
+    
 }

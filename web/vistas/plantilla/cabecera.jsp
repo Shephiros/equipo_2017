@@ -8,6 +8,7 @@
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <s:if test="#session.menu[1] || #session.menu[2] || #session.menu[5] || #session.menu[6] || #session.menu[8] || #session.menu[10]">
             <!-- Módulo Administración -->
             <ul class="nav navbar-nav">
                 <li class="dropdown">
@@ -24,38 +25,44 @@
                     </ul>
                 </li>
             </ul>
+            </s:if>
 
+                <s:if test="#session.menu[11] || #session.menu[12] || #session.menu[15] || #session.menu[16] || #session.menu[19] || #session.menu[20]">
                 <!-- Módulo Institución -->
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white">Institución<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <s:if test="#session.menu[11]"><li><s:a action="institucionListado">Listado de instituciones</s:a></s:if>
-                            <s:if test="#session.menu[12]"><li><s:a action="institucionNuevo">Nueva institución</s:a></s:if>
-                            <s:if test="#session.menu[15]"><li><s:a action="departamentoListado">Listado de departamentos</s:a></s:if>
-                            <s:if test="#session.menu[16]"><li><s:a action="departamentoNuevo">Nuevo departamento</s:a></s:if>
-                            <s:if test="#session.menu[19]"><li><s:a action="prodInstitucionListado">Catálogo de equipo</s:a></s:if>
-                            <s:if test="#session.menu[20]"><li><s:a action="prodInstitucionNuevo">Nuevo equipo</s:a></s:if>
+                            <s:if test="#session.menu[11]"><li><s:a action="institucionListado">Listado de Instituciones</s:a></s:if>
+                            <s:if test="#session.menu[12]"><li><s:a action="institucionNuevo">Nueva Institución</s:a></s:if>
+                            <s:if test="#session.menu[15]"><li><s:a action="departamentoListado">Listado de Unidades</s:a></s:if>
+                            <s:if test="#session.menu[16]"><li><s:a action="departamentoNuevo">Nueva Unidad</s:a></s:if>
+                            <s:if test="#session.menu[19]"><li><s:a action="prodInstitucionListado">Catálogo de Equipos</s:a></s:if>
+                            <s:if test="#session.menu[20]"><li><s:a action="prodInstitucionNuevo">Nuevo Equipo</s:a></s:if>
                         </ul>
                     </li>
                 </ul>
+                </s:if>
                 <s:if test="#session.rol_Nombre.equalsIgnoreCase('Administrador del Sistema')">
                 </s:if>
                 
+                <s:if test="#session.menu[23] || #session.menu[24] || #session.menu[29] || #session.menu[30]">
                 <!-- Módulo Proveedores -->
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white">Proveedores<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <s:if test="#session.menu[23]"><li><s:a action="proveedorListado">Listado de proveedores</s:a></s:if>
-                            <s:if test="#session.menu[24]"><li><s:a action="proveedorNuevo">Nuevo proveedor</s:a></s:if>
-                            <s:if test="#session.menu[29]"><li><s:a action="prodProveedorListado">Listado de productos</s:a></s:if>
-                            <s:if test="#session.menu[30]"><li><s:a action="prodProveedorNuevo">Nuevo producto</s:a></s:if>
+                            <s:if test="#session.menu[23]"><li><s:a action="proveedorListado">Listado de Proveedores</s:a></s:if>
+                            <s:if test="#session.menu[24]"><li><s:a action="proveedorNuevo">Nuevo Proveedor</s:a></s:if>
+                            <s:if test="#session.menu[29]"><li><s:a action="prodProveedorListado">Listado de Productos</s:a></s:if>
+                            <s:if test="#session.menu[30]"><li><s:a action="prodProveedorNuevo">Nuevo Producto</s:a></s:if>
                             <li><s:a action="procedProveedorNuevo">Nuevo Proveedor Procedimiento</s:a>
                         </ul>
                     </li>
                 </ul>
-
+                </s:if>
+                
+                <s:if test="#session.menu[33] || #session.menu[34] || #session.menu[36] || #session.menu[37] || #session.menu[39] || #session.menu[40]">
                 <!-- Módulo Compras -->
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
@@ -71,7 +78,8 @@
                         </ul>
                     </li>
                 </ul>
-
+                </s:if>
+                        
                 <!-- Módulo Equipo -->
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
@@ -84,7 +92,7 @@
                     </ul>
                 </li>
             </ul>
-
+                
             <!-- Módulo Perfil -->
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
