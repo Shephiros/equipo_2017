@@ -63,4 +63,12 @@
             <one-to-many class="entidades.DetalleMantenimiento" />
         </set>
     </class>
+    
+    <sql-query name="equipo_pro_ingreso" callable="true">
+        <return-scalar column="MENSAJE" type="string"/>
+        
+        {  call equipo_pro_ingreso(?, :P_COMPRA_ID, :P_EQUIPO_NOMBRE, :P_EQUIPO_MARCA, 
+                                     :P_EQUIPO_MODELO, :P_EQUIPO_ANIO_FABRICACION, 
+                                     :P_EQUIPO_BTU, :P_EQUIPO_POTENCIA, :P_EQUIPO_ESTADO) }
+    </sql-query>
 </hibernate-mapping>

@@ -283,6 +283,14 @@
             <result type="tiles">listadoEquipo</result>
         </action>
         
+        <action name="equipoNuevo" class="controladores.EquipoControlador" method="nuevoEquipo">
+            <result type="tiles">nuevoEquipo</result>
+        </action>
+        
+        <action name="equipoGuardarPro" class="controladores.EquipoControlador" method="guardarEquipoPro">
+            <result type="tiles">listadoEquipo</result>
+        </action>
+        
         <!--*********************** UTILIZANDO PROCEDIMIENTOS****************-->
         <action name="procedProveedorNuevo" class="controladores.ProveedorControlador" method="nuevoProveedor">
             <result type="tiles">nuevoProveedorProced</result>
