@@ -132,7 +132,7 @@ public class AdministracionControlador extends ActionSupport{
 //****************************************************************************//    
     
     public String verListadoPermiso(){
-        for(int i=1; i<41; i++){
+        for(int i=1; i<61; i++){
             BigDecimal pantallaId = new BigDecimal(i);
             this.permiso = new PermisosDao().buscaPermiso(rolId,pantallaId);
             if(permiso.isEmpty()){}
@@ -149,7 +149,7 @@ public class AdministracionControlador extends ActionSupport{
     //Método que muestra los permisos por rol.
     public String verPermiso(){
         todasPantallas.clear();
-        for(int i=1; i<41; i++){
+        for(int i=1; i<61; i++){
             BigDecimal pantallaId = new BigDecimal(i);
             this.permiso = new PermisosDao().buscaPermiso(rolId,pantallaId);
             if(permiso.isEmpty()){

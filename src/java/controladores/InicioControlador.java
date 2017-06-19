@@ -74,7 +74,7 @@ public class InicioControlador extends ActionSupport implements SessionAware{
     
     public String cargaMenu(){
         HttpSession session = ServletActionContext.getRequest().getSession(false);
-        for(int i=1; i<41; i++){
+        for(int i=1; i<61; i++){
             BigDecimal pantallaId = new BigDecimal(i);
             this.permisoMenu = new PermisosDao().buscaPermiso((BigDecimal)session.getAttribute("rol_Id"),pantallaId);
             System.out.println("permisoMenú: "+permisoMenu);
