@@ -4,55 +4,61 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.BitacoraDao;
 import dao.PantallasDao;
+import dao.PermisosDao;
 import dao.RolesDao;
 import dao.UsuariosDao;
 import entidades.Bitacora;
+import entidades.Instituciones;
 import entidades.Pantallas;
+import entidades.Permisos;
 import entidades.Roles;
 import entidades.Usuarios;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
+import org.apache.struts2.ServletActionContext;
 import seguridad.Encryptado;
 
-/**
- *
- * @author Grupo 4 BAD115
- */
 public class AdministracionControlador extends ActionSupport{
     
+//****************************************************************************//
+//                                  Variables                                 //
+//****************************************************************************//
+
+    private ArrayList<Permisos> permiso = new ArrayList<Permisos>();
     private ArrayList<Usuarios> todosUsuarios; 
     private ArrayList<Roles> todosRoles;
-    private ArrayList<Pantallas> todasPantallas;
+    private ArrayList<Pantallas> todasPantallas = new ArrayList<Pantallas>();
+    private ArrayList<Pantallas> todosPermisosPantallas = new ArrayList<Pantallas>();
     private ArrayList<Bitacora> todasBitacoras;
     private Usuarios nuevoUsuario = new Usuarios();
     private Usuarios usuarioSeleccionado = new Usuarios();
-    private Pantallas pantalla = new Pantallas();
+    private Permisos nuevoPermiso = new Permisos();
+    private Permisos permisoSeleccionado = new Permisos();
+    private Pantallas pantalla;
     private BigDecimal rolId;
     private BigDecimal pantallaId;
     private String usuarioUsuario;
     private String estadoUsuario;
     private String contra;
     private Encryptado ss= new Encryptado();
-    
-    //para sacar rol
     private Roles rolSeleccionado=new Roles();
         
     @Override
     public String execute() throws Exception {
-        this.todosUsuarios = new UsuariosDao().todosUsuarios();
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
+        if(session.getAttribute("rol_Nombre").equals("Administrador del Sistema") || session.getAttribute("rol_Nombre").equals("Proveedor")){
+            this.todosUsuarios = new UsuariosDao().todosUsuarios();}
+        if(session.getAttribute("rol_Nombre").equals("Administrador de Institución") || session.getAttribute("rol_Nombre").equals("Jefe de Unidad")){
+            this.todosUsuarios = new UsuariosDao().todosUsuariosPorInstitucion((BigDecimal)session.getAttribute("institucion_Id"));}
+
         this.todasBitacoras= new BitacoraDao().todasBitacoras();
         return SUCCESS;
     }
     
-    public String listadoRoles(){
-        this.todosRoles= new RolesDao().todosRoles();
-        return  SUCCESS;
-    }
-    
-    public String listadoPantallas(){
-        this.todasPantallas = new PantallasDao().todasPantallas();
-        return SUCCESS;
-    }
+//****************************************************************************//
+//                           Métodos para CRUD Usuarios                       //
+//****************************************************************************//    
     
     public String mostrarNuevoUsuario(){
         this.todosRoles = new RolesDao().todosRoles();
@@ -60,6 +66,7 @@ public class AdministracionControlador extends ActionSupport{
     }
     
     public String guardarUsuario() throws Exception{
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
         this.todosRoles = new RolesDao().todosRoles();
         UsuariosDao gUsuario = new UsuariosDao();
         Roles rolU = new Roles();
@@ -68,6 +75,7 @@ public class AdministracionControlador extends ActionSupport{
         this.nuevoUsuario.setUsuarioEstado(BigDecimal.ONE);
         this.nuevoUsuario.setUsuarioBloqueado(BigDecimal.ONE);
         this.nuevoUsuario.setUsuarioContrasenia(ss.convertir(contra));
+        this.nuevoUsuario.setInstituciones((Instituciones)session.getAttribute("institucion"));
         gUsuario.guardarUsuario(nuevoUsuario);
         this.setRolId(BigDecimal.ZERO);
         nuevoUsuario = new Usuarios();
@@ -119,11 +127,95 @@ public class AdministracionControlador extends ActionSupport{
         return SUCCESS;
     }
     
+//****************************************************************************//
+//                           Métodos para CRUD Permisos                       //
+//****************************************************************************//    
+    
+    public String verListadoPermiso(){
+        for(int i=1; i<41; i++){
+            BigDecimal pantallaId = new BigDecimal(i);
+            this.permiso = new PermisosDao().buscaPermiso(rolId,pantallaId);
+            if(permiso.isEmpty()){}
+            else{
+                PantallasDao pantallaU = new PantallasDao();
+                pantalla=new Pantallas();
+                pantalla = pantallaU.pantallaPorPantalla(pantallaId);
+                todosPermisosPantallas.add(pantalla);
+            }
+        }
+        return  SUCCESS;
+    }
+    
+    //Método que muestra los permisos por rol.
+    public String verPermiso(){
+        todasPantallas.clear();
+        for(int i=1; i<41; i++){
+            BigDecimal pantallaId = new BigDecimal(i);
+            this.permiso = new PermisosDao().buscaPermiso(rolId,pantallaId);
+            if(permiso.isEmpty()){
+                PantallasDao pantallaU = new PantallasDao();
+                pantalla=new Pantallas();
+                pantalla = pantallaU.pantallaPorPantalla(pantallaId);
+                todasPantallas.add(pantalla);
+            }
+            else{
+                PantallasDao pantallaU = new PantallasDao();
+                pantalla=new Pantallas();
+                pantalla = pantallaU.pantallaPorPantalla(pantallaId);
+                todosPermisosPantallas.add(pantalla);
+            }
+        }
+        return SUCCESS;
+    }
+    
+    //Método que guarda un permiso.
+    public String guardarPermiso() throws Exception{
+        PermisosDao gPermiso = new PermisosDao();
+        Pantallas pantallaU = new Pantallas();
+        pantallaU.setPantallaId(pantallaId);
+        this.nuevoPermiso.setPantallas(pantallaU);
+        Roles rolU = new Roles();
+        rolU.setRolId(rolId);
+        this.nuevoPermiso.setRoles(rolU);
+        gPermiso.guardarPermiso(nuevoPermiso);
+        verPermiso();
+        return SUCCESS;
+    }
+    
+    //Método que elimina un permiso.
+    public String eliminarPermiso() throws Exception{
+        PermisosDao dPermiso = new PermisosDao();
+        System.out.println("rolId: "+rolId);
+        System.out.println("pantallaId: "+pantallaId);
+        this.permisoSeleccionado = new PermisosDao().permisoPorRolIdPantallaId(rolId, pantallaId);
+        System.out.println("Permisos seleccionado: "+permisoSeleccionado);
+        dPermiso.eliminarPermiso(permisoSeleccionado);
+        verPermiso();
+        return SUCCESS;
+    }
+    
+//****************************************************************************//
+//                                Otros Métodos                               //
+//****************************************************************************//    
+    
+    public String listadoRoles(){
+        this.todosRoles= new RolesDao().todosRoles();
+        return  SUCCESS;
+    }
+    
+    public String listadoPantallas(){
+        this.todasPantallas = new PantallasDao().todasPantallas();
+        return SUCCESS;
+    }
+      
     public String verPantalla(){
         this.pantalla = new PantallasDao().pantallaPorPantalla(pantallaId);
         return SUCCESS;
     }
     
+//****************************************************************************//
+//                      Métodos GET y SET para variables                      //
+//****************************************************************************//
     
     public ArrayList<Usuarios> getTodosUsuarios() {
         return todosUsuarios;
@@ -198,7 +290,6 @@ public class AdministracionControlador extends ActionSupport{
     public BigDecimal getPantallaId() {
         return pantallaId;
     }
-
     public void setPantallaId(BigDecimal pantallaId) {
         this.pantallaId = pantallaId;
     }
@@ -206,7 +297,6 @@ public class AdministracionControlador extends ActionSupport{
     public ArrayList<Bitacora> getTodasBitacoras() {
         return todasBitacoras;
     }
-
     public void setTodasBitacoras(ArrayList<Bitacora> todasBitacoras) {
         this.todasBitacoras = todasBitacoras;
     }
@@ -217,5 +307,34 @@ public class AdministracionControlador extends ActionSupport{
     public void setContra(String contra) {
         this.contra = contra;
     }
-    
+
+    public ArrayList<Pantallas> getTodosPermisosPantallas() {
+        return todosPermisosPantallas;
+    }
+
+    public void setTodosPermisosPantallas(ArrayList<Pantallas> todosPermisosPantallas) {
+        this.todosPermisosPantallas = todosPermisosPantallas;
+    }
+
+    public ArrayList<Permisos> getPermiso() {
+        return permiso;
+    }
+    public void setPermiso(ArrayList<Permisos> permiso) {
+        this.permiso = permiso;
+    }
+
+    public Permisos getNuevoPermiso() {
+        return nuevoPermiso;
+    }
+    public void setNuevoPermiso(Permisos nuevoPermiso) {
+        this.nuevoPermiso = nuevoPermiso;
+    }
+
+    public Permisos getPermisoSeleccionado() {
+        return permisoSeleccionado;
+    }
+    public void setPermisoSeleccionado(Permisos permisoSeleccionado) {
+        this.permisoSeleccionado = permisoSeleccionado;
+    }
+            
 }

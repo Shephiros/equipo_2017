@@ -5,6 +5,7 @@ package dao;
 
 import entidades.Usuarios;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -38,6 +39,26 @@ public class UsuariosDao implements Serializable{
         return arreglo;
     }
       
+    //Método que obtiene una lista de todos los usuarios por Id de institución.
+    public ArrayList<Usuarios> todosUsuariosPorInstitucion(BigDecimal institucionId)
+    {
+        SessionFactory sesion=HibernateUtil.getSessionFactory();
+        Session session =sesion.openSession();
+        Transaction tx=session.beginTransaction();
+        ArrayList<Usuarios> arreglo = new ArrayList<Usuarios>();
+        Query q=session.createQuery("from Usuarios where instituciones.institucionId = "+institucionId);
+        List<Usuarios> lista=q.list();
+        Iterator<Usuarios> iter=lista.iterator();
+        tx.commit();
+        session.close();
+        while(iter.hasNext())
+        {
+            Usuarios usuario = (Usuarios) iter.next();
+            arreglo.add(usuario);
+        }
+        return arreglo;
+    }
+    
     public Usuarios usuarioPorUsuario(String id_usuario){
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();

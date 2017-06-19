@@ -2,10 +2,14 @@ package controladores;
 
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
+import dao.CondicionesDao;
+import dao.InstitucionesDao;
 import dao.MunicipiosDao;
 import dao.ProductosProveedorDao;
 import dao.ProveedoresDao;
 import dao.UsuariosDao;
+import entidades.Condiciones;
+import entidades.Instituciones;
 import entidades.Municipios;
 import entidades.ProductosProveedor;
 import entidades.Proveedores;
@@ -26,7 +30,9 @@ public class ProveedorControlador extends ActionSupport{
     private ArrayList<Proveedores> todosProveedores;
     private ArrayList<ProductosProveedor> todosProductosProveedor;
     private Municipios municipioSeleccionado = new Municipios();
+    private Instituciones institucionSeleccionada = new Instituciones();
     private Proveedores proveedorSeleccionado = new Proveedores();
+    private Condiciones condicionSeleccionada= new Condiciones();
     private Proveedores nuevoProveedor = new Proveedores();
     private Usuarios nuevoUsuario = new Usuarios();
     private ProductosProveedor prodProveedorSeleccionado = new ProductosProveedor();
@@ -34,6 +40,7 @@ public class ProveedorControlador extends ActionSupport{
     private BigDecimal proveedorId;
     private BigDecimal prodProveedorId;
     private BigDecimal municipioId;
+    private String condicionInstalacion;
     
     @Override
     public String execute() throws Exception {
@@ -95,6 +102,40 @@ public class ProveedorControlador extends ActionSupport{
         this.proveedorSeleccionado = vProveedor.proveedorPorId(proveedorId);
         MunicipiosDao municipioDao = new MunicipiosDao();
         this.municipioSeleccionado = municipioDao.municipionPorId(proveedorSeleccionado.getMunicipios().getMunicipioId());
+        return SUCCESS;
+    }
+    
+    //Método que muestra una condición.
+    public String verCondicion(){
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
+        ProveedoresDao proveedorU = new ProveedoresDao();
+        this.proveedorSeleccionado = proveedorU.proveedorPorId(proveedorId);
+        InstitucionesDao institucionU = new InstitucionesDao();
+        this.institucionSeleccionada = institucionU.institucionPorId((BigDecimal)session.getAttribute("institucion_Id"));
+        CondicionesDao condicionU = new CondicionesDao();
+        this.condicionSeleccionada = condicionU.condicionPorInstitucionIdProveedorId((BigDecimal)session.getAttribute("institucion_Id"), proveedorId);
+        
+        if(condicionSeleccionada.getCondicionInstalacion().equals(BigDecimal.ONE)){
+          this.condicionInstalacion = "Permite instalación";
+        }else{
+          this.condicionInstalacion = "No permite instalación";
+        }
+        return SUCCESS;
+    }
+    
+    //Método que actualiza una condicion de proveedor.
+    public String actualizarCondicionM() throws Exception{
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
+        CondicionesDao eCondicion = new CondicionesDao();
+        ProveedoresDao proveedorU = new ProveedoresDao();
+        this.condicionSeleccionada.setProveedores(proveedorU.proveedorPorId(proveedorSeleccionado.getProveedorId()));
+        this.condicionSeleccionada.setInstituciones((Instituciones)session.getAttribute("institucion"));
+        if(condicionInstalacion.equals("Permite instalación")){
+        this.condicionSeleccionada.setCondicionInstalacion(BigDecimal.ONE);}
+        else{
+        this.condicionSeleccionada.setCondicionInstalacion(BigDecimal.ZERO);}
+        eCondicion.actualizarCondicion(condicionSeleccionada);
+        verListadoProveedores();
         return SUCCESS;
     }
     
@@ -257,5 +298,28 @@ public class ProveedorControlador extends ActionSupport{
     public void setNuevoUsuario(Usuarios nuevoUsuario) {
         this.nuevoUsuario = nuevoUsuario;
     }
+
+    public Instituciones getInstitucionSeleccionada() {
+        return institucionSeleccionada;
+    }
+    public void setInstitucionSeleccionada(Instituciones institucionSeleccionada) {
+        this.institucionSeleccionada = institucionSeleccionada;
+    }
+
+    public Condiciones getCondicionSeleccionada() {
+        return condicionSeleccionada;
+    }
+    public void setCondicionSeleccionada(Condiciones condicionSeleccionada) {
+        this.condicionSeleccionada = condicionSeleccionada;
+    }
+
+    public String getCondicionInstalacion() {
+        return condicionInstalacion;
+    }
+    public void setCondicionInstalacion(String condicionInstalacion) {
+        this.condicionInstalacion = condicionInstalacion;
+    }
+
+    
     
 }

@@ -4,16 +4,16 @@
 
 <h2 style="color: navy"><b><center>LISTADO DE PANTALLAS</center></b></h2><br>
 
-<div class="form-row">
+<div class="container" style="width: 100%">
     <div class="col-lg-1"></div> 
     <div class="col-lg-10">
         <table class="table table-striped table-bordered table-condensed" id="example">
             <thead>
-            <th><center>No.</center></th>
-            <th><center>Nombre</center></th>
-            <th><center>URL</center></th>
-            <th><center>Descripcion</center></th>
-            <th><center>Opciones</center></th>
+                <th style="width: 10pt"><center>No.</center></th>
+                <th><center>Nombre</center></th>
+                <th><center>URL</center></th>
+                <th><center>Descripcion</center></th>
+                <th style="width: 50pt"><center>Opciones</center></th>
             </thead>
             <tbody>
                 <s:iterator value="todasPantallas" var="dato" status="estado">
@@ -23,15 +23,15 @@
                         <td><s:property value="pantallaUrl"/></td>
                         <td><s:property value="pantallaDescripcion"/></td>
                         <td>
-                <center>
-                    <s:a action="pantallaVer" cssStyle="color: navy">
-                        <s:param name="pantallaId" value="pantallaId"/>
-                        <i class="glyphicon glyphicon-eye-open"></i>
-                    </s:a>
-                </center>
-                </td>
-                </tr>
-            </s:iterator>
+                            <center>
+                                <s:a action="pantallaVer" cssStyle="color: navy">
+                                    <s:param name="pantallaId" value="pantallaId"/>
+                                    <i class="glyphicon glyphicon-eye-open"></i>
+                                </s:a>
+                            </center>
+                        </td>
+                    </tr>
+                </s:iterator>
             </tbody>
         </table>
     </div>

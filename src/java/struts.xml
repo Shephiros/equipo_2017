@@ -93,6 +93,20 @@
             <result type="tiles">listadoBitacora</result>
         </action>
         
+        <action name="permisoListado" class="controladores.AdministracionControlador" method="verListadoPermiso">
+            <result type="tiles">listadoPermiso</result>
+        </action>
+        <action name="permisoEditar" class="controladores.AdministracionControlador" method="verPermiso">
+            <result type="tiles">editarPermiso</result>
+        </action>
+        <action name="permisoGuardar" class="controladores.AdministracionControlador" method="guardarPermiso">
+            <result type="tiles">editarPermiso</result>
+        </action>
+        <action name="permisoEliminar" class="controladores.AdministracionControlador" method="eliminarPermiso">
+            <result type="tiles">editarPermiso</result>
+        </action>
+        
+        
         <!-- Módulo Institución -->
         <action name="institucionListado" class="controladores.InstitucionControlador" method="verListadoInstituciones">
             <result type="tiles">listadoInstitucion</result>
@@ -173,7 +187,13 @@
         <action name="proveedorEditar" class="controladores.ProveedorControlador" method="verProveedor">
             <result type="tiles">editarProveedor</result>
         </action>
+        <action name="condicionEditar" class="controladores.ProveedorControlador" method="verCondicion">
+            <result type="tiles">editarCondicion</result>
+        </action>
         <action name="proveedorActualizar" class="controladores.ProveedorControlador" method="actualizarProveedor">
+            <result type="tiles">listadoProveedor</result>
+        </action>
+        <action name="condicion2Actualizar" class="controladores.ProveedorControlador" method="actualizarCondicionM">
             <result type="tiles">listadoProveedor</result>
         </action>
         <action name="proveedorGuardar" class="controladores.ProveedorControlador" method="guardarProveedor">

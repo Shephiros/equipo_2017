@@ -25,10 +25,18 @@
                         <td><center><s:property value="proveedorTelefono1"/></center></td>
                     <td>
                         <center>
+                            <s:if test="#session.rol_Nombre.equalsIgnoreCase('Administrador de institución')">
+                            <s:a action="condicionEditar" cssStyle="color: navy">
+                                <s:param name="proveedorId" value="proveedorId"/>
+                                <i class="glyphicon glyphicon-pencil"></i>
+                            </s:a>
+                            </s:if>
+                            <s:if test="#session.rol_Nombre.equalsIgnoreCase('Proveedor')">
                             <s:a action="proveedorEditar" cssStyle="color: navy">
                                 <s:param name="proveedorId" value="proveedorId"/>
                                 <i class="glyphicon glyphicon-pencil"></i>
                             </s:a>
+                            </s:if>
                             <s:a  action="proveedorVer" cssStyle="color: navy">
                                 <s:param name="proveedorId" value="proveedorId"/>
                                 <i class="glyphicon glyphicon-eye-open"></i>

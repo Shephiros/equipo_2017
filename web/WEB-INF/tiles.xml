@@ -61,6 +61,15 @@
         <put-attribute name="cuerpo" value="/vistas/administracion/bitacora_listado.jsp"/>
     </definition>
     
+    <definition name="listadoPermiso" extends="plantilla">
+        <put-attribute name="titulo" value="Permisos"/>
+        <put-attribute name="cuerpo" value="/vistas/administracion/permiso_listado.jsp"/>
+    </definition>
+    <definition name="editarPermiso" extends="plantilla">
+        <put-attribute name="titulo" value="Editar Permiso"/>
+        <put-attribute name="cuerpo" value="/vistas/administracion/permiso_editar.jsp"/>
+    </definition>
+    
     <!--*************************Modulo Institución**************************-->
     <definition name="listadoInstitucion" extends="plantilla">
         <put-attribute name="titulo" value="Listado Instituciones"/>
@@ -134,6 +143,10 @@
     <definition name="verProveedor" extends="plantilla">
         <put-attribute name="titulo" value="Información de Proveedor"/>
         <put-attribute name="cuerpo" value="/vistas/proveedores/proveedor_ver.jsp"/>
+    </definition>
+    <definition name="editarCondicion" extends="plantilla">
+        <put-attribute name="titulo" value="Editar Condicion"/>
+        <put-attribute name="cuerpo" value="/vistas/proveedores/condicion_editar.jsp"/>
     </definition>
     <definition name="editarProveedor" extends="plantilla">
         <put-attribute name="titulo" value="Editar Proveedor"/>

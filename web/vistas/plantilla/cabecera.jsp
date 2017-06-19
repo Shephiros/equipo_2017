@@ -19,7 +19,11 @@
                         <li role="separator" class="divider"></li>
                         <s:if test="#session.menu[5]"><li><s:a action="rolListado">Roles</s:a></s:if>
                         <s:if test="#session.menu[6]"><li><s:a action="pantallaListado">Pantallas</s:a></s:if>
-                        <s:if test="#session.menu[8]"><li><s:a action="permisoListado">Permisos</s:a></s:if>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Gestión de Permisos</li>
+                        <li><s:a action="permisoListado">Administrador de Institución<s:param name="rolId" value="2"/></s:a>
+                        <li><s:a action="permisoListado">Jefe de Unidad<s:param name="rolId" value="3"/></s:a>
+                        <li><s:a action="permisoListado">Proveedor<s:param name="rolId" value="4"/></s:a>
                         <li role="separator" class="divider"></li>
                         <s:if test="#session.menu[10]"><li><s:a action="bitacoraListado">Bitácora de movimientos</s:a></s:if>
                     </ul>

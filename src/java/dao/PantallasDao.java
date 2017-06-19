@@ -54,4 +54,19 @@ public class PantallasDao {
         session.close();
         return pa;
     }
+    /*
+    //Método que obtiene una pantalla por rol Id y pantalla Id.
+    public Pantallas ofertaPorProveedorId(BigDecimal licitacionId, BigDecimal proveedorId){
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        Query q=session.createQuery("from Ofertas where licitaciones.licitacionId = "+licitacionId+" and proveedores.proveedorId = "+proveedorId);
+        Ofertas ofer = (Ofertas) q.uniqueResult();
+        tx.commit();
+        session.close();
+        return ofer;
+    }
+    */
+    
+    
 }
