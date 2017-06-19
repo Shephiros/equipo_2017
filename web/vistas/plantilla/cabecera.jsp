@@ -96,6 +96,16 @@
                     </ul>
                 </li>
             </ul>
+                     <!-- Módulo Reportes -->
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white">Reportes<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><s:a action="paramProveedores">Reporte de Proveedores</s:a></li>
+                            <li><s:a action="paramCompras">Reporte de Compras</s:a></li>
+                        </ul>
+                    </li>
+                </ul>         
                 
             <!-- Módulo Perfil -->
             <ul class="nav navbar-nav navbar-right">

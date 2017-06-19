@@ -269,5 +269,22 @@
         <put-attribute name="titulo" value="Nuevo Proveedor"/>
         <put-attribute name="cuerpo" value="/vistas/proveedores/pro_proveedor_nuevo_proced.jsp"/>
     </definition>
-    
+    <!--*************************Modulo Reportes**************************-->
+    <definition name="paramProveedores" extends="plantilla">
+        <put-attribute name="titulo" value="Generar Reporte"/>
+        <put-attribute name="cuerpo" value="/vistas/reportes/proveedor_generar.jsp"/>
+    </definition>
+    <definition name="repProveedores" extends="plantilla">
+        <put-attribute name="titulo" value="Reporte"/>
+        <put-attribute name="cuerpo" value="/vistas/reportes/proveedor_reporte.jsp"/>
+    </definition>
+    <definition name="paramCompras" extends="plantilla">
+        <put-attribute name="titulo" value="Generar Reporte"/>
+        <put-attribute name="cuerpo" value="/vistas/reportes/compras_generar.jsp"/>
+    </definition>
+     <definition name="repCompras" extends="plantilla">
+        <put-attribute name="titulo" value="Reporte"/>
+        <put-attribute name="cuerpo" value="/vistas/reportes/compras_reporte.jsp"/>
+    </definition>
+    <!--*************************Modulo Reportes**************************-->
 </tiles-definitions>

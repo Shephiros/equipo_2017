@@ -3,6 +3,7 @@ package dao;
 import entidades.Compras;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import org.hibernate.Query;
@@ -82,5 +83,28 @@ public class ComprasDao {
         tx.commit();
         session.close();
     }
-    
+     //Compras entre un rango de fechas
+    public ArrayList<Compras> comprasEntreFechas(Date fIni ,Date fFin)
+    {
+        System.out.println("fechas\n"+fIni);
+        System.out.println(fFin);
+        SessionFactory sesion=HibernateUtil.getSessionFactory();
+        Session session =sesion.openSession();
+        Transaction tx=session.beginTransaction();
+        ArrayList<Compras> arreglo = new ArrayList<Compras>();
+        Query q=session.createQuery("from Compras");
+        List<Compras> lista=q.list();
+        Iterator<Compras> iter=lista.iterator();
+        tx.commit();
+        session.close();
+        while(iter.hasNext())
+        {
+            Compras comp = (Compras) iter.next();
+            if(comp.getCompraFecha().after(fFin)||comp.getCompraFecha().before(fIni)){
+            }else{
+                arreglo.add(comp);
+            }
+        }
+        return arreglo;
+    }
 }

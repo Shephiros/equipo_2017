@@ -81,5 +81,42 @@ public class ProveedoresDao {
         tx.commit();
        // sesion.close();
     }
-    
+    //Proveedores por departamento
+    public static ArrayList<Proveedores> proveedoresPorDepto(int depto){
+        Proveedores aux = new Proveedores();
+        SessionFactory sesion=HibernateUtil.getSessionFactory();
+        Session session =sesion.openSession();
+        Transaction tx=session.beginTransaction();
+        ArrayList<Proveedores> arreglo = new ArrayList<Proveedores>();
+        System.out.println(depto);
+        Query q = session.createSQLQuery("select pr.* from Proveedores pr inner join municipios mun on (pr.municipio_Id = mun.municipio_Id) and mun.DEPTO_ID = "+depto);
+        System.out.println("ALL GOOD"); 
+        System.out.println(q.getQueryString());
+        List<Object[]> lista= (List<Object[]>) q.list();
+        System.out.println("q.list()");
+        //Iterator<Object> iter=lista.iterator();
+        tx.commit();
+        session.close();
+        for (Object[] err : lista) {
+            aux.setProveedorId((BigDecimal) err[0]);
+            aux.setMunicipios(null);
+            aux.setProveedorEmpresa((String) err[2]);
+            aux.setProveedorContacto((String) err[3]);
+            aux.setProveedorTelefono1((String) err[4]);
+            //System.out.print("Departamento: "+ err[2] +" Municipio: " + err[3] +"\n");    
+            arreglo.add(aux);
+            aux = new Proveedores();
+        }
+//        for (Proveedores prs : arreglo)
+//        {
+//            System.out.println(prs.getProveedorEmpresa());
+//        }
+//        while(iter.hasNext())
+//        {
+//            System.out.println(iter.next());
+//            Proveedores pro = (Proveedores) iter.next();
+//            arreglo.add(pro);
+//        }
+        return arreglo;
+    }
 }

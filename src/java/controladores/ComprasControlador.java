@@ -1,5 +1,6 @@
 package controladores;
 
+import static com.opensymphony.xwork2.Action.ERROR;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.AprobadosDao;
@@ -29,7 +30,13 @@ import entidades.Proveedores;
 import entidades.Solicitudes;
 import entidades.TipoSolicitudes;
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 
@@ -79,6 +86,7 @@ public class ComprasControlador extends ActionSupport{
     private BigDecimal licitacionId;
     private BigDecimal deptoInstitucionId;
     private BigDecimal tipoSolicitudId;
+    private String fechaIni, fechaFin;
         
     @Override
     public String execute() throws Exception {
@@ -489,7 +497,21 @@ public class ComprasControlador extends ActionSupport{
 //****************************************************************************//
 //                      Métodos GET y SET para variables                      //
 //****************************************************************************//
+     public String getFechaIni() {
+        return fechaIni;
+    }
+
+    public void setFechaIni(String fechaIni) {
+        this.fechaIni = fechaIni;
+    }
     
+    public String getFechaFin() {
+        return fechaFin;
+    }
+    
+    public void setFechaFin(String fechaFin) {    
+        this.fechaFin = fechaFin;
+    }
     public ArrayList<Solicitudes> getTodasSolicitudes() {
         return todasSolicitudes;
     }
@@ -769,5 +791,51 @@ public class ComprasControlador extends ActionSupport{
     public void setNuevoDetalleCompra(DetalleCompras nuevoDetalleCompra) {
         this.nuevoDetalleCompra = nuevoDetalleCompra;
     }
-   
+//****************************************************************************//
+//                                Reportes                                    //
+//****************************************************************************//
+
+     public String paramReport() throws Exception {
+        //this.todosDepartamentos= new DepartamentosDao().todosDepartamentos();
+        //this.todosProveedores = new ProveedoresDao().todosProveedores();
+        //this.todosProductosProveedor = new ProductosProveedorDao().todosProductosProveedor();
+        return SUCCESS;
+    }
+    public String generar(){
+        this.fechaIni = ServletActionContext.getRequest().getParameter("fechaIni");
+        setFechaFin(ServletActionContext.getRequest().getParameter("fechaFin"));
+        SimpleDateFormat formatter = new SimpleDateFormat();
+        formatter.applyPattern("yyyy/MM/dd");
+        Logger.getLogger(ComprasControlador.class.getName()).log(Level.SEVERE, fechaIni);
+        Logger.getLogger(ComprasControlador.class.getName()).log(Level.SEVERE, fechaFin);
+        fechaIni= fechaIni.trim();
+        fechaFin = fechaFin.trim();
+        String ini = fechaIni.substring(0, 4)+"/"+fechaIni.substring(5, 7)+"/"+fechaIni.substring(8,10);
+        String fin = fechaFin.substring(0, 4)+"/"+fechaFin.substring(5, 7)+"/"+fechaFin.substring(8,10);
+       Logger.getLogger(ComprasControlador.class.getName()).log(Level.SEVERE,  ini);
+       Logger.getLogger(ComprasControlador.class.getName()).log(Level.SEVERE,  fin);
+        Date fIni;
+        Date fFin;
+        try {
+            fIni = formatter.parse(ini);
+            fFin = formatter.parse(fin);
+            if(fFin.before(fIni)||
+                    fFin.after(Calendar.getInstance().getTime())||
+                    fIni.after(Calendar.getInstance().getTime())){
+                addActionError("ERROR EN LA FECHA INGRESADA");
+                return ERROR;
+            }
+            setTodasCompras(new ComprasDao().comprasEntreFechas(fIni, fFin));
+        } catch (ParseException ex) {
+            Logger.getLogger(ComprasControlador.class.getName()).log(Level.SEVERE, null, ex);
+            addActionError("ERROR EN LA FECHA INGRESADA");
+            return ERROR;
+        }
+        //this.todosProductosProveedor = new ProductosProveedorDao().todosProductosProveedor();
+//        ProductosInstitucionDao gProdInstitucion = new ProductosInstitucionDao();
+//        this.nuevoProdInstitucion.setInstituciones((Instituciones)session.getAttribute("institucion"));
+//        gProdInstitucion.guardarProductosInstitucion(nuevoProdInstitucion);
+//        verListadoProdInstitucion();
+        return SUCCESS;
+    }
 }

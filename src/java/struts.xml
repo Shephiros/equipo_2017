@@ -330,7 +330,21 @@
         <action name="procedProveedorGuardar" class="controladores.ProveedorControlador" method="guardarProveedorProced">
             <result type="tiles">listadoProveedor</result>
         </action>
-        
+        <!-- Módulo Reportes -->
+        <action name="paramProveedores" class="controladores.ProveedorControlador" method="paramReport">
+            <result type="tiles">paramProveedores</result>
+        </action>
+        <action name="repProveedoresGenerar" class="controladores.ProveedorControlador" method="generar">
+            <result type="tiles">repProveedores</result>
+        </action>
+        <action name="paramCompras" class="controladores.ComprasControlador" method="paramReport">
+            <result type="tiles">paramCompras</result>
+        </action>
+        <action name="repComprasGenerar" class="controladores.ComprasControlador" method="generar">
+            <result type="tiles">repCompras</result>
+            <result name="error" type="tiles">paramCompras</result>
+        </action>
+        <!-- Módulo Reportes -->
     </package>
     
 </struts>

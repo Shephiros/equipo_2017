@@ -319,7 +319,30 @@ public class ProveedorControlador extends ActionSupport{
     public void setCondicionInstalacion(String condicionInstalacion) {
         this.condicionInstalacion = condicionInstalacion;
     }
+//****************************************************************************//
+//                                Reportes                                    //
+//****************************************************************************//
 
+     public String paramReport() throws Exception {
+        //this.todosDepartamentos= new DepartamentosDao().todosDepartamentos();
+        //this.todosProveedores = new ProveedoresDao().todosProveedores();
+        //this.todosProductosProveedor = new ProductosProveedorDao().todosProductosProveedor();
+        return SUCCESS;
+    }
+    public String generar(){
+        //HttpSession session = ServletActionContext.getRequest().getSession(false);
+        //this.municipioId = BigDecimal.valueOf(Double.parseDouble(ServletActionContext.getResponse().getHeader("municipioId")));
+        //this.municipioId = (BigDecimal) session.getAttribute("municipioId");
+        //  todosDepartamentos = new DepartamentosDao().todosDepartamentos();
+        this.municipioId = BigDecimal.valueOf(Double.parseDouble(ServletActionContext.getRequest().getParameter("municipioId")));
+        this.todosProveedores = new ProveedoresDao().proveedoresPorDepto(municipioId.intValue());
+        //this.todosProductosProveedor = new ProductosProveedorDao().todosProductosProveedor();
+//        ProductosInstitucionDao gProdInstitucion = new ProductosInstitucionDao();
+//        this.nuevoProdInstitucion.setInstituciones((Instituciones)session.getAttribute("institucion"));
+//        gProdInstitucion.guardarProductosInstitucion(nuevoProdInstitucion);
+//        verListadoProdInstitucion();
+        return SUCCESS;
+    }
     
     
 }
