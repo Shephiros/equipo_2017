@@ -29,16 +29,20 @@
                         <td><center><s:property value="solicitudFecha"/></center></td>
                         <td>
                             <center>
+                                <s:if test="#session.menu[35]">
                                 <s:if test="solicitudEstado == 0">
                                 <s:a action="solicitudEditar" cssStyle="color: navy">
                                     <s:param name="solicitudId" value="solicitudId"/>
                                     <i class="glyphicon glyphicon-pencil"></i>
                                 </s:a>
                                 </s:if>
+                                </s:if>
+                                <s:if test="#session.menu[34]">
                                 <s:a  action="solicitudVer" cssStyle="color: navy">
                                     <s:param name="solicitudId" value="solicitudId"/>
                                     <i class="glyphicon glyphicon-eye-open"></i>
                                 </s:a>
+                                </s:if>
                             </center>
                         </td>
                     </tr>
@@ -52,7 +56,7 @@
 
 <div class="form-group">
     <div class="col-lg-12" style="text-align: center">
-        <s:a action="solicitudNuevo" cssClass="btn btn-default" >Nueva Solicitud</s:a>
+        <s:if test="#session.menu[33]"><s:a action="solicitudNuevo" cssClass="btn btn-default" >Nueva Solicitud</s:a></s:if>
     </div>
     <br/><br/><br/><br/>
 </div>

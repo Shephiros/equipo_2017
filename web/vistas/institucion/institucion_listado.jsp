@@ -25,14 +25,18 @@
                         <td><center><s:property value="institucionTelefono"/></center></td>
                         <td>
                             <center>
+                                <s:if test="#session.menu[14]">
                                 <s:a action="institucionEditar" cssStyle="color: navy">
                                     <s:param name="institucionId" value="institucionId"/>
                                     <i class="glyphicon glyphicon-pencil"></i>
                                 </s:a>
+                                </s:if>
+                                <s:if test="#session.menu[13]">
                                 <s:a  action="institucionVer" cssStyle="color: navy">
                                     <s:param name="institucionId" value="institucionId"/>
                                     <i class="glyphicon glyphicon-eye-open"></i>
                                 </s:a>
+                                </s:if>
                             </center>
                         </td>
                     </tr>
@@ -46,7 +50,7 @@
 
 <div class="form-group">
     <div class="col-lg-12" style="text-align: center">
-        <s:a action="institucionNuevo" cssClass="btn btn-default">Nueva Institución</s:a>
+        <s:if test="#session.menu[12]"><s:a action="institucionNuevo" cssClass="btn btn-default">Nueva Institución</s:a></s:if>
     </div>
     <br/><br/><br/><br/>
 </div>
